@@ -1,0 +1,135 @@
+<p-card>
+  <div class="flex justify-between items-center mb-3">
+    <div class="font-semibold text-lg">
+      <span class="mr-1">{{ headerTable }}</span>
+      <span>({{ total }})</span>
+    </div>
+    <div class="flex gap-x-3">
+      <div
+        *ngIf="isSearch"
+        class="input-icon-left"
+      >
+        <img
+          src="assets/icons/default/ic-search.svg"
+          alt=""
+        />
+        <input
+          type="text"
+          [placeholder]="placeholderSearch"
+          pInputText
+          (input)="searchTableChange($event)"
+        />
+      </div>
+      <p-button
+        *ngIf="isRefresh"
+        icon="pi pi-refresh"
+        pTooltip="Làm mới"
+        tooltipPosition="left"
+        (onClick)="refreshData.emit()"
+      ></p-button>
+    </div>
+  </div>
+  <p-table
+    #dt
+    styleClass="custom-table"
+    [value]="dataTable || dataTableSkeleton"
+    [rows]="rowsPerPageOptions[0]"
+    [paginator]="paginator"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [showCurrentPageReport]="showCurrentPageReport"
+    [scrollable]="scrollable"
+    [scrollHeight]="scrollHeight"
+    [showFirstLastIcon]="showFirstLastIcon"
+    [dataKey]="dataKey"
+    [selectionPageOnly]="selectionPageOnly"
+    (onPage)="pageChange($event)"
+    (firstChange)="firstTableChange($event)"
+    (rowsChange)="rowsTableChange($event)"
+    (selectAllChange)="checkboxAllChange($event)"
+    (selectionChange)="checkboxChange($event)"
+    (onRowSelect)="rowSelect($event)"
+    (onRowUnselect)="rowUnselect($event)"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th
+          *ngIf="checkbox"
+          class=""
+          style="width: 4rem"
+        >
+          <!-- <p-checkbox
+            [(ngModel)]="checked"
+            [binary]="true"
+            inputId="binary"
+          ></p-checkbox> -->
+          <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+        </th>
+        <th
+          *ngIf="radio"
+          class=""
+          style="width: 4rem"
+        ></th>
+        <th>STT</th>
+        <ng-container *ngFor="let header of titleTable">
+          <th>
+            {{ header?.title }}
+            <ng-container *ngIf="header?.sort">
+              <p-sortIcon field="name"></p-sortIcon>
+            </ng-container>
+          </th>
+        </ng-container>
+        <th
+          *ngIf="showAction"
+          [ngStyle]="{ width: actionWidth || '250px' }"
+          alignFrozen="right"
+          pFrozenColumn
+          [frozen]="true"
+        >
+          Hành động
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-item
+      let-rowIndex="rowIndex"
+    >
+      <tr
+        [pSelectableRow]="item"
+        [pSelectableRowIndex]="rowIndex"
+      >
+        <td
+          *ngIf="checkbox"
+          class="text-center"
+        >
+          <p-tableCheckbox [value]="item"></p-tableCheckbox>
+          <!-- <p-checkbox
+            [(ngModel)]="checked"
+            [binary]="true"
+            inputId="binary"
+          ></p-checkbox> -->
+        </td>
+        <td *ngIf="radio">
+          <p-tableRadioButton [value]="item"></p-tableRadioButton>
+        </td>
+        <td></td>
+        <ng-container
+          [ngTemplateOutlet]="tableBody"
+          [ngTemplateOutletContext]="{ item: item, rowIndex: rowIndex }"
+        ></ng-container>
+        <td
+          *ngIf="showAction"
+          class="flex gap-x-2"
+          alignFrozen="right"
+          pFrozenColumn
+          [frozen]="true"
+        >
+          <ng-container
+            [ngTemplateOutlet]="tableAction"
+            [ngTemplateOutletContext]="{ item: item, rowIndex: rowIndex }"
+          ></ng-container>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

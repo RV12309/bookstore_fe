@@ -1,0 +1,15 @@
+<div [formGroup]="form">
+  <p-dropdown
+    styleClass="w-full"
+    [options]="cities"
+    [editable]="editable"
+    [optionLabel]="optionLabel"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [filter]="filter"
+    [autoDisplayFirst]="false"
+    formControlName="dropdown"
+    dataKey="value"
+  ></p-dropdown>
+  {{ dropdownControl?.value | json }}
+</div>

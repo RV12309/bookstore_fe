@@ -1,0 +1,19 @@
+<div class="flex flex-col gap-y-3">
+  <div class="flex justify-between items-center py-2">
+    <app-page-header
+      title="Quản lý danh sách sách"
+    ></app-page-header>
+    <p-button (onClick)="create()">
+      <img src="assets/icons/white/ic-add-outline.svg" class="w-6" alt="">
+      <span>Thêm mới</span>
+    </p-button>
+  </div>
+
+  <app-filter
+    [filterKeys]="filterKeys"
+  ></app-filter>
+  <app-table-ui
+    headerTable="Danh sách sách"
+    [titleTable]="titleTable"
+  ></app-table-ui>
+</div>

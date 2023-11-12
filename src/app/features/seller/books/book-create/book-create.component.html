@@ -1,0 +1,73 @@
+<div class="flex flex-col gap-y-3" [formGroup]="formBook">
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="col-span-2">
+      <label for="" class="w-full">Tiêu đề</label>
+      <input type="text" pInputText formControlName="title"/>
+    </div>
+    <div class="col-span-2">
+      <label for="" class="w-full">Tác giả</label>
+      <input type="text" pInputText formControlName="title"/>
+    </div>
+    <div class="">
+      <label for="">Danh mục</label>
+      <app-dropdown-ui></app-dropdown-ui>
+    </div>
+    <div class="">
+      <label for="">Người xuất bản</label>
+      <input type="text" pInputText formControlName="title"/>
+    </div>
+    <div class="">
+      <label for="">Ngày xuất bản</label>
+      <app-date-ui></app-date-ui>
+    </div>
+    <div class="">
+      <label for="">Số trang</label>
+      <p-inputNumber inputId="integeronly" suffix=" trang"> </p-inputNumber>
+    </div>
+    <div class="">
+      <label for="">Giá</label>
+      <p-inputNumber inputId="integeronly" suffix=" VNĐ"> </p-inputNumber>
+    </div>
+    <div class="">
+      <label for="">Số lượng</label>
+      <p-inputNumber inputId="integeronly" suffix=" quyển"> </p-inputNumber>
+    </div>
+    <div>
+      <label for="" class="w-full">Ảnh thu nhỏ (Thumbnail)</label>
+      <div class="mt-2">
+        <app-base-upload [chooseLabel]="'Chọn ảnh Thumbnail'" [fileLimit]="1"></app-base-upload>
+      </div>
+    </div>
+    <div>
+      <label for="" class="w-full">Ảnh bìa</label>
+      <div class="mt-2">
+        <app-base-upload [chooseLabel]="'Chọn ảnh bìa'" [fileLimit]="1"></app-base-upload>
+      </div>
+    </div>
+  </div>
+
+  <!-- <p-divider></p-divider> -->
+
+  <p-divider></p-divider>
+  <div>
+    <label for="" class="w-full">Ảnh xem trước</label>
+    <div class="mt-2">
+      <app-base-upload [chooseLabel]="'Chọn ảnh xem trước'"></app-base-upload>
+    </div>
+  </div>
+  <!-- footer -->
+  <div class="flex gap-x-3 justify-end">
+    <p-button
+      severity="warning"
+      (onClick)="closeModal()"
+    >
+      Đóng
+    </p-button>
+    <p-button
+      styleClass="w-24"
+    >
+      Lưu
+    </p-button>
+  </div>
+</div>

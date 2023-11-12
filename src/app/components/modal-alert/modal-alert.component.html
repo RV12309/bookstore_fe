@@ -1,0 +1,12 @@
+<div class="text-center flex flex-col gap-y-3 items-center">
+  <div class="p-3 rounded-full bg-gray  ">
+    <img [src]="dialogConfigData?.modalType?.iconUrl" class="w-14" alt="">
+  </div>
+  <p class="font-bold text-lg text-purple">Thông báo</p>
+  <p class="font-medium">{{dialogConfigData?.message}}</p>
+  <div class="w-full mt-3">
+    <p-button styleClass="w-full" (onClick)="accept()">
+      <p>{{dialogConfigData?.btnOkName || 'Đóng'}}</p>
+    </p-button>
+  </div>
+</div>

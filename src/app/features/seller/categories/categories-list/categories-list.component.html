@@ -1,0 +1,63 @@
+<div class="flex flex-col gap-y-3">
+  <div class="flex justify-between items-center py-2">
+    <app-page-header title="Quản lý danh mục sách"></app-page-header>
+    <p-button (onClick)="create()">
+      <img
+        src="assets/icons/white/ic-add-outline.svg"
+        class="w-6"
+        alt=""
+      />
+      <span>Thêm mới</span>
+    </p-button>
+  </div>
+  <app-table-ui
+    headerTable="Danh sách sách"
+    [titleTable]="titleTable"
+    [isSearch]="true"
+    [showAction]="true"
+    [checkbox]="true"
+    [radio]="false"
+    [dataTable]="dataTable"
+    [total]="total"
+    (searchChange)="searchChange($event)"
+    (refreshData)="refreshData()"
+  >
+    <ng-template
+      #tableBody
+      let-item="item"
+    >
+      <td>{{ item?.name }}</td>
+    </ng-template>
+    <ng-template #tableAction let-item="item">
+      <ng-container>
+        <button
+          class="p-button p-button-outlined p-button-secondary button-table"
+          (click)="view(item)"
+        >
+          <img
+            src="assets/icons/default/ic-eye.svg"
+            alt=""
+          />
+        </button>
+        <button
+          class="p-button p-button-outlined p-button-secondary button-table"
+          (click)="update(item)"
+        >
+          <img
+            src="assets/icons/default/ic-edit-pencil.svg"
+            alt=""
+          />
+        </button>
+        <button
+          class="p-button p-button-outlined p-button-secondary button-table"
+          (click)="delete(item)"
+        >
+          <img
+            src="assets/icons/default/ic-trash.svg"
+            alt=""
+          />
+        </button>
+      </ng-container>
+    </ng-template>
+  </app-table-ui>
+</div>

@@ -1,0 +1,90 @@
+<div class="">
+  <ng-container [ngSwitch]="UIMode">
+    <ng-container *ngSwitchCase="'custom'">
+      <div class="mb-4">
+        <p-button
+          styleClass="relative overflow-hidden w-fit h-[40px]"
+          severity="warning"
+        >
+          <img
+            src="assets/icons/white/ic-upload.svg"
+            class="w-8 h-8"
+            alt=""
+          />
+          <span>{{ chooseLabel }}</span>
+          <input
+            class="absolute h-full opacity-0"
+            type="file"
+            (change)="changeFile($event)"
+          />
+        </p-button>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'default'">
+      <p-fileUpload
+        mode="basic"
+        accept="image/*"
+        [disabled]="disabled"
+        [auto]="auto"
+        [mode]="mode"
+        [showCancelButton]="false"
+        [multiple]="multiple"
+        [chooseLabel]="chooseLabel"
+        [fileLimit]="fileLimit"
+        (onBeforeUpload)="onBeforeUpload($event)"
+        (onUpload)="onUpload($event)"
+        (onSelect)="onSelect($event)"
+      >
+        <ng-template #cancelicon>
+          <img
+            src="assets/icons/color/ic-alert-circle-outline.svg"
+            alt=""
+          />
+        </ng-template>
+      </p-fileUpload>
+    </ng-container>
+    <ng-container *ngSwitchCase="'advanced'">
+      <p-fileUpload
+        (onUpload)="onUpload($event)"
+        [multiple]="true"
+        accept="image/*"
+      >
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li *ngFor="let file of uploadedFiles">
+              {{ file.name }} - {{ file.size }} bytes
+            </li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="uploadedFiles.length">
+    <div class="grid grid-cols-5 gap-x-3">
+      <div
+        *ngFor="let file of uploadedFiles; let index = index"
+        class="w-full aspect-square bg-gray object-contain center rounded-lg relative overflow-hidden"
+      >
+        <img
+          src="assets/icons/color/ic-close-circle-f-red.svg"
+          class="absolute top-1 right-1 cursor-pointer hover:rotate-180 duration-400 z-30"
+          alt=""
+          (click)="removeImage(index)"
+        />
+        <!-- <img
+          [src]="file | imagePreview"
+          class="w-full"
+          alt=""
+        /> -->
+        <app-image-ui
+          [src]="file | imagePreview"
+          [imageClass]="'w-full'"
+          [alt]="file?.name"
+          [preview]="true"
+
+        ></app-image-ui>
+      </div>
+    </div>
+  </ng-container>
+</div>
+<p-toast></p-toast>

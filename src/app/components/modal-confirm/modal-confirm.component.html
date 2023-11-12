@@ -1,0 +1,21 @@
+<div class="text-center flex flex-col gap-y-3 items-center">
+  <div class="p-3 rounded-full bg-gray  ">
+    <img [src]="dialogConfigData?.modalType?.iconUrl" class="w-14" alt="">
+  </div>
+  <p class="font-bold text-lg text-purple">Xác nhận</p>
+  <ng-container *ngIf="dialogConfigData?.message">
+    <p class="font-medium">{{dialogConfigData.message}}</p>
+  </ng-container>
+  <ng-container *ngIf="dialogConfigData?.messageHTML">
+    <p class="font-medium" [innerHTML]="dialogConfigData.messageHTML"></p>
+  </ng-container>
+
+  <div class="grid grid-cols-2 gap-x-3 w-full mt-3">
+    <p-button styleClass="w-full"  (click)="accept()">
+      <p>{{dialogConfigData?.btnOkName || 'Đồng ý'}}</p>
+    </p-button>
+    <button pButton class="w-full p-button-warning" (click)="closeModal()">
+      <p>{{dialogConfigData?.btnCancleName || 'Đóng'}}</p>
+    </button>
+  </div>
+</div>

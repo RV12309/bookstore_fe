@@ -1,0 +1,63 @@
+<div class="flex h-screen">
+  <div class="">
+    <app-sidebar-menu [menuList]="menus"></app-sidebar-menu>
+  </div>
+  <div class="flex-1">
+    <!-- <div class="grid grid-cols-3 border-b border-solid border-purple-light pb-3">
+      <div class="flex justify-end col-span-2">
+        <div class="relative w-1/2">
+          <img src="assets/icons/default/ic-search.svg" class="w-6 h-6 absolute right-3 top-1/2 -translate-y-[50%]" alt="">
+          <input type="text" class="pr-10 w-full" pInputText/>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <p-avatar image="https://thumbs.dreamstime.com/b/cartoon-monster-face-vector-halloween-happy-monster-square-avatar-funny-monster-mask-aline-character-one-eye-illustration-alien-97158179.jpg" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+      </div>
+    </div> -->
+    <div class="flex justify-end gap-x-5 py-2 px-6">
+      <button
+        class="w-14 aspect-square rounded-full bg-white border border-solid ring-offset-1 ring-purple border-gray hover:ring-2 duration-300"
+      >
+        <img
+          src="assets/icons/default/ic-bell.svg"
+          alt=""
+        />
+      </button>
+      <div
+        class="bg-gray w-14 aspect-square rounded-full center overflow-hidden cursor-pointer ring-offset-1 ring-purple border-gray hover:ring-2 duration-300"
+      >
+        <p-avatar
+          image="https://png.pngtree.com/png-clipart/20201208/original/pngtree-cartoon-family-avatar-face-picture-brother-png-image_5519194.jpg"
+          styleClass=""
+          size="large"
+          shape="circle"
+          (click)="menu.toggle($event)"
+        ></p-avatar>
+        <p-menu
+          #menu
+          [model]="items"
+          [popup]="true"
+        >
+          <ng-template
+            pTemplate="item"
+            let-item
+          >
+            <a>
+              <div class="flex items-center gap-x-3">
+                <img [src]="'assets/icons/default/' + item?.icon" class="w-5" alt="">
+                <!-- <span [class]="item?.icon"></span> -->
+                <span class="font-medium">{{ item?.label }}</span>
+              </div>
+            </a>
+          </ng-template>
+        </p-menu>
+      </div>
+    </div>
+    <div
+      class="overflow-y-scroll h-[calc(100vh-63px)] bg-purple-light/50 p-2 pl-4 rounded-l-xl"
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+<!-- <app-loading></app-loading> -->

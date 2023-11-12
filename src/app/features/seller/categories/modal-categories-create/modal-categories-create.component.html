@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-y-3" [formGroup]="form">
+
+  <div class="grid grid-cols-2 gap-3">
+    <div class="col-span-2">
+      <label for="" class="w-full">Tên danh mục</label>
+      <input type="text" pInputText placeholder="Nhập tên danh mục" formControlName="name"/>
+    </div>
+    <div class="col-span-2">
+      <label for="" class="w-full">Mô tả</label>
+      <textarea rows="5" pInputTextarea [autoResize]="true" placeholder="Nhập mô tả"  formControlName="description"></textarea>
+
+    </div>
+  </div>
+  <!-- footer -->
+  <div class="flex gap-x-3 justify-end">
+    <!-- <p-button
+      [outlined]="true"
+      styleClass="bg-danger"
+      (onClick)="closeModal()"
+    >
+      Đóng
+    </p-button> -->
+    <p-button
+      *ngIf="!isView"
+      styleClass="w-24"
+      (onClick)="submit()"
+    >
+      Lưu
+    </p-button>
+  </div>
+</div>

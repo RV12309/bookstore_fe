@@ -1,0 +1,438 @@
+// Menu
+.p-menu {
+  @apply py-3 rounded-xl m-2;
+  .p-menu-list {
+    // @apply bg-red-300
+    .p-submenu-header {
+      @apply mb-1 mt-2 font-bold text-purple;
+    }
+  }
+  .p-menuitem {
+    @apply hover:bg-purple-light flex gap-x-3 duration-300 #{!important};
+    > * {
+      @apply bg-transparent ring-0 border-none #{!important};
+    }
+    .p-menuitem-text:hover,
+    .p-menuitem-icon:hover {
+      @apply bg-transparent;
+    }
+    .p-menuitem-text {
+      @apply font-medium;
+    }
+    .p-menuitem-icon {
+      @apply mr-2;
+    }
+    a:hover {
+      @apply bg-purple-light w-full;
+    }
+    .p-menuitem-content {
+      @apply w-full h-full p-3;
+    }
+  }
+}
+
+// Paginator
+.p-paginator {
+  .p-paginator-pages {
+    .p-paginator-page {
+      @apply rounded-xl;
+    }
+    .p-highlight {
+      @apply bg-purple-light text-purple;
+    }
+  }
+}
+
+// Rating
+.p-rating {
+  .p-rating-star {
+  }
+  .p-rating-star-on {
+    @apply bg-yellow-500;
+  }
+  .p-rating-cancel {
+  }
+  .p-rating-icon-active {
+    @apply text-orange;
+  }
+}
+
+// Button
+.p-button {
+  @apply font-medium bg-purple ring-purple focus:shadow-none text-center center duration-300 rounded-xl text-white border border-solid border-purple #{!important};
+  &:hover {
+    @apply ring-2 ring-offset-1 ring-purple;
+  }
+  &.p-button-outlined {
+    @apply bg-white text-purple #{!important};
+  }
+  &.p-button-rounded {
+    @apply rounded-full #{!important};
+  }
+  .p-badge {
+    @apply w-6 h-6 p-0 ml-2 center;
+  }
+  .p-button-icon {
+    &.p-button-icon-left {
+      @apply mr-2;
+    }
+  }
+}
+
+.p-button-secondary {
+  @apply bg-brown ring-brown focus:shadow-none  border border-solid border-brown duration-300 #{!important};
+  &:hover {
+    @apply ring-2 ring-offset-1 ring-brown;
+  }
+  &.p-button-outlined {
+    @apply bg-white text-brown #{!important};
+  }
+}
+
+.p-button-warning {
+  @apply bg-orange ring-orange focus:shadow-none border border-solid border-orange duration-300 #{!important};
+  &:hover {
+    @apply ring-2  ring-offset-1 ring-orange;
+  }
+  &.p-button-outlined {
+    @apply bg-white text-orange  #{!important};
+  }
+}
+
+.p-button-success {
+  @apply bg-green ring-green focus:shadow-none border border-solid border-green  duration-300 #{!important};
+  &:hover {
+    @apply ring-2 ring-offset-1 ring-green;
+  }
+  &.p-button-outlined {
+    @apply bg-white text-green #{!important};
+  }
+}
+
+.p-button-info {
+  @apply bg-info ring-info focus:shadow-none border border-solid border-info duration-300 #{!important};
+  &:hover {
+    @apply ring-2 ring-offset-1 ring-info;
+  }
+  &.p-button-outlined {
+    @apply bg-white text-info  #{!important};
+  }
+}
+
+.p-button-help {
+  @apply bg-help ring-help focus:shadow-none border-solid border-help duration-300 #{!important};
+  &:hover {
+    @apply ring-2 ring-offset-1 ring-help;
+  }
+  &.p-button-outlined {
+    @apply bg-white text-help border  #{!important};
+  }
+}
+
+.p-button-danger {
+  @apply bg-danger ring-danger focus:shadow-none border border-solid border-danger duration-300 #{!important};
+  &:hover {
+    @apply ring-2 ring-offset-1 ring-danger;
+  }
+  &.p-button-outlined {
+    @apply bg-white text-danger  #{!important};
+  }
+}
+
+.button-table {
+  @apply w-10 aspect-square center border-brown/30 #{!important};
+  img {
+    @apply w-5;
+  }
+}
+
+// Card
+.p-card {
+  @apply shadow-none p-3 rounded-xl;
+  .p-card-title {
+    @apply font-bold text-xl mb-3;
+  }
+}
+
+// Input
+input,
+.p-inputtextarea {
+  @apply w-full border border-solid border-purple/50 focus:border-purple rounded-xl duration-300 #{!important};
+}
+
+.p-input-icon-left {
+  i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.input-icon {
+  &-left {
+    @apply relative;
+    img {
+      @apply absolute w-6 left-2 top-1/2 -translate-y-1/2;
+    }
+    input {
+      @apply pl-9;
+    }
+  }
+}
+
+// Input number
+p-inputnumber,
+.p-inputnumber {
+  @apply w-full #{!important};
+}
+
+// Dropdown
+.p-dropdown {
+  @apply h-[38px] rounded-xl border border-solid border-purple;
+  input {
+    border-radius: inherit;
+    border: none !important;
+    outline: none !important;
+  }
+
+  .p-dropdown-panel {
+    @apply overflow-hidden p-2;
+    .p-dropdown-items {
+    }
+    .p-dropdown-item {
+      @apply py-3 px-1 rounded-lg mt-1;
+      &:hover {
+        @apply bg-gray;
+      }
+    }
+    .p-highlight {
+      @apply bg-purple-light text-purple font-semibold;
+    }
+  }
+  .p-dropdown-label {
+    @apply flex items-center pl-2;
+  }
+  &:hover{
+    @apply border border-solid border-purple #{!important};
+  }
+  &.p-focus{
+    @apply border border-solid border-purple #{!important};
+  }
+}
+
+//Toast
+.p-toast {
+  .p-toast-message {
+    @apply p-3 rounded-xl mb-4;
+    .p-toast-message-content {
+      .p-toast-message-icon {
+        @apply mr-3;
+      }
+      .p-toast-summary {
+        @apply font-bold mb-1;
+      }
+    }
+  }
+}
+//==========================================================================================
+
+// Table
+.p-table {
+  .p-datatable {
+    .p-datatable-wrapper {
+      table .p-datatable-table {
+        thead {
+          display: block;
+          background: red !important;
+        }
+        @apply bg-red-300 rounded-xl;
+        .p-datatable-thead {
+          @apply py-10;
+        }
+      }
+    }
+  }
+}
+.custom-table {
+  border-collapse: collapse;
+  @apply rounded-xl border border-solid border-neutral-200;
+  .p-paginator {
+    @apply mt-5 mb-3;
+    &-bottom{
+      @apply border-none;
+    }
+  }
+  .p-sortable-column.p-highlight {
+    @apply text-purple #{!important};
+  }
+  .p-datatable-scrollable-table > .p-datatable-thead {
+    z-index: 500;
+  }
+}
+
+.custom-table .p-datatable-wrapper {
+  @apply rounded-t-xl overflow-scroll;
+}
+
+.custom-table th,
+.custom-table td {
+  // text-align: center;
+  @apply p-5;
+}
+
+.custom-table {
+  tr {
+    &.p-highlight {
+      @apply text-purple bg-orange/10 #{!important};
+    }
+    &:focus{
+      @apply outline-none #{!important};
+    }
+  }
+}
+
+.custom-table th {
+  @apply text-purple bg-purple-light font-semibold text-base z-[500];
+}
+
+.custom-table td {
+  p-tablecheckbox {
+  }
+}
+
+.custom-table tr:nth-child(even) {
+  @apply bg-gray/20;
+}
+.custom-table tr:hover {
+  @apply bg-gray/50;
+}
+
+//==========================================================================================
+
+// Tooltip
+.p-tooltip {
+  .p-tooltip-text {
+    @apply p-2 rounded-lg bg-neutral-500 m-2;
+  }
+  .p-tooltip-arrow {
+  }
+}
+
+// DIALOG
+.p-dialog {
+  @apply outline-none border-none rounded-xl bg-white shadow-none;
+  .p-dialog-header {
+    @apply p-3 rounded-t-xl;
+    .p-dialog-header-icons {
+      @apply w-10 aspect-square bg-gray center hover:ring-1 ring-neutral-400 ring-offset-2 duration-400 rounded-xl;
+    }
+    .p-dialog-title {
+      @apply font-semibold text-xl;
+    }
+  }
+  .p-dialog-content {
+    @apply rounded-xl p-6 #{!important};
+  }
+  .p-dialog-footer{
+  }
+}
+
+// Calendar
+.p-calendar {
+  .p-datepicker {
+    @apply rounded-xl;
+    .p-datepicker-group-container {
+      @apply rounded-xl p-2;
+      .p-datepicker-group {
+        // @apply rounded-xl overflow-hidden;
+        .p-datepicker-header {
+          @apply rounded-t-xl;
+        }
+      }
+    }
+  }
+  .p-datepicker-calendar {
+    @apply p-2;
+    table {
+      th,
+      td {
+        @apply p-5;
+      }
+    }
+  }
+}
+
+//  CHECKBOX
+.p-checkbox {
+  .p-checkbox-box {
+    @apply border border-solid border-purple rounded-lg w-6 h-6;
+    &:hover {
+      @apply bg-purple-light border-purple #{!important};
+    }
+  }
+  .p-checkbox-box.p-highlight {
+    @apply bg-purple shadow-none border-none #{!important};
+    &:hover {
+    }
+    &:focus {
+      @apply shadow-none;
+    }
+  }
+}
+
+// Upload
+
+.p-fileupload.p-fileupload-advanced {
+  .p-fileupload-buttonbar {
+    @apply flex gap-x-3;
+    .p-fileupload-choose {
+      @apply min-h-full px-3 #{!important};
+    }
+  }
+}
+
+.p-disabled,
+.p-component:disabled {
+  @apply opacity-100;
+}
+
+// Textarea
+// .p-inputtextarea{
+//   @apply w-full rounded-xl border;
+// }
+
+// Breadcrumb
+.p-breadcrumb {
+  @apply bg-transparent #{!important};
+  homeicon {
+    @apply hidden;
+  }
+}
+
+.p-image {
+  .p-image-mask {
+    @apply rounded-xl overflow-hidden #{!important};
+  }
+  .p-image-toolbar {
+    @apply absolute top-3 right-3 #{!important};
+  }
+}
+
+//==========================================================================================
+
+// RADIO BUTTON
+.p-radiobutton {
+  // @apply bg-red-400;
+  .p-radiobutton-box {
+    @apply border border-solid border-brown shadow-none;
+    &.p-highlight {
+      @apply bg-purple;
+    }
+    &:active {
+      @apply shadow-none;
+    }
+    .p-radiobutton-icon {
+      @apply bg-purple-light;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<p-card [formGroup]="searchForm">
+  <div class="grid grid-cols-4 gap-3">
+    <ng-container *ngFor="let item of filterKeys">
+      <ng-container
+        [ngTemplateOutlet]="filterTpl"
+        [ngTemplateOutletContext]="{item: item}"
+      ></ng-container>
+    </ng-container>
+  </div>
+  <div class="w-full flex gap-x-3 justify-end mt-5">
+    <p-button label="Tìm kiếm" (click)="submit()"></p-button>
+    <button label="Khôi phục" pButton class="p-button-danger"></button>
+  </div>
+
+  <ng-template #filterTpl let-item="item">
+    <ng-container [ngSwitch]="item?.type">
+      <div *ngSwitchCase="InputType.Input">
+        <label>{{item?.label}}</label>
+        <div class="relative">
+          <img [src]="item?.icon" class="w-6 absolute left-2 top-1/2 translate-y-[-50%]" alt="">
+          <input type="text" class="w-full" [ngClass]="item?.icon ? 'pl-10':''" [placeholder]="item?.placeholder" [formControlName]="item?.controlName" pInputText/>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="InputType.Select">
+        <label>{{item?.label}}</label>
+        <app-dropdown-ui
+          classList="w-full"
+        ></app-dropdown-ui>
+      </div>
+
+      <!-- <div *ngSwitchCase="InputType.DatePicker">
+        <label>{{item?.label}}</label>
+        <app-date-ui
+          [placeholder]="item?.placeholder"
+        ></app-date-ui>
+      </div> -->
+    </ng-container>
+  </ng-template>
+</p-card>
+
+

@@ -1,0 +1,75 @@
+.button {
+  @apply cursor-pointer border-none font-semibold flex items-center justify-center h-12 rounded-xl duration-300;
+  &-primary {
+    @apply bg-primary-blue text-white;
+    &:hover{
+      @apply bg-primary-blue/90 ring ring-offset-2 ring-purple;
+    }
+  }
+  &-primary-outline {
+    @apply bg-purple-light text-purple;
+    &:hover{
+      @apply bg-purple-light ring ring-offset-2 ring-purple;
+    }
+  }
+  &-gray {
+    @apply bg-gray text-primary-blue duration-300;
+    &:hover{
+      @apply bg-gray/60 shadow-sm shadow-gray/30
+    }
+  }
+  &-gray-outline {
+    @apply bg-white border border-solid border-gray duration-300 text-primary-blue;
+    &:hover{
+    }
+  }
+}
+
+.swiper-button-next, .swiper-button-prev {
+  @apply text-primary-blue;
+}
+
+.card{
+  &-blur{
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+  }
+}
+
+.book-card{
+  @apply rounded-xl overflow-hidden p-6 border border-solid border-gray;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+  background: red !important;
+}
+
+.banner {
+  background-color: #4158D0;
+  background-image: linear-gradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%);
+}
+
+.center {
+  @apply flex justify-center items-center
+}
+
+.title {
+  @apply text-center text-neutral-500;
+  &-head{
+    @apply font-bold text-5xl text-purple mb-3;
+  }
+}
+
+.card-glass  {
+  // backdrop-filter: blur(3px) saturate(179%);
+  // -webkit-backdrop-filter: blur(3px) saturate(179%);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+a{
+ &:hover{
+  background-color: transparent !important;
+ }
+}

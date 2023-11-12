@@ -1,0 +1,22 @@
+<div class="w-full relative">
+  <img
+    src="assets/icons/default/ic-calendar-outline.svg"
+    class="w-6 absolute right-2 z-30 top-1/2 translate-y-[-50%]"
+    alt=""
+  />
+  <p-calendar
+    styleClass="w-full"
+    dateFormat="dd-mm-yy"
+    [showIcon]="false"
+    [readonlyInput]="true"
+    [selectionMode]="dateMode"
+    [showButtonBar]="showButtonBar"
+    [placeholder]="placeholder"
+  >
+    <ng-template pTemplate="footer">
+      <!-- <div class="p-2">
+
+      </div> -->
+    </ng-template>
+  </p-calendar>
+</div>
