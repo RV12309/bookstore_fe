@@ -9,6 +9,7 @@ import { MenuModule } from 'primeng/menu';
 import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarMenuModule } from "src/app/components/sidebar-menu/sidebar-menu.module";
+import { LoadingModule } from "src/app/components/loading/loading.module";
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SidebarMenuModule } from "src/app/components/sidebar-menu/sidebar-menu.
     AvatarModule,
     MenuModule,
     BadgeModule,
-    SidebarMenuModule
+    SidebarMenuModule,
+    LoadingModule
   ]
 })
 export class SellerLayoutModule { }

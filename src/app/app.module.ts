@@ -11,6 +11,9 @@ import { RouterModule } from "@angular/router";
 import { routes } from "./routes";
 import { MessageService } from "primeng/api";
 import { DialogService } from "primeng/dynamicdialog";
+import { RequestInterceptor } from "./core/interceptors/request.interceptor";
+import { ResponseInterceptor } from "./core/interceptors/response.interceptor";
+import { LoadingInterceptor } from "./core/interceptors/loading.interceptor";
 
 @NgModule({
   declarations: [
@@ -30,6 +33,21 @@ import { DialogService } from "primeng/dynamicdialog";
   providers: [
     DialogService,
     MessageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ResponseInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

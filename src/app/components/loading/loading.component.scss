@@ -1,0 +1,13 @@
+.spinner {
+  width: 8px;
+  height: 8px;
+  animation: spinner-z355kx 1s infinite linear;
+  border-radius: 8px;
+  box-shadow: 20px 0px 0 0 #6c5dd4, 12.4px 15.6px 0 0 #6c5dd4, -4.4px 19.4px 0 0 #6c5dd4, -18px 8.6px 0 0 #6c5dd4, -18px -8.6px 0 0 #6c5dd4, -4.4px -19.4px 0 0 #6c5dd4, 12.4px -15.6px 0 0 #6c5dd4;
+}
+
+@keyframes spinner-z355kx {
+  to {
+     transform: rotate(360deg);
+  }
+}

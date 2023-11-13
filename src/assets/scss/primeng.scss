@@ -148,7 +148,7 @@
 
 // Card
 .p-card {
-  @apply shadow-none p-3 rounded-xl;
+  @apply shadow-none p-3 rounded-xl #{!important};
   .p-card-title {
     @apply font-bold text-xl mb-3;
   }
@@ -172,7 +172,7 @@ input,
   &-left {
     @apply relative;
     img {
-      @apply absolute w-6 left-2 top-1/2 -translate-y-1/2;
+      @apply w-6 absolute left-2 top-1/2 translate-y-[-50%];
     }
     input {
       @apply pl-9;
@@ -188,7 +188,7 @@ p-inputnumber,
 
 // Dropdown
 .p-dropdown {
-  @apply h-[38px] rounded-xl border border-solid border-purple;
+  @apply h-[38px] rounded-xl border border-solid border-purple/50 #{!important};
   input {
     border-radius: inherit;
     border: none !important;
@@ -196,13 +196,13 @@ p-inputnumber,
   }
 
   .p-dropdown-panel {
-    @apply overflow-hidden p-2;
+    @apply overflow-hidden p-2 mt-1 #{!important};
     .p-dropdown-items {
     }
     .p-dropdown-item {
-      @apply py-3 px-1 rounded-lg mt-1;
+      @apply py-3 px-1 rounded-lg mt-1 #{!important};
       &:hover {
-        @apply bg-gray;
+        @apply bg-gray #{!important};
       }
     }
     .p-highlight {
@@ -320,14 +320,14 @@ p-inputnumber,
 
 // DIALOG
 .p-dialog {
-  @apply outline-none border-none rounded-xl bg-white shadow-none;
+  @apply outline-none border-none rounded-xl bg-white shadow-none #{!important};
   .p-dialog-header {
-    @apply p-3 rounded-t-xl;
+    @apply p-3 rounded-t-xl #{!important};
     .p-dialog-header-icons {
       @apply w-10 aspect-square bg-gray center hover:ring-1 ring-neutral-400 ring-offset-2 duration-400 rounded-xl;
     }
     .p-dialog-title {
-      @apply font-semibold text-xl;
+      @apply font-semibold text-xl #{!important};
     }
   }
   .p-dialog-content {

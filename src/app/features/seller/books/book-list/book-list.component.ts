@@ -24,7 +24,7 @@ export class BookListComponent implements OnInit{
       type: InputType.Input,
       controlName: 'title',
       label: 'Tên sách',
-      icon: 'assets/icons/default/ic-archive.svg',
+      icon: 'assets/icons/default/ic-search.svg',
       placeholder: 'Nhập tên sách',
       defaultValue: 'harry'
     },
