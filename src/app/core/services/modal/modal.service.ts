@@ -50,7 +50,7 @@ export class ModalService {
   alert(data:Partial<IModalOption>, configData?:Object, width = '350px'){
     const paramsData:Partial<IModalOption> = {
       ...data,
-      type: 'info',
+      type: data?.type || 'info',
       modalType: ModalType[data?.type || 'info'],
     }
     this.open(
@@ -85,7 +85,7 @@ export const ModalType = {
   },
   'success': {
     type: 'success',
-    iconUrl: 'assets/icons/color/ic-alert-circle-outline.svg',
+    iconUrl: 'assets/icons/active/ic-success.svg',
     iconClass: '',
     btnCancelClass: '',
     btnOkClass: 'primary',

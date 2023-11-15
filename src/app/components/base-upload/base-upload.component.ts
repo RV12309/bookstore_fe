@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { UploadService } from "src/app/core/services/upload.service";
 
@@ -17,6 +17,8 @@ export class BaseUploadComponent implements OnInit {
   @Input() fileLimit = 5;
   @Input() UIMode: "custom" | "advanced" | "default" = "custom";
 
+  @Output() fileUpload = new EventEmitter();
+
   private myWidget: any;
   private uploadPreset = "aoh4fpwm"; // replace with your own upload preset
   public uploadedFiles: any[] = [];
@@ -29,7 +31,6 @@ export class BaseUploadComponent implements OnInit {
   openWidget() {}
 
   onBeforeUpload(event: any) {
-    console.log(event);
   }
 
   onSelect(event: any) {
@@ -39,7 +40,6 @@ export class BaseUploadComponent implements OnInit {
     console.log(event);
     this.uploadService.uploadImage(event?.currentFiles[0]).subscribe({
       next: (resp) => {
-        console.log(resp);
       },
     });
   }
@@ -61,15 +61,7 @@ export class BaseUploadComponent implements OnInit {
     for (let file of event.target?.files) {
       this.uploadedFiles.push(file);
     }
-    console.log(this.uploadedFiles);
-    // this.uploadService.uploadImage(
-    //   event?.target?.files[0]
-    // ).subscribe({
-    //   next: resp => {
-    //     console.log(resp);
-
-    //   }
-    // })
+    this.fileUpload.emit(this.fileUpload);
   }
 
   uploadImage(){
@@ -78,6 +70,5 @@ export class BaseUploadComponent implements OnInit {
 
   removeImage(index: number) {
     this.uploadedFiles?.splice(index, 1);
-    console.log(this.uploadedFiles, this.uploadedFiles.length);
   }
 }

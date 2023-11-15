@@ -1,48 +1,103 @@
-<div class="flex flex-col gap-y-3" [formGroup]="formBook">
-
+<div
+  class="flex flex-col gap-y-3"
+  [formGroup]="formBook"
+>
   <div class="grid grid-cols-2 gap-3">
     <div class="col-span-2">
-      <label for="" class="w-full">Tiêu đề</label>
-      <input type="text" pInputText formControlName="title"/>
+      <label
+        for=""
+        class="w-full"
+      >
+        Tiêu đề
+      </label>
+      <input
+        type="text"
+        pInputText
+        formControlName="title"
+        placeholder="Nhập tiêu đề"
+      />
     </div>
     <div class="col-span-2">
-      <label for="" class="w-full">Tác giả</label>
-      <input type="text" pInputText formControlName="title"/>
+      <label
+        for=""
+        class="w-full"
+      >
+        Tác giả
+      </label>
+      <input
+        type="text"
+        pInputText
+        formControlName="title"
+        placeholder="Nhập tác giả"
+      />
     </div>
     <div class="">
       <label for="">Danh mục</label>
-      <app-dropdown-ui></app-dropdown-ui>
+      <app-dropdown-ui placeholder="Chọn danh mục"></app-dropdown-ui>
     </div>
     <div class="">
       <label for="">Người xuất bản</label>
-      <input type="text" pInputText formControlName="title"/>
+      <input
+        type="text"
+        pInputText
+        formControlName="title"
+        placeholder="Nhập người xuất bản"
+      />
     </div>
     <div class="">
       <label for="">Ngày xuất bản</label>
-      <app-date-ui></app-date-ui>
+      <app-date-ui placeholder="Chọn ngày xuất bản"></app-date-ui>
     </div>
     <div class="">
       <label for="">Số trang</label>
-      <p-inputNumber inputId="integeronly" suffix=" trang"> </p-inputNumber>
+      <p-inputNumber
+        inputId="integeronly"
+        suffix=" trang"
+        placeholder="Nhập số trang"
+      ></p-inputNumber>
     </div>
     <div class="">
       <label for="">Giá</label>
-      <p-inputNumber inputId="integeronly" suffix=" VNĐ"> </p-inputNumber>
+      <p-inputNumber
+        inputId="integeronly"
+        suffix=" VNĐ"
+        placeholder="Nhập giá"
+      ></p-inputNumber>
     </div>
     <div class="">
       <label for="">Số lượng</label>
-      <p-inputNumber inputId="integeronly" suffix=" quyển"> </p-inputNumber>
+      <p-inputNumber
+        inputId="integeronly"
+        suffix=" quyển"
+        placeholder="Nhập số lượng"
+      ></p-inputNumber>
     </div>
     <div>
-      <label for="" class="w-full">Ảnh thu nhỏ (Thumbnail)</label>
+      <label
+        for=""
+        class="w-full"
+      >
+        Ảnh thu nhỏ (Thumbnail)
+      </label>
       <div class="mt-2">
-        <app-base-upload [chooseLabel]="'Chọn ảnh Thumbnail'" [fileLimit]="1"></app-base-upload>
+        <app-base-upload
+          [chooseLabel]="'Chọn ảnh Thumbnail'"
+          [fileLimit]="1"
+        ></app-base-upload>
       </div>
     </div>
     <div>
-      <label for="" class="w-full">Ảnh bìa</label>
+      <label
+        for=""
+        class="w-full"
+      >
+        Ảnh bìa
+      </label>
       <div class="mt-2">
-        <app-base-upload [chooseLabel]="'Chọn ảnh bìa'" [fileLimit]="1"></app-base-upload>
+        <app-base-upload
+          [chooseLabel]="'Chọn ảnh bìa'"
+          [fileLimit]="1"
+        ></app-base-upload>
       </div>
     </div>
   </div>
@@ -51,23 +106,28 @@
 
   <p-divider></p-divider>
   <div>
-    <label for="" class="w-full">Ảnh xem trước</label>
+    <label
+      for=""
+      class="w-full"
+    >
+      Ảnh xem trước
+    </label>
     <div class="mt-2">
       <app-base-upload [chooseLabel]="'Chọn ảnh xem trước'"></app-base-upload>
     </div>
   </div>
   <!-- footer -->
   <div class="flex gap-x-3 justify-end">
-    <p-button
-      severity="warning"
-      (onClick)="closeModal()"
+    <button
+      pButton
+      class="p-button p-button-secondary"
+      (click)="closeModal()"
     >
       Đóng
-    </p-button>
-    <p-button
-      styleClass="w-24"
-    >
-      Lưu
-    </p-button>
+    </button>
+    <button
+      class="w-32"
+      pButton
+    >Lưu</button>
   </div>
 </div>
