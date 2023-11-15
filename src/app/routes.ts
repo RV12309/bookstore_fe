@@ -2,6 +2,8 @@ import { Routes } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { AuthGuard } from "./core/guards/auth/auth.guard";
+import { LoggedGuard } from "./core/guards/logged.guard";
+import { SellerGuard } from "./core/guards/seller.guard";
 
 export const routes: Routes = [
   {
@@ -20,7 +22,7 @@ export const routes: Routes = [
       {
         path: 'seller',
         loadChildren: () => import('src/app/core/layouts/seller-layout/seller-layout.module').then(m => m.SellerLayoutModule),
-        // canActivate: [LoggedGuard, SellerGuard]
+        canActivate: [LoggedGuard, SellerGuard]
       },
       {
         path: 'components',

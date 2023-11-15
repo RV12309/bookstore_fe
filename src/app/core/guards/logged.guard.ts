@@ -20,7 +20,6 @@ export class LoggedGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const accessToken = this.storeService.getSession(StorageKey.accessToken);
     if(!accessToken){
-      console.log(111);
       this.toastService.open({
         detail: "Vui lòng đăng nhập"
       })

@@ -29,11 +29,11 @@ export const routes:Routes = [
       //   path: 'statistics',
       //   component : HomeComponent
       // },
-      // {
-      //   path: '',
-      //   redirectTo: 'books',
-      //   pathMatch: 'full'
-      // }
+      {
+        path: '',
+        redirectTo: 'books',
+        pathMatch: 'full'
+      }
     ]
   }
 ]

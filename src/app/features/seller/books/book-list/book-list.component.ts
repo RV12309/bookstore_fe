@@ -9,6 +9,7 @@ import { ISelectItem } from "src/app/core/interfaces/common.interface";
 import { ICategoryData } from "src/app/core/interfaces/category.interface";
 import { IFilterItem, InputType } from "src/app/core/interfaces";
 import { ITitleTable } from "src/app/core/interfaces/table.interface";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-book-list',
@@ -93,23 +94,29 @@ export class BookListComponent implements OnInit{
     private modalService: ModalService,
     private booksService: BooksService,
     private categoryService: CategoryService,
-    private dropdownService: DropdownService
+    private dropdownService: DropdownService,
+    private route: ActivatedRoute
   ){
 
   }
 
   ngOnInit(): void {
-    // this.changeParams()
+    this.changeParams()
     this.getCategoryList();
   }
 
   changeParams(){
-    this.booksService.getBooksList(
-      {
-        page: 0,
-        size: 10
-      }
-    ).subscribe()
+  this.route.queryParams
+  .subscribe(
+    params => {
+      console.log(params);
+      this.getListFromParams(params)
+    }
+  )
+  }
+
+  getListFromParams(params:any){
+    this.booksService.getBooksList(params).subscribe()
   }
 
   getCategoryList(){
