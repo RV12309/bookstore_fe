@@ -6,12 +6,25 @@
   />
   <p-calendar
     styleClass="w-full"
-    dateFormat="dd-mm-yy"
+    [dateFormat]="dateFormat"
     [showIcon]="false"
-    [readonlyInput]="true"
     [selectionMode]="dateMode"
     [showButtonBar]="showButtonBar"
     [placeholder]="placeholder"
+    [inline]="inline"
+    [(ngModel)]="dateValue"
+    [showTime]="showTime"
+    [hourFormat]="hourFormat"
+    [minDate]="minDateValue"
+    [maxDate]="maxDateValue"
+    [readonlyInput]="readonlyInput"
+    [showButtonBar]="showButtonBar"
+    [showTransitionOptions]="'100ms'"
+    [hideTransitionOptions]="'100ms'"
+    (onSelect)="onDateSelect($event)"
+    (onBlur)="onDateBlur($event)"
+    (onTodayClick)="onDateTodayClick($event)"
+
   >
     <ng-template pTemplate="footer">
       <!-- <div class="p-2">

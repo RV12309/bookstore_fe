@@ -14,6 +14,8 @@ import { DialogService } from "primeng/dynamicdialog";
 import { RequestInterceptor } from "./core/interceptors/request.interceptor";
 import { ResponseInterceptor } from "./core/interceptors/response.interceptor";
 import { LoadingInterceptor } from "./core/interceptors/loading.interceptor";
+import { PipesModule } from "./core/pipes/pipes.module";
+import { SafeUrlPipe } from "./core/pipes/safe-url.pipe";
 
 @NgModule({
   declarations: [
@@ -28,11 +30,13 @@ import { LoadingInterceptor } from "./core/interceptors/loading.interceptor";
     HttpClientModule,
     ToastModule,
     ButtonModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    PipesModule
   ],
   providers: [
     DialogService,
     MessageService,
+    SafeUrlPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

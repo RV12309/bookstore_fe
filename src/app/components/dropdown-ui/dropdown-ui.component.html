@@ -1,15 +1,16 @@
-<div [formGroup]="form">
+<div>
   <p-dropdown
     styleClass="w-full"
-    [options]="cities"
+    [options]="dataList"
     [editable]="editable"
     [optionLabel]="optionLabel"
     [placeholder]="placeholder"
     [disabled]="disabled"
     [filter]="filter"
     [autoDisplayFirst]="false"
-    formControlName="dropdown"
+    [(ngModel)]="selectedValue"
+    [ngModelOptions]="{standalone: true}"
     dataKey="value"
+    (onChange)="dropdownChange($event)"
   ></p-dropdown>
-  {{ dropdownControl?.value | json }}
 </div>

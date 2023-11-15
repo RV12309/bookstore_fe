@@ -1,6 +1,6 @@
 // Menu
 .p-menu {
-  @apply py-3 rounded-xl m-2;
+  @apply rounded-xl m-2 p-0 overflow-hidden #{!important};
   .p-menu-list {
     // @apply bg-red-300
     .p-submenu-header {
@@ -177,6 +177,9 @@ input,
     input {
       @apply pl-9;
     }
+    // .p-inputNumber{
+    //   @apply pl-9 w-full #{!important};
+    // }
   }
 }
 
@@ -188,7 +191,7 @@ p-inputnumber,
 
 // Dropdown
 .p-dropdown {
-  @apply h-[38px] rounded-xl border border-solid border-purple/50 #{!important};
+  @apply h-control rounded-xl border border-solid border-purple/50 #{!important};
   input {
     border-radius: inherit;
     border: none !important;
@@ -196,17 +199,17 @@ p-inputnumber,
   }
 
   .p-dropdown-panel {
-    @apply overflow-hidden p-2 mt-1 #{!important};
+    @apply overflow-hidden mt-2 #{!important};
     .p-dropdown-items {
     }
     .p-dropdown-item {
-      @apply py-3 px-1 rounded-lg mt-1 #{!important};
+      @apply p-4 rounded-r-md #{!important};
       &:hover {
-        @apply bg-gray #{!important};
+        @apply bg-gray duration-300 #{!important};
       }
     }
     .p-highlight {
-      @apply bg-purple-light text-purple font-semibold;
+      @apply bg-purple-light text-purple font-semibold #{!important};
     }
   }
   .p-dropdown-label {
@@ -348,6 +351,18 @@ p-inputnumber,
         .p-datepicker-header {
           @apply rounded-t-xl;
         }
+      }
+    }
+    table{
+      td{
+        &>span.p-highlight{
+          @apply bg-purple-light text-purple font-bold #{!important};
+        }
+      }
+    }
+    .p-datepicker-today{
+      span{
+        @apply bg-danger font-bold text-white #{!important}
       }
     }
   }

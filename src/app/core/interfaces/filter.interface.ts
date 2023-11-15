@@ -8,6 +8,11 @@ export interface IFilterItem<T>{
   suffixInput?: string;
   maxLength?: number;
   directives?: IDirectiveTypes;
+
+  prefix?:string; //support for inputNumber
+  suffix?:string; //support for inputNumber
+
+
   //----------------------------------------
   // ------------select---------------
   // size?: SelectSize;
@@ -60,8 +65,12 @@ export interface IFilterItem<T>{
 
 export enum InputType {
   Input = 'input',
+  InputNumber = 'inputNumber',
+  InputMask = 'inputMask',
+
   DatePicker = 'datePicker',
   RangePicker = 'rangePicker',
+
   Select = 'select',
   TextArea = 'textArea',
   InputSelect = 'inputSelect',

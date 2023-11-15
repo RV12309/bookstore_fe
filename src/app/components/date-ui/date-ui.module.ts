@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DateUiComponent } from './date-ui.component';
 import { CalendarModule } from "primeng/calendar";
+import { FormsModule } from "@angular/forms";
 
 
 
@@ -11,7 +12,8 @@ import { CalendarModule } from "primeng/calendar";
   ],
   imports: [
     CommonModule,
-    CalendarModule
+    CalendarModule,
+    FormsModule
   ],
   exports: [
     DateUiComponent

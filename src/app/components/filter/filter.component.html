@@ -11,11 +11,15 @@
     <button
       pButton
       (click)="submit()"
-    >Tìm kiếm</button>
+    >
+      Tìm kiếm
+    </button>
     <button
       pButton
       class="p-button-danger"
-    >Khôi phục</button>
+    >
+      Khôi phục
+    </button>
   </div>
 
   <ng-template
@@ -41,17 +45,39 @@
         </div>
       </div>
 
-      <div *ngSwitchCase="InputType.Select">
+      <div *ngSwitchCase="InputType.InputNumber">
         <label>{{ item?.label }}</label>
-        <app-dropdown-ui classList="w-full"></app-dropdown-ui>
+        <div class="input-icon-left">
+          <img
+            [src]="item?.icon"
+            alt=""
+          />
+          <p-inputNumber
+            type="text"
+            class="w-full"
+            [suffix]="item?.suffix"
+            [prefix]="item?.prefix"
+            [placeholder]="item?.placeholder"
+            [formControlName]="item?.controlName"
+          ></p-inputNumber>
+        </div>
       </div>
 
-      <!-- <div *ngSwitchCase="InputType.DatePicker">
+      <div *ngSwitchCase="InputType.Select">
+        <label>{{ item?.label }}</label>
+        <app-dropdown-ui
+          [dataList]="item?.dataList"
+          [formControlName]="item?.controlName"
+        ></app-dropdown-ui>
+      </div>
+
+      <div *ngSwitchCase="InputType.DatePicker">
         <label>{{item?.label}}</label>
         <app-date-ui
           [placeholder]="item?.placeholder"
+          [formControlName]="item?.controlName"
         ></app-date-ui>
-      </div> -->
+      </div>
     </ng-container>
   </ng-template>
 </p-card>

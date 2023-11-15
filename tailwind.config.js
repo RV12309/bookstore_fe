@@ -20,9 +20,12 @@ module.exports = {
       },
       width: {
         md: '728px', //'768px'
-      lg: '984px', //'1024px
+        lg: '984px', //'1024px
         xl: '1240px', //'1280px'
         '2xl': '1496px' //1536px
+      },
+      height: {
+        control: '40px'
       },
       aspectRatio: {
         '3/4': '3 / 4',

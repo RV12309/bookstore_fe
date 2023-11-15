@@ -7,6 +7,7 @@ import { InputTextModule } from "primeng/inputtext";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DropdownUiModule } from "../dropdown-ui/dropdown-ui.module";
 import { DateUiModule } from "../date-ui/date-ui.module";
+import {InputNumberModule} from 'primeng/inputnumber';
 
 
 
@@ -22,7 +23,8 @@ import { DateUiModule } from "../date-ui/date-ui.module";
     DropdownUiModule,
     DateUiModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    InputNumberModule
   ],
   exports: [
     FilterComponent

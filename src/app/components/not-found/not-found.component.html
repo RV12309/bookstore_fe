@@ -472,7 +472,9 @@
       </svg>
     </div>
     <p class="font-medium text-2xl text-danger">Không tìm thấy trang</p>
-    <p-button severity="danger" [routerLink]="['/']" size="large" class="w-fit mx-auto">Quay lại trang chủ</p-button>
+    <div class="text-center">
+      <button pButton (click)="backHome()" class="p-button p-button-danger w-fit">Quay lại trang chủ</button>
+    </div>
   </div>
 
 </div>

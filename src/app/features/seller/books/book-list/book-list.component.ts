@@ -29,6 +29,14 @@ export class BookListComponent implements OnInit{
       defaultValue: 'harry'
     },
     {
+      type: InputType.Input,
+      controlName: 'author',
+      label: 'Tên tác giả',
+      icon: 'assets/icons/default/ic-search.svg',
+      placeholder: 'Nhập tên tác giả',
+      defaultValue: 'Quang Duy'
+    },
+    {
       type: InputType.Select,
       controlName: 'categoryId',
       label: 'Danh mục',
@@ -36,13 +44,32 @@ export class BookListComponent implements OnInit{
       dataList: this.categories,
       placeholder: 'Chọn danh mục',
     },
-    // {
-    //   type: InputType.DatePicker,
-    //   controlName: '',
-    //   label: 'Ngày tạo',
-    //   icon: 'assets/icons/default/ic-archive.svg',
-    //   placeholder: 'Chọn ngày tạo'
-    // }
+    {
+      type: InputType.DatePicker,
+      controlName: 'createdDate',
+      label: 'Ngày tạo',
+      icon: 'assets/icons/default/ic-archive.svg',
+      placeholder: 'Chọn ngày tạo'
+    },
+    {
+      type: InputType.InputNumber,
+      controlName: 'priceFrom',
+      label: 'Giá tối thiểu',
+      icon: 'assets/icons/default/ic-search.svg',
+      placeholder: 'Nhập giá tối thiểu',
+      defaultValue: '1000',
+      suffix: ' VNĐ'
+    },
+    {
+      type: InputType.InputNumber,
+      controlName: 'priceTo',
+      label: 'Giá tối đa',
+      icon: 'assets/icons/default/ic-search.svg',
+      placeholder: 'Nhập giá tối đa',
+      defaultValue: '1000',
+      suffix: ' VNĐ'
+    },
+
   ];
 
   public titleTable:ITitleTable[] = [
@@ -92,26 +119,24 @@ export class BookListComponent implements OnInit{
         this.categories = this.dropdownService.renderList(
           resp?.data,
           'name',
-          'id'
+          'id',
+          'id',
         );
-        // this.categories = resp?.data?.map(i => {
-        //   return {
-        //     name: i?.name,
-        //     code: i?.id
-        //   }
-        // }) as any
-
-        console.log(this.categories, 'this.categories');
-
-
         const filterAfterRerender = this.dropdownService.rerenderList(
           this.filterKeys,
           this.categories,
           'categoryId'
         );
         this.filterKeys = [...filterAfterRerender];
+        this.filterKeys = this.dropdownService.changePropertyList(
+          this.filterKeys,
+          this.categories[2],
+          'defaultValue',
+          'categoryId'
+        )
       }
     })
+    console.log(this.filterKeys)
   }
 
   create(){

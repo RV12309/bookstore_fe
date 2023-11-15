@@ -35,4 +35,17 @@ export class DropdownService {
     }
     return filtersData;
   }
+
+  public changePropertyList(
+    listData:any[],
+    newValue: any,
+    keyName: string,
+    controlName: string,
+  ){
+    const mapIndex = listData?.findIndex(i => i?.controlName === controlName);
+    if(mapIndex !== -1){
+      listData[mapIndex][keyName] = newValue
+    }
+    return listData;
+  }
 }
