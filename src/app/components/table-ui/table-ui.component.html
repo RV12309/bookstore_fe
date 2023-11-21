@@ -55,7 +55,7 @@
         <th
           *ngIf="checkbox"
           class=""
-          style="width: 4rem"
+          style="width: 4rem; text-align: center;"
         >
           <!-- <p-checkbox
             [(ngModel)]="checked"
@@ -69,7 +69,7 @@
           class=""
           style="width: 4rem"
         ></th>
-        <th>STT</th>
+        <th style="text-align: center;">STT</th>
         <ng-container *ngFor="let header of titleTable">
           <th>
             {{ header?.title }}
@@ -101,6 +101,7 @@
         <td
           *ngIf="checkbox"
           class="text-center"
+          style="text-align: center;"
         >
           <p-tableCheckbox [value]="item"></p-tableCheckbox>
           <!-- <p-checkbox
@@ -112,7 +113,7 @@
         <td *ngIf="radio">
           <p-tableRadioButton [value]="item"></p-tableRadioButton>
         </td>
-        <td></td>
+        <td  style="text-align: center;">{{rowIndex + 1}}</td>
         <ng-container
           [ngTemplateOutlet]="tableBody"
           [ngTemplateOutletContext]="{ item: item, rowIndex: rowIndex }"
