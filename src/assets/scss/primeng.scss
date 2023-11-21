@@ -408,7 +408,7 @@ p-inputnumber,
 
 .p-disabled,
 .p-component:disabled {
-  @apply opacity-100;
+  @apply opacity-100 #{!important};
 }
 
 // Textarea

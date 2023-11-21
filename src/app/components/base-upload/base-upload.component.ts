@@ -21,6 +21,8 @@ export class BaseUploadComponent implements OnInit {
   @Output() filesUpload:EventEmitter<any> = new EventEmitter();
   @Output() urlFilesUpload:EventEmitter<any> = new EventEmitter();
 
+  @Output() fileUpload = new EventEmitter();
+
   private myWidget: any;
   private uploadPreset = "aoh4fpwm"; // replace with your own upload preset
   private urlsAfterUpload:string[] = []; // url của anh sau khi upload file
@@ -36,7 +38,6 @@ export class BaseUploadComponent implements OnInit {
   openWidget() {}
 
   onBeforeUpload(event: any) {
-    console.log(event);
   }
 
   onSelect(event: any) {
@@ -46,7 +47,6 @@ export class BaseUploadComponent implements OnInit {
     console.log(event);
     this.uploadService.uploadImage(event?.currentFiles[0]).subscribe({
       next: (resp) => {
-        console.log(resp);
       },
     });
   }
@@ -88,6 +88,5 @@ export class BaseUploadComponent implements OnInit {
 
   removeImage(index: number) {
     this.uploadedFiles?.splice(index, 1);
-    console.log(this.uploadedFiles, this.uploadedFiles.length);
   }
 }

@@ -59,7 +59,6 @@ export class BookListComponent implements OnInit{
       label: 'Giá tối thiểu',
       icon: 'assets/icons/default/ic-search.svg',
       placeholder: 'Nhập giá tối thiểu',
-      defaultValue: '1000',
       suffix: ' VNĐ'
     },
     {
@@ -68,7 +67,6 @@ export class BookListComponent implements OnInit{
       label: 'Giá tối đa',
       icon: 'assets/icons/default/ic-search.svg',
       placeholder: 'Nhập giá tối đa',
-      defaultValue: '1000',
       suffix: ' VNĐ'
     },
 
@@ -137,12 +135,12 @@ export class BookListComponent implements OnInit{
           'categoryId'
         );
         this.filterKeys = [...filterAfterRerender];
-        this.filterKeys = this.dropdownService.changePropertyList(
-          this.filterKeys,
-          this.categories[2],
-          'defaultValue',
-          'categoryId'
-        )
+        // this.filterKeys = this.dropdownService.changePropertyList(
+        //   this.filterKeys,
+        //   this.categories[2],
+        //   'defaultValue',
+        //   'categoryId'
+        // )
       }
     })
     console.log(this.filterKeys)
