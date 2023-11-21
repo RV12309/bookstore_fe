@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { ISelectItem } from 'src/app/core/interfaces';
+import { BooksService } from 'src/app/core/services/books/books.service';
+import { CategoryService } from 'src/app/core/services/category/category.service';
+import { ModalService } from 'src/app/core/services/modal';
 import { UploadService } from "src/app/core/services/upload.service";
 
 @Component({
@@ -12,14 +16,19 @@ export class BookCreateComponent implements OnInit{
 
   public formBook!: FormGroup;
   public selectedFile: File | null = null;
+  public categoryList!: ISelectItem[];
 
   constructor(
     private formBuilder: FormBuilder,
     private modalRef: DynamicDialogRef,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private categoryService: CategoryService,
+    private modalService: ModalService,
+    private bookService: BooksService
   ){}
   ngOnInit(): void {
     this.initForm();
+    this.getList();
   }
 
   public initForm(){
@@ -32,12 +41,24 @@ export class BookCreateComponent implements OnInit{
       publishDate: ['', Validators.required],
       numberOfPage: [null, Validators.required],
       price: [null, Validators.required],
-      quantity: [null, Validators.required]
+      quantity: [null, Validators.required],
+      urlThumbnail: [null, Validators.required],
+      urlImageCover:[null, Validators.required],
+      imagesUrls: [null, Validators.required]
     })
   }
 
   submit(){
     console.log(this.formBook?.value);
+    const {title, author, description, publisher, publishDate, numberOfPage, price, quantity, urlThumbnail, urlImageCover, imagesUrls} = this.formBook.value;
+    const params = {
+      title, author, description, publisher, publishDate, numberOfPage, price, quantity, urlThumbnail, imagesUrls,
+      categoryIds: [this.formBook.value.categoryId.code],
+      urlImageCover: "http://res.cloudinary.com/djyxcku3e/image/upload/v1700582539/screenshot_tpnbv9.png"
+    }
+    this.bookService.createBook(params).subscribe((res) => {
+      this.closeModal();
+    })
   }
 
   closeModal(){
@@ -58,6 +79,43 @@ export class BookCreateComponent implements OnInit{
           console.error('Error uploading image:', error);
         }
       );
+    }
+  }
+
+  async getList(){
+    await this.categoryService.getCategoryAll().subscribe({
+      next: resp => {
+        this.categoryList = resp.data.map((item: any) => {
+          return {
+            name: item.name,
+            code: item.id,
+            value: item,
+          };
+        })
+      },
+      error: error => {
+        this.modalService.alert(
+          {
+            type: 'error',
+            message: error?.error?.message || 'Lỗi hệ thống',
+            btnOkName: 'Đóng',
+          }
+        )
+      }
+    })
+  }
+
+  onUploadFile(type: string, e: any){
+    switch(type){
+      case 'thumbnail':
+        this.formBook.controls['urlThumbnail'].patchValue(e.url);
+        break;
+      case 'cover':
+        this.formBook.controls['urlImageCover'].patchValue(e.url);
+        break;
+      case 'preview':
+        this.formBook.controls['imagesUrls'].patchValue(e.url);
+        break;
     }
   }
 }

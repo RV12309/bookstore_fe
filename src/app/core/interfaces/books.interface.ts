@@ -20,7 +20,7 @@ export interface IBooksResponse {
 }
 
 export interface IBookData  {
-    id?: number,
+    id?: string,
     isbn?: string,
     title?: string,
     author?: string,
@@ -39,7 +39,7 @@ export interface IBookCreate {
   title: string;
   author: string;
   description: string;
-  categoryIds: number[];
+  categoryIds: string[];
   imagesUrls: string[];
   urlThumbnail: string;
   urlImageCover: string;

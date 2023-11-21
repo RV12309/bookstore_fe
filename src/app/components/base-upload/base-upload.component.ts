@@ -81,7 +81,7 @@ export class BaseUploadComponent implements OnInit {
       file
     ).subscribe({
       next: resp => {
-        console.log(resp);
+        this.filesUpload.emit(resp);
       }
     })
   }

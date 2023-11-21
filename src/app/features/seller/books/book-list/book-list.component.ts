@@ -28,7 +28,7 @@ export class BookListComponent implements OnInit{
       label: 'Tên sách',
       icon: 'assets/icons/default/ic-search.svg',
       placeholder: 'Nhập tên sách',
-      defaultValue: 'harry'
+      // defaultValue: 'harry'
     },
     {
       type: InputType.Input,
@@ -36,7 +36,7 @@ export class BookListComponent implements OnInit{
       label: 'Tên tác giả',
       icon: 'assets/icons/default/ic-search.svg',
       placeholder: 'Nhập tên tác giả',
-      defaultValue: 'Quang Duy'
+      // defaultValue: 'Quang Duy'
     },
     {
       type: InputType.Select,
