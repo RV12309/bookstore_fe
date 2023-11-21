@@ -89,4 +89,11 @@ export class BaseUploadComponent implements OnInit {
   removeImage(index: number) {
     this.uploadedFiles?.splice(index, 1);
   }
+
+  handleUploadSuccess(e:any){
+    console.log(e);
+  }
+  handleUploadError(e:any){
+    console.log(e);
+  }
 }

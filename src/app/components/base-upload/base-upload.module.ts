@@ -6,6 +6,7 @@ import { PipesModule } from "src/app/core/pipes/pipes.module";
 import { MessagesModule } from "primeng/messages";
 import { ToastModule } from "primeng/toast";
 import { ImageUiModule } from "../image-ui/image-ui.module";
+import { ImagekitioAngularModule } from "imagekitio-angular";
 
 
 
@@ -19,7 +20,8 @@ import { ImageUiModule } from "../image-ui/image-ui.module";
     PipesModule,
     MessagesModule,
     ToastModule,
-    ImageUiModule
+    ImageUiModule,
+    ImagekitioAngularModule
   ],
   exports: [
     BaseUploadComponent

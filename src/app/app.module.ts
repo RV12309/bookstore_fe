@@ -16,6 +16,8 @@ import { ResponseInterceptor } from "./core/interceptors/response.interceptor";
 import { LoadingInterceptor } from "./core/interceptors/loading.interceptor";
 import { PipesModule } from "./core/pipes/pipes.module";
 import { SafeUrlPipe } from "./core/pipes/safe-url.pipe";
+import { ImagekitioAngularModule } from "imagekitio-angular";
+import { environment } from "src/environments/environment";
 
 @NgModule({
   declarations: [
@@ -31,7 +33,12 @@ import { SafeUrlPipe } from "./core/pipes/safe-url.pipe";
     ToastModule,
     ButtonModule,
     RouterModule.forRoot(routes),
-    PipesModule
+    PipesModule,
+    ImagekitioAngularModule.forRoot({
+      publicKey: environment.publicKey,
+      urlEndpoint: environment.urlEndpoint,
+      authenticationEndpoint: environment.authenticationEndpoint
+    })
   ],
   providers: [
     DialogService,

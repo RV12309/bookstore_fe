@@ -85,5 +85,12 @@
       </div>
     </div>
   </ng-container>
+
+  <ik-upload
+    fileName="test.jpg"
+    (onError)="handleUploadError($event)"
+    (onSuccess)="handleUploadSuccess($event)"
+    >
+  </ik-upload>
 </div>
 <p-toast></p-toast>
