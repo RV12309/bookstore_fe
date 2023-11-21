@@ -10,6 +10,7 @@ import { ICategoryData } from "src/app/core/interfaces/category.interface";
 import { IFilterItem, InputType } from "src/app/core/interfaces";
 import { ITitleTable } from "src/app/core/interfaces/table.interface";
 import { ActivatedRoute } from "@angular/router";
+import { GlobalService } from "src/app/core/services";
 
 @Component({
   selector: 'app-book-list',
@@ -95,7 +96,8 @@ export class BookListComponent implements OnInit{
     private booksService: BooksService,
     private categoryService: CategoryService,
     private dropdownService: DropdownService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private globalService: GlobalService
   ){
 
   }
@@ -116,7 +118,7 @@ export class BookListComponent implements OnInit{
   }
 
   getListFromParams(params:any){
-    this.booksService.getBooksList(params).subscribe()
+    this.globalService.getBooksList(params).subscribe()
   }
 
   getCategoryList(){

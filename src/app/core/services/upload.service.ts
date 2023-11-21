@@ -16,8 +16,8 @@ export class UploadService {
   uploadImage(file: File) {
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', CloudinaryValue.UploadPreset); // Optional, you can change this as needed
-    formData.append('api_key', CloudinaryValue.ApiKey)
+    formData.append('upload_preset', CloudinaryValue.UploadPreset);
+    formData.append('api_key', CloudinaryValue.ApiKey);
     return this.http.post(this.apiUrl, formData);
   }
 

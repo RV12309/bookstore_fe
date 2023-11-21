@@ -7,7 +7,7 @@ import {
 } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { StoreService } from "../services";
-import { StorageKey } from "../enums";
+import { EndPoints, HeadersKey, StorageKey } from "../enums";
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -21,9 +21,13 @@ export class RequestInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const accessToken = this.storeService.getSession(StorageKey.accessToken);
     if (accessToken) {
-      request = request.clone({
-        headers: request.headers.set("Authorization", "Bearer " + accessToken),
-      });
+      if(request.url?.includes(EndPoints.Global)){
+        return next.handle(request);
+      }else{
+        request = request.clone({
+          headers: request.headers.set("Authorization", "Bearer " + accessToken),
+        });
+      }
     }
     return next.handle(request);
   }

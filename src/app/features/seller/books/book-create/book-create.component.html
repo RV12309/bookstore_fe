@@ -36,7 +36,10 @@
     <div>
       <label for="" class="w-full">Ảnh thu nhỏ (Thumbnail)</label>
       <div class="mt-2">
-        <app-base-upload [chooseLabel]="'Chọn ảnh Thumbnail'" [fileLimit]="1"></app-base-upload>
+        <app-base-upload
+          [chooseLabel]="'Chọn ảnh Thumbnail'" [fileLimit]="1"
+          [autoUpload]="true"
+        ></app-base-upload>
       </div>
     </div>
     <div>

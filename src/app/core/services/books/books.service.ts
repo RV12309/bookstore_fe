@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { WCEndPoint, env } from '../../enums/wc-endpoints.enums';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { IBookData, IBookSearchForm, IBooksResponse } from '../../interfaces/books.interface';
 import { IResponse } from '../../interfaces/response.interface';
 import { Observable, from } from 'rxjs';
+import { HEADERS_NO_TOKEN } from "../../constant/common.constant";
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +15,12 @@ export class BooksService {
   constructor(private http: HttpClient) { }
 
   getBooksList(body: IBookSearchForm): Observable<IResponse<IBooksResponse>>{
-    const queryParams = new HttpParams(
+    return this.http.post<IResponse<IBooksResponse>>(
+      `${this.baseUrl}${WCEndPoint.Book}/list`, body,
       {
-        fromObject: {...body}
+        headers: HEADERS_NO_TOKEN
       }
-    )
-    return this.http.get<IResponse<IBooksResponse>>(`${this.baseUrl}${WCEndPoint.Book}?${queryParams}`);
+    );
   }
 
   getBookById(body: string): Observable<IResponse<IBookData>>{

@@ -3,7 +3,7 @@ export enum CloudinaryValue {
   ApiKey = '724869847322133',
   SecretKey = '',
   ApiUploadUrl = 'https://api.cloudinary.com/v1_1/dobuq8yjd',
-  UploadPreset = 'a6skugqd',
+  UploadPreset = 'image_efin_book',
 }
 
 export enum Authority {
@@ -16,4 +16,8 @@ export enum Action {
   Detail = 'detail',
   Create = 'create',
   Update = 'update'
+}
+
+export enum HeadersKey {
+  NoTokenHeader = 'No-Token-Header'
 }

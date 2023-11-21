@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { MessageService } from "primeng/api";
 import { UploadService } from "src/app/core/services/upload.service";
 
@@ -16,10 +16,17 @@ export class BaseUploadComponent implements OnInit {
   @Input() mode: "basic" | "advanced" = "basic";
   @Input() fileLimit = 5;
   @Input() UIMode: "custom" | "advanced" | "default" = "custom";
+  @Input() autoUpload = false;
+
+  @Output() filesUpload:EventEmitter<any> = new EventEmitter();
+  @Output() urlFilesUpload:EventEmitter<any> = new EventEmitter();
 
   private myWidget: any;
   private uploadPreset = "aoh4fpwm"; // replace with your own upload preset
+  private urlsAfterUpload:string[] = []; // url của anh sau khi upload file
+
   public uploadedFiles: any[] = [];
+
   constructor(
     private uploadService: UploadService,
     private messageService: MessageService,
@@ -61,19 +68,22 @@ export class BaseUploadComponent implements OnInit {
     for (let file of event.target?.files) {
       this.uploadedFiles.push(file);
     }
-    console.log(this.uploadedFiles);
-    // this.uploadService.uploadImage(
-    //   event?.target?.files[0]
-    // ).subscribe({
-    //   next: resp => {
-    //     console.log(resp);
+    if(this.autoUpload){
+      this.uploadImage(event.target?.files[0]);
+    }else{
+      this.filesUpload.emit(this.uploadedFiles)
+    }
 
-    //   }
-    // })
   }
 
-  uploadImage(){
-    return;
+  uploadImage(file:File){
+    this.uploadService.uploadImage(
+      file
+    ).subscribe({
+      next: resp => {
+        console.log(resp);
+      }
+    })
   }
 
   removeImage(index: number) {

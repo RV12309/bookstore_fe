@@ -30,7 +30,6 @@ export class ResponseInterceptor implements HttpInterceptor {
           try {
             const error = event?.error;
             const expireTime = this.authService.getDataByKey(JWTStorageKey.exp);
-            console.log(expireTime);
             if(event instanceof HttpErrorResponse){
               switch (event?.status) {
                 case 401:
