@@ -1,5 +1,5 @@
 export interface ICategoryData {
-    id?: string | number,
+    id?: string ,
     code: string,
     name: string,
     description: string
@@ -17,5 +17,5 @@ export interface ICategorySearch {
 }
 
 export interface ICategoryUpdate extends ICategoryForm{
-  id:string | number;
+  id:string ;
 }

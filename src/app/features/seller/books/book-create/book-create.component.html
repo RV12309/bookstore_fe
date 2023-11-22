@@ -27,30 +27,34 @@
       <input
         type="text"
         pInputText
-        formControlName="title"
+        formControlName="author"
         placeholder="Nhập tác giả"
       />
     </div>
     <div class="">
       <label for="">Danh mục</label>
-      <app-dropdown-ui placeholder="Chọn danh mục"></app-dropdown-ui>
+      <app-dropdown-ui formControlName="categoryId"
+      [dataList]="categoryList"
+       placeholder="Chọn danh mục"></app-dropdown-ui>
     </div>
     <div class="">
-      <label for="">Người xuất bản</label>
+      <label for="">Nhà xuất bản</label>
       <input
         type="text"
         pInputText
-        formControlName="title"
-        placeholder="Nhập người xuất bản"
+        formControlName="publisher"
+        placeholder="Nhập nhà xuất bản"
       />
     </div>
     <div class="">
       <label for="">Ngày xuất bản</label>
-      <app-date-ui placeholder="Chọn ngày xuất bản"></app-date-ui>
+      <app-date-ui formControlName="publishDate"
+      placeholder="Chọn ngày xuất bản"></app-date-ui>
     </div>
     <div class="">
       <label for="">Số trang</label>
       <p-inputNumber
+      formControlName="numberOfPage"
         inputId="integeronly"
         suffix=" trang"
         placeholder="Nhập số trang"
@@ -59,6 +63,7 @@
     <div class="">
       <label for="">Giá</label>
       <p-inputNumber
+      formControlName="price"
         inputId="integeronly"
         suffix=" VNĐ"
         placeholder="Nhập giá"
@@ -67,6 +72,7 @@
     <div class="">
       <label for="">Số lượng</label>
       <p-inputNumber
+      formControlName="quantity"
         inputId="integeronly"
         suffix=" quyển"
         placeholder="Nhập số lượng"
@@ -82,6 +88,7 @@
       <div class="mt-2">
         <app-base-upload
           [chooseLabel]="'Chọn ảnh Thumbnail'" [fileLimit]="1"
+          (filesUpload)="onUploadFile('thumbnail', $event)"
           [autoUpload]="true"
         ></app-base-upload>
       </div>
@@ -97,6 +104,7 @@
         <app-base-upload
           [chooseLabel]="'Chọn ảnh bìa'"
           [fileLimit]="1"
+          (filesUpload)="onUploadFile('cover', $event)"
         ></app-base-upload>
       </div>
     </div>
@@ -113,7 +121,9 @@
       Ảnh xem trước
     </label>
     <div class="mt-2">
-      <app-base-upload [chooseLabel]="'Chọn ảnh xem trước'"></app-base-upload>
+      <app-base-upload [chooseLabel]="'Chọn ảnh xem trước'"
+      (filesUpload)="onUploadFile('preview', $event)"
+      ></app-base-upload>
     </div>
   </div>
   <!-- footer -->
@@ -125,7 +135,7 @@
     >
       Đóng
     </button>
-    <button
+    <button (click)="submit()"
       class="w-32"
       pButton
     >Lưu</button>

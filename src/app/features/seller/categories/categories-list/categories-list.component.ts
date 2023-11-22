@@ -92,7 +92,7 @@ export class CategoriesListComponent implements OnInit{
     this.modalService.confirm({
       message: 'Bạn chắc chắn xóa danh mục này?',
       accept: () => {
-        this.categoryService.delete(item?.id as number)
+        this.categoryService.delete(item?.id as string)
         .subscribe({
           next: () => {
             this.modalService.alert(

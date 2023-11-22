@@ -26,4 +26,10 @@ export class BooksService {
   getBookById(body: string): Observable<IResponse<IBookData>>{
     return this.http.get<IResponse<IBookData>>(`${this.baseUrl}${WCEndPoint.Book}?${body}`);
   }
+
+  createBook(body: any): Observable<IResponse<IBookData>>{
+    return this.http.post<IResponse<IBookData>>(
+      `${this.baseUrl}${WCEndPoint.Book}`, body
+    )
+  }
 }

@@ -4,7 +4,8 @@ export enum WCEndPoint {
     Account = 'api/v1/accounts',
     Book = 'api/v1/books',
     Category = 'api/v1/categories',
-    Seller = 'api/v1/sellers'
+    Seller = 'api/v1/sellers',
+    Global_category = 'api/v1/global/categories'
 }
 
 export enum env {

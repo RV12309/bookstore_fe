@@ -7,7 +7,7 @@ import {
 } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { StoreService } from "../services";
-import { EndPoints, HeadersKey, StorageKey } from "../enums";
+import { CloudinaryValue, EndPoints, StorageKey } from "../enums";
 
 @Injectable()
 export class RequestInterceptor implements HttpInterceptor {
@@ -23,11 +23,12 @@ export class RequestInterceptor implements HttpInterceptor {
     if (accessToken) {
       if(request.url?.includes(EndPoints.Global)){
         return next.handle(request);
-      }else{
+      }
+        if(request.url?.includes(CloudinaryValue.ApiUploadUrl)){
+          return next.handle(request)}
         request = request.clone({
           headers: request.headers.set("Authorization", "Bearer " + accessToken),
         });
-      }
     }
     return next.handle(request);
   }

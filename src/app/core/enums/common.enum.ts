@@ -1,9 +1,9 @@
 export enum CloudinaryValue {
-  CloudName = 'dobuq8yjd',
-  ApiKey = '724869847322133',
+  ApiKey = '732344659741722',
+  CloudName = 'djyxcku3e',
   SecretKey = '',
-  ApiUploadUrl = 'https://api.cloudinary.com/v1_1/dobuq8yjd',
-  UploadPreset = 'image_efin_book',
+  ApiUploadUrl = 'https://api.cloudinary.com/v1_1/',
+  UploadPreset = 'j5kqwvpv',
 }
 
 export enum Authority {

@@ -14,7 +14,7 @@ export class CategoryService {
   constructor(private http: HttpClient) { }
 
   getCategoryAll(): Observable<IResponse<ICategoryData[]>>{
-    return this.http.get<IResponse<ICategoryData[]>>(`${this.baseUrl}${WCEndPoint.Category}/all`);
+    return this.http.get<IResponse<ICategoryData[]>>(`${this.baseUrl}${WCEndPoint.Global_category}/all`);
   }
 
   searchCategory(form:ICategorySearch): Observable<IResponse<ICategoryData[]>>{
