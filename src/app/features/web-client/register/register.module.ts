@@ -7,6 +7,7 @@ import { ActivateAccountComponent } from './activate-account/activate-account.co
 import { RegisterComponent } from './register.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { InputTextModule } from "primeng/inputtext";
+import {RadioButtonModule} from 'primeng/radiobutton';
 
 const routes:Routes = [
   {
@@ -28,7 +29,8 @@ const routes:Routes = [
     ReactiveFormsModule,
     DirectivesModule,
     SidebarModule,
-    InputTextModule
+    InputTextModule,
+    RadioButtonModule
   ]
 })
 export class RegisterModule { }

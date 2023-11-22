@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Authority } from "src/app/core/enums";
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
 @Component({
@@ -12,6 +13,19 @@ export class RegisterComponent implements OnInit{
 
   public registerForm: FormGroup;
   private EMAIL_PATTERN = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  public registerType = [
+    {
+      value : Authority.Customer,
+      label: 'Khách hàng'
+    },
+    {
+      value : Authority.Seller,
+      label: 'Đại lý'
+    }
+  ];
+
+  public registerValue!:Authority;
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -24,8 +38,11 @@ export class RegisterComponent implements OnInit{
   })
   }
   ngOnInit(): void {
+    this.configProperty();
   }
-
+  configProperty(){
+    this.registerValue = Authority.Customer;
+  }
   submit(){
     this.registerForm.markAllAsTouched();
     if(this.registerForm?.invalid){

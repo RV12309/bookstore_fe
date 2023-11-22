@@ -1,15 +1,43 @@
-<form class="flex w-fit gap-16" [formGroup]="registerForm">
-  <div
-    class="aspect-video w-[500px] flex-1 flex items-center"
-  >
-    <img src="assets/images/undraw_sign_up_n6im.svg" class="w-full" alt="">
+<form
+  class="flex w-fit gap-16"
+  [formGroup]="registerForm"
+>
+  <div class="aspect-video w-[500px] flex-1 flex items-center">
+    <img
+      src="assets/images/undraw_sign_up_n6im.svg"
+      class="w-full"
+      alt=""
+    />
   </div>
   <div class="mt-10 flex-1">
     <span class="font-bold text-purple text-3xl">Đăng ký</span>
     <div class="space-y-6 mt-5">
+      <div class="flex gap-x-4">
+        <div *ngFor="let register of registerType" class="flex items-center">
+          <p-radioButton
+            name="registerType"
+            class="mr-2"
+            inputId="{{register?.value}}"
+            [value]="register?.value"
+            [(ngModel)]="registerValue"
+            [ngModelOptions]="{standalone: true}"
+          ></p-radioButton>
+          <label
+            style="margin: 0 !important;"
+            class="cursor-pointer"
+            [for]="register?.value"
+          >{{register?.label}}</label>
+        </div>
+
+      </div>
       <div>
         <ng-container>
-          <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Tên đăng nhập</label>
+          <label
+            for="username"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Tên đăng nhập
+          </label>
           <div class="mt-1 input-icon-left">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -32,14 +60,18 @@
               name="username"
               type="username"
               autocomplete="current-password"
-              required appNonSpace
+              required
+              appNonSpace
               placeholder="Nhập tên đăng nhập"
               formControlName="username"
               class="w-full pl-10 duration-400"
             />
           </div>
           <ng-container>
-            <div *ngIf="registerForm?.invalid && usernameControl?.touched" class="error-text">
+            <div
+              *ngIf="registerForm?.invalid && usernameControl?.touched"
+              class="error-text"
+            >
               <p *ngIf="usernameControl?.hasError('required')">
                 Vui lòng nhập tên đăng nhập
               </p>
@@ -48,7 +80,12 @@
         </ng-container>
 
         <ng-container>
-          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Mật khẩu</label>
+          <label
+            for="password"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Mật khẩu
+          </label>
           <div class="mt-1 input-icon-left">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -69,14 +106,18 @@
               maxlength="20"
               id="password"
               type="password"
-              required appNonSpace
+              required
+              appNonSpace
               placeholder="Nhập mật khẩu"
               formControlName="password"
               class="w-full pl-10 duration-400"
             />
           </div>
           <ng-container>
-            <div *ngIf="registerForm?.invalid && passwordControl?.touched" class="error-text">
+            <div
+              *ngIf="registerForm?.invalid && passwordControl?.touched"
+              class="error-text"
+            >
               <p *ngIf="passwordControl?.hasError('required')">
                 Vui lòng nhập mật khẩu
               </p>
@@ -85,7 +126,12 @@
         </ng-container>
 
         <ng-container>
-          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+          <label
+            for="email"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Email
+          </label>
           <div class="mt-1 input-icon-left">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -93,8 +139,13 @@
               viewBox="0 0 24 24"
               stroke-width="2"
               stroke="currentColor"
-              class="w-5 h-5 absolute left-3 top-1/2 -translate-y-[50%] text-purple">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              class="w-5 h-5 absolute left-3 top-1/2 -translate-y-[50%] text-purple"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+              />
             </svg>
             <input
               pInputText
@@ -103,14 +154,18 @@
               name="email"
               type="email"
               autocomplete="current-password"
-              required appNonSpace
+              required
+              appNonSpace
               placeholder="Nhập email"
               formControlName="email"
               class="w-full pl-10 duration-400"
             />
           </div>
           <ng-container>
-            <div *ngIf="registerForm?.invalid && emailControl?.touched" class="error-text">
+            <div
+              *ngIf="registerForm?.invalid && emailControl?.touched"
+              class="error-text"
+            >
               <p *ngIf="emailControl?.hasError('required')">
                 Vui lòng nhập email
               </p>
@@ -118,8 +173,6 @@
           </ng-container>
         </ng-container>
       </div>
-
-
 
       <div>
         <button
@@ -132,9 +185,13 @@
       </div>
       <div class="mt-3 text-center">
         <span>Bạn đã có tài khoản?</span>
-        <span [routerLink]="['/auth/login']" class="text-purple font-bold ml-3 cursor-pointer">Đăng nhập</span>
+        <span
+          [routerLink]="['/auth/login']"
+          class="text-purple font-bold ml-3 cursor-pointer"
+        >
+          Đăng nhập
+        </span>
       </div>
     </div>
-
   </div>
 </form>

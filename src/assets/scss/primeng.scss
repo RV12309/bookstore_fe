@@ -439,15 +439,15 @@ p-inputnumber,
 .p-radiobutton {
   // @apply bg-red-400;
   .p-radiobutton-box {
-    @apply border border-solid border-brown shadow-none;
+    @apply border border-solid border-purple shadow-none #{!important};
     &.p-highlight {
-      @apply bg-purple;
+      @apply bg-purple #{!important};
     }
     &:active {
-      @apply shadow-none;
+      @apply shadow-none #{!important};
     }
     .p-radiobutton-icon {
-      @apply bg-purple-light;
+      @apply bg-purple-light #{!important};
     }
   }
 }
