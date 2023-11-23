@@ -17,6 +17,7 @@ export class BookCreateComponent implements OnInit{
   public formBook!: FormGroup;
   public selectedFile: File | null = null;
   public categoryList!: ISelectItem[];
+  public imageUrl: string[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,12 +51,14 @@ export class BookCreateComponent implements OnInit{
 
   submit(){
     console.log(this.formBook?.value);
+    console.log(this.imageUrl)
     const {title, author, description, publisher, publishDate, numberOfPage, price, quantity, urlThumbnail, urlImageCover, imagesUrls} = this.formBook.value;
     const params = {
-      title, author, description, publisher, publishDate, numberOfPage, price, quantity, urlThumbnail, imagesUrls,
+      title, author, description, publisher, publishDate, numberOfPage, price, quantity, urlThumbnail, urlImageCover,
       categoryIds: [this.formBook.value.categoryId.code],
-      urlImageCover: "http://res.cloudinary.com/djyxcku3e/image/upload/v1700582539/screenshot_tpnbv9.png"
+      imagesUrls: this.imageUrl
     }
+    console.log(params);
     this.bookService.createBook(params).subscribe((res) => {
       this.closeModal();
     })
@@ -106,6 +109,7 @@ export class BookCreateComponent implements OnInit{
   }
 
   onUploadFile(type: string, e: any){
+    console.log(type, 'data', e.url);
     switch(type){
       case 'thumbnail':
         this.formBook.controls['urlThumbnail'].patchValue(e.url);
@@ -114,7 +118,8 @@ export class BookCreateComponent implements OnInit{
         this.formBook.controls['urlImageCover'].patchValue(e.url);
         break;
       case 'preview':
-        this.formBook.controls['imagesUrls'].patchValue(e.url);
+        this.imageUrl?.push(e.url.toString());
+        // this.formBook.controls['imagesUrls'].patchValue(e.url);
         break;
     }
   }

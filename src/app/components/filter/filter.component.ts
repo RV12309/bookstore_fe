@@ -166,4 +166,8 @@ export class FilterComponent implements OnInit, OnChanges, AfterViewInit, OnDest
   private addControl(controlValue: any): FormControl<any> {
     return this.fb.control(controlValue) as FormControl;
   }
+
+  clearSearch(){
+    this.searchForm.reset();
+  }
 }

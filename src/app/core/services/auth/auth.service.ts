@@ -33,9 +33,16 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}${WCEndPoint.Auth}/login`, body);
   }
 
-  register(body: IRegisterForm): Observable<any> {
+  registerCustomer(body: IRegisterForm): Observable<any> {
     return this.http.post(
       `${this.baseUrl}${WCEndPoint.Customers}/register`,
+      body,
+    );
+  }
+
+  registerSeller(body: IRegisterForm): Observable<any> {
+    return this.http.post(
+      `${this.baseUrl}${WCEndPoint.Seller}/register`,
       body,
     );
   }

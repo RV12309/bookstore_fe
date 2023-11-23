@@ -10,6 +10,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { BaseUploadModule } from "src/app/components/base-upload/base-upload.module";
 import { DropdownUiModule } from "src/app/components/dropdown-ui/dropdown-ui.module";
 import { DateUiModule } from "src/app/components/date-ui/date-ui.module";
+import { DirectivesModule } from 'src/app/core/directives/directives.module';
 
 
 
@@ -28,7 +29,8 @@ import { DateUiModule } from "src/app/components/date-ui/date-ui.module";
     DividerModule,
     DropdownUiModule,
     DateUiModule,
-    InputNumberModule
+    InputNumberModule,
+    DirectivesModule
   ],
   exports: [
     BookCreateComponent

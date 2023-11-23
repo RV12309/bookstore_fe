@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs';
 import { Authority } from "src/app/core/enums";
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { ModalService } from 'src/app/core/services/modal';
 
 @Component({
   selector: 'app-register',
@@ -29,12 +31,13 @@ export class RegisterComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private modalService: ModalService
   ){
     this.registerForm = this.fb.group({
       username: [null, Validators.required],
       password: [null, Validators.required],
-      email: [null, [Validators.required, Validators.pattern(this.EMAIL_PATTERN)]]
+      email: [null, [Validators.required, Validators.pattern(this.EMAIL_PATTERN)]],
   })
   }
   ngOnInit(): void {
@@ -48,13 +51,39 @@ export class RegisterComponent implements OnInit{
     if(this.registerForm?.invalid){
       return;
     }
-    this.authService.register(this.registerForm?.value).subscribe(
-      (res => {
-        if(res?.code === '00') {
-          this.router.navigate(['/auth/register/verify'])
-        }
-      })
-    )
+    if(this.registerValue === Authority.Customer){
+    this.authService.registerCustomer(this.registerForm?.value).subscribe({
+      next: resp => {
+        this.router.navigate(['/auth/register/verify'])
+      },
+      error: error => {
+        this.modalService.alert(
+          {
+            type: 'error',
+            message: error?.message || 'Lỗi hệ thống',
+            btnOkName: 'Đóng',
+          }
+        )
+      }
+    }
+    )} else {
+      this.authService.registerSeller(this.registerForm?.value).subscribe({
+        next: resp => {
+        this.router.navigate(['/auth/register/verify'])
+      },
+      error: error => {
+        console.log(error)
+        this.modalService.alert(
+          {
+            type: 'error',
+            message: error?.message || 'Lỗi hệ thống',
+            btnOkName: 'Đóng',
+          }
+        )
+      }
+      }
+      )
+    }
   }
 
   back(){
