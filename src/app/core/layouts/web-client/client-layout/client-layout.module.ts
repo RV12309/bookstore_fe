@@ -17,8 +17,12 @@ const routes: Routes = [
       },
       {
         path: 'products',
-        loadChildren: () => import('src/app/features/web-client/books-list/books-list.module').then(m => m.BooksListModule)
+        loadChildren: () => import('src/app/features/web-client/products/products-list/products-list.module').then(m => m.ProductsListModule)
       },
+      {
+        path: 'products/:isbn ',
+        loadChildren: () => import('src/app/features/web-client/products/product-detail/product-detail.module').then(m => m.ProductDetailModule)
+      }
     ]
   },
 ];

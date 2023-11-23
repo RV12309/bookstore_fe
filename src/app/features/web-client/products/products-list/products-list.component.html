@@ -1,0 +1,85 @@
+<div
+  class="grid grid-cols-4 gap-x-10"
+  [formGroup]="productsForm"
+>
+  <div class="bg-red-2000 grid content-start gap-y-3">
+    <p class="font-bold text-2xl mb-3">Bộ lọc tìm kiếm</p>
+    <p-accordion>
+      <p-accordionTab
+        header="Danh mục"
+        [selected]="true"
+      >
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-2 gap-y-6">
+          <div
+            class="flex items-center gap-x-2"
+            *ngFor="let categories of [1, 2, 3, 4, 5]"
+          >
+            <p-checkbox
+              name="categories"
+              value="val1"
+            ></p-checkbox>
+            <label
+              for=""
+              style="margin: 0 !important"
+            >
+              Danh mục 0{{ categories }}
+            </label>
+          </div>
+        </div>
+      </p-accordionTab>
+    </p-accordion>
+
+    <p-accordion>
+      <p-accordionTab header="Khoảng giá">
+        <p-slider
+          [animate]="true"
+          [step]="1000"
+          [min]="DefaultValue.MinPrice"
+          [max]="DefaultValue.MaxPrice"
+          formControlName="priceRange"
+          [range]="true"
+        ></p-slider>
+        <div class="flex justify-between font-medium text-sm my-3">
+          <p>{{ priceRangeControl?.value[0] | number }}</p>
+          <p>{{ priceRangeControl?.value[1] | number }}</p>
+        </div>
+        <p class="text-sm">
+          Đơn vị:
+          <span class="text-purple font-bold">VNĐ</span>
+        </p>
+      </p-accordionTab>
+    </p-accordion>
+    <button
+      pButton
+      class="p-button p-button-danger w-full"
+    >
+      Xóa tất cả
+    </button>
+  </div>
+  <div class="col-span-3 grid content-start gap-y-3">
+    <p class="font-bold text-2xl mb-3">Sách</p>
+    <div class="flex gap-x-5">
+      <div class="card-border-gray w-full">
+        <div></div>
+        <div>
+          <!-- <img
+            src="assets/icons/default/ic-justify.svg"
+            class="w-3"
+            alt=""
+          /> -->
+        </div>
+      </div>
+      <app-dropdown-ui
+        placeholder="Sắp xếp theo"
+        styleClass="w-[150px]"
+        [dataList]="sortList"
+      ></app-dropdown-ui>
+    </div>
+    <div class="grid grid-cols-4 gap-8">
+      <ng-container *ngFor="let product of [1,2,3,4,5,6,7,8]">
+        <app-book-card></app-book-card>
+      </ng-container>
+
+    </div>
+  </div>
+</div>

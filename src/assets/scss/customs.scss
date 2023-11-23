@@ -34,6 +34,9 @@
     filter: blur(5px);
     -webkit-filter: blur(5px);
   }
+  &-border-gray{
+    @apply border border-solid border-gray rounded-xl p-3;
+  }
 }
 
 .book-card{

@@ -24,6 +24,7 @@ export class DropdownUiComponent implements OnInit, OnChanges ,ControlValueAcces
   @Input() filter = false;
   @Input() dataList:ISelectItem[] = [];
   @Input() showAllValue = true;
+  @Input() styleClass = '';
 
   @Output() dropdownOnChange = new EventEmitter();
 

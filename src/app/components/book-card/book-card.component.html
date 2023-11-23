@@ -22,16 +22,16 @@
   </button>
   <img
     [src]="infoFilm?.poster"
+    (click)="detail()"
     class="rounded-xl w-full aspect-3/4 object-cover group-hover:aspect-square duration-500"
     alt=""
   />
-  <p class="font-bold text-lg">{{ infoFilm?.title }}</p>
+  <p class="font-bold text-lg" (click)="detail()">{{ infoFilm?.title }}</p>
   <div class="center gap-x-2 text-purple/70 font-medium uppercase">
-    <p *ngFor="let category of infoFilm.categories">{{ category }}</p>
+    <p *ngFor="let category of infoFilm?.categories">{{ category }}</p>
   </div>
   <p-rating
     class="block group-hover:hidden"
-    [(ngModel)]="infoFilm.rate"
     [cancel]="false"
     [readonly]="true"
   ></p-rating>

@@ -1,6 +1,6 @@
 <div>
   <p-dropdown
-    styleClass="w-full"
+    [styleClass]="styleClass || 'w-full'"
     [options]="dataList"
     [editable]="editable"
     [optionLabel]="optionLabel"

@@ -21,3 +21,8 @@ export enum Action {
 export enum HeadersKey {
   NoTokenHeader = 'No-Token-Header'
 }
+
+export enum DefaultValue {
+  MinPrice = 0,
+  MaxPrice = 10000000
+}
