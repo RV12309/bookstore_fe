@@ -9,3 +9,4 @@ export const UPLOAD_PRESET = 'a6skugqd';
 export const DATA_KEY = 'id';
 export const PAGE_NUMBER_DEFAULT = 5;
 export const HEADERS_NO_TOKEN = new HttpHeaders().set(HeadersKey.NoTokenHeader, 'true');
+export const BRANCH_NAME = 'eFinBooks'

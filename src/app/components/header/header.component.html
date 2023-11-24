@@ -1,42 +1,109 @@
-<div class=" border-b border-solid border-gray w-full bg-white bg-">
-  <div class="flex items-center justify-between py-1 md:w-md lg:w-lg 2xl:w-2xl mx-auto gap-24">
+<div class="border-b border-solid border-gray w-full bg-white">
+  <div
+    class="flex items-center justify-between md:w-md lg:w-lg 2xl:w-2xl mx-auto gap-x-24 min-h-[80px]"
+  >
     <div class="flex items-center">
-      <img src="assets/images/logo.png" alt="">
+      <!-- <img src="assets/images/logo.png" alt=""> -->
       <div>
-        <p class="text-2xl font-bold ">eFinBook</p>
-        <p class="text-primary-blue">Book Store Website</p>
+        <p class="text-4xl font-medium font-kanit text-purple">
+          {{ BRANCH_NAME }}
+        </p>
+        <!-- <p class="text-primary-blue">Book Store Website</p> -->
       </div>
     </div>
-    <div class="flex items-center border border-solid border-gray p-0 h-14 rounded-lg flex-1">
-      <p-menu #menuBook [model]="menu" [popup]="true"></p-menu>
+    <div
+      class="flex items-center border border-solid border-gray p-0 h-14 rounded-lg flex-1"
+    >
+      <p-menu
+        #menuBook
+        [model]="menu"
+        [popup]="true"
+      ></p-menu>
       <div
-        class="flex items-center border-r border-gray border-solid px-6 text-primary-blue gap-2"
+        class="flex items-center border-r border-gray border-solid px-6 text-primary-blue gap-2 cursor-pointer"
         (click)="menuBook.toggle($event)"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z"
+          />
         </svg>
-        <span>Menu</span>
+        <!-- <span>Menu</span> -->
       </div>
-      <input type="text" class="p-2 border-none w-full" placeholder="Search...">
+      <input
+        type="text"
+        class="p-2 w-full"
+        style="border: none !important"
+        placeholder="Tìm kiếm..."
+      />
       <div class="border-l border-gray border-solid px-6 text-primary-blue">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+          />
         </svg>
       </div>
     </div>
     <div class="flex items-center gap-8">
       <button class="button button-gray aspect-square">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+          />
         </svg>
       </button>
-      <div>
+      <div class="relative">
         <div (click)="navigateUser()">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.3" stroke="currentColor" class="w-6 h-6 text-purple">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.3"
+            stroke="currentColor"
+            class="w-6 h-6 text-purple"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+            />
           </svg>
         </div>
+        <p-menu
+          class="absolute -bottom-1 -left-32"
+          #menuUser
+          [model]="items"
+          [popup]="true"
+          (onBlur)="menuUserBlur()"
+          (onHide)="menuUserBlur()"
+        ></p-menu>
       </div>
       <!-- <p-avatar
         image="https://cdn-icons-png.flaticon.com/512/168/168726.png"
@@ -47,5 +114,3 @@
     </div>
   </div>
 </div>
-<p-menu #menuUser [model]="items" [popup]="true"></p-menu>
-

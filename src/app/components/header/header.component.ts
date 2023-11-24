@@ -1,6 +1,7 @@
-import { Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ComponentRef, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Menu } from "primeng/menu";
+import { BRANCH_NAME } from "src/app/core/constant/common.constant";
 
 @Component({
   selector: 'app-header',
@@ -8,12 +9,13 @@ import { Menu } from "primeng/menu";
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @ViewChild('menuUser', {static: false}) menuUser!:Menu;
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute
-    ){
-    }
+  @ViewChild('menuUser') menuUser!:  Menu;
+  public BRANCH_NAME = BRANCH_NAME;
+  constructor(
+      private router: Router,
+      private route: ActivatedRoute
+  ){
+  }
 
   items = [
     {
@@ -41,9 +43,7 @@ export class HeaderComponent {
   ];
 
   navigateUser(){
-    console.log(true);
-
-    this.menuUser.toggle;
+    this.menuUser.toggle(true);
     return;
       const token = sessionStorage.getItem('token');
       if(token){
@@ -52,6 +52,12 @@ export class HeaderComponent {
       } else {
           this.router.navigate(['/auth/login']);
       }
+  }
+
+  menuUserBlur(){
+    console.log('blur');
+
+    this.menuUser.hide();
   }
 
 }
