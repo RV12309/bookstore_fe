@@ -494,3 +494,16 @@ p-inputnumber,
     }
   }
 }
+
+
+// --------------------------------
+//  TOOLTIP
+
+.p-tooltip{
+  .p-tooltip-arrow{
+    @apply border-none #{!important}
+  }
+  .p-tooltip-text{
+    @apply rounded-full bg-purple-light text-purple #{!important}
+  }
+}
