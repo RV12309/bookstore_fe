@@ -11,6 +11,9 @@ import { IFilterItem, InputType } from "src/app/core/interfaces";
 import { ITitleTable } from "src/app/core/interfaces/table.interface";
 import { ActivatedRoute } from "@angular/router";
 import { GlobalService } from "src/app/core/services";
+import { BehaviorSubject, EMPTY, Observable, catchError, mergeMap, tap } from 'rxjs';
+import { IBookData, IBookSearchForm } from 'src/app/core/interfaces/books.interface';
+import { IResponse } from 'src/app/core/interfaces/response.interface';
 
 @Component({
   selector: 'app-book-list',
@@ -44,6 +47,7 @@ export class BookListComponent implements OnInit{
       label: 'Danh mục',
       icon: 'assets/icons/default/ic-archive.svg',
       dataList: this.categories,
+      defaultValue: this.categories[0],
       placeholder: 'Chọn danh mục',
     },
     {
@@ -89,6 +93,12 @@ export class BookListComponent implements OnInit{
       title: 'Số trang'
     }
   ]
+
+  public bookList$: Observable<any> = new Observable<any>();
+  public bookSub$: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  public dataTable: IBookData[] = [];
+  public total!: number;
+
   constructor(
     private modalService: ModalService,
     private booksService: BooksService,
@@ -103,6 +113,25 @@ export class BookListComponent implements OnInit{
   ngOnInit(): void {
     this.changeParams()
     this.getCategoryList();
+    // this.getBookList();
+  }
+
+  public getBookList(){
+    this.bookList$ = this.bookSub$.pipe(
+      mergeMap((params: IBookSearchForm) => 
+        this.globalService.getBooksList(params).pipe(
+          tap((res: IResponse<any>) => {
+            return res?.data?.content
+          }),
+          catchError((error: IResponse<any>) => {
+            this.modalService.alert({
+              type: 'error',
+               message: error.message });
+            return EMPTY;
+          })
+        )
+      )
+    )
   }
 
   changeParams(){
@@ -116,7 +145,18 @@ export class BookListComponent implements OnInit{
   }
 
   getListFromParams(params:any){
-    this.globalService.getBooksList(params).subscribe()
+    this.globalService.getBooksList(params).subscribe({
+      next: resp => {
+        this.dataTable = resp?.data?.content;
+        this.total = this.dataTable?.length;
+        console.log(this.dataTable)
+      },
+
+    })
+  }
+
+  refreshData(){
+    this.changeParams();
   }
 
   getCategoryList(){

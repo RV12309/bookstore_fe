@@ -79,7 +79,7 @@
           />
         </svg>
       </button>
-      <div class="relative">
+      <div *ngIf="!isLogin">
         <div (click)="navigateUser()">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.3"
             stroke="currentColor"
-            class="w-6 h-6 text-purple"
+            class="w-6 h-6 text-purple cursor-pointer"
           >
             <path
               stroke-linecap="round"
@@ -96,21 +96,22 @@
             />
           </svg>
         </div>
-        <p-menu
-          class="absolute -bottom-1 -left-32"
-          #menuUser
-          [model]="items"
-          [popup]="true"
-          (onBlur)="menuUserBlur()"
-          (onHide)="menuUserBlur()"
-        ></p-menu>
       </div>
-      <!-- <p-avatar
-        image="https://cdn-icons-png.flaticon.com/512/168/168726.png"
+      <p-avatar
+        *ngIf="isLogin"
+        image="assets/images/avatar_01.png"
         styleClass=""
-        class="w-12 rounded-lg overflow-hidden"
+        class="w-12 aspect-square rounded-xl overflow-hidden cursor-pointer"
         size="large"
-      ></p-avatar> -->
+        (click)="menuUser.toggle($event)"
+      ></p-avatar>
     </div>
   </div>
 </div>
+<p-menu
+  #menuUser
+  [showTransitionOptions]="'0ms'"
+  [hideTransitionOptions]="'0ms'"
+  [model]="items"
+  [popup]="true"
+></p-menu>

@@ -1,63 +1,76 @@
-import { Component, ComponentRef, ElementRef, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  TemplateRef,
+  ViewChild,
+} from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Menu } from "primeng/menu";
 import { BRANCH_NAME } from "src/app/core/constant/common.constant";
+import { StorageKey } from "src/app/core/enums";
+import { StoreService } from "src/app/core/services";
+import { AuthService } from "src/app/core/services/auth/auth.service";
+import { ModalService } from "src/app/core/services/modal";
+import { ModalProfileComponent } from "src/app/features/web-client/profile/modal-profile/modal-profile.component";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.scss"],
 })
-export class HeaderComponent {
-  @ViewChild('menuUser') menuUser!:  Menu;
+export class HeaderComponent implements OnInit {
+  @ViewChild("menuUser", { static: false }) menuUser!: Menu;
   public BRANCH_NAME = BRANCH_NAME;
-  constructor(
-      private router: Router,
-      private route: ActivatedRoute
-  ){
-  }
-
   items = [
     {
-      label: 'Update',
-      icon: 'pi pi-refresh',
+      label: "Thông tin cá nhân",
       command: () => {
-      }
-  },
-  {
-      label: 'Delete',
-      icon: 'pi pi-times',
+        this.modalService.open(ModalProfileComponent, {
+          header: "Thông tin cá nhân",
+        });
+      },
+    },
+    {
+      label: "Đăng xuất",
       command: () => {
-      }
-  }
+        this.authService.logout();
+      },
+    },
   ];
+  public isLogin = false;
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    private modalService: ModalService,
+    private storeService: StoreService
+  ) {}
+
+  ngOnInit(): void {
+    const accessToken = this.storeService.getSession(StorageKey.accessToken);
+    this.isLogin = !!accessToken
+  }
 
   public menu = [
     {
-      label: 'Thư viện',
-      icon: 'pi pi-book',
+      label: "Thư viện",
+      icon: "pi pi-book",
       command: () => {
-        this.router.navigate(['/products'])
-      }
-  },
+        this.router.navigate(["/products"]);
+      },
+    },
   ];
 
-  navigateUser(){
-    this.menuUser.toggle(true);
+  navigateUser() {
     return;
-      const token = sessionStorage.getItem('token');
-      if(token){
-          this.router.navigate(['/']);
-          sessionStorage.removeItem('userData');
-      } else {
-          this.router.navigate(['/auth/login']);
-      }
+    const token = sessionStorage.getItem("token");
+    if (token) {
+      this.router.navigate(["/"]);
+      sessionStorage.removeItem("userData");
+    } else {
+      this.router.navigate(["/auth/login"]);
+    }
   }
-
-  menuUserBlur(){
-    console.log('blur');
-
-    this.menuUser.hide();
-  }
-
 }

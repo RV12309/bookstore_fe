@@ -13,7 +13,7 @@ export interface IBooksResponse {
     totalElements?: number,
     totalPages?: number,
     size?: number,
-    content?: IBookData[],
+    content: IBookData[],
     pageNumber?: number,
     pageSize?: number,
     numberOfElements?: number,

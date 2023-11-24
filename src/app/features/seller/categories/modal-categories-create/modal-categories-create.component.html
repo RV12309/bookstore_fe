@@ -4,6 +4,16 @@
     <div class="col-span-2">
       <label for="" class="w-full">Tên danh mục</label>
       <input type="text" pInputText placeholder="Nhập tên danh mục" formControlName="name"/>
+      <ng-container>
+        <div
+          *ngIf="form?.invalid && this.form.controls['name']?.touched"
+          class="error-text"
+        >
+          <p *ngIf="this.form.controls['name']?.hasError('required')">
+            Vui lòng nhập tên danh mục
+          </p>
+        </div>
+      </ng-container>
     </div>
     <div class="col-span-2">
       <label for="" class="w-full">Mô tả</label>

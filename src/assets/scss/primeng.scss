@@ -393,6 +393,9 @@ p-inputnumber,
       @apply shadow-none;
     }
   }
+  .p-focus{
+    @apply shadow-purple-light border-purple #{!important};
+  }
 }
 
 // Upload
@@ -448,6 +451,46 @@ p-inputnumber,
     }
     .p-radiobutton-icon {
       @apply bg-purple-light #{!important};
+    }
+  }
+}
+
+
+// =================================================================
+//ACCORDION
+.p-accordion{
+  .p-accordion-header{
+    &.p-highlight{
+      .p-accordion-header-link{
+        @apply rounded-b-none duration-300 #{!important};
+      }
+    }
+    .p-accordion-header-link{
+      @apply rounded-xl bg-white border-gray #{!important};
+      &:focus{
+        @apply shadow-none #{!important}
+      }
+      .p-accordion-toggle-icon{
+        @apply duration-300 #{!important};
+      }
+    }
+  }
+  .p-accordion-content{
+    @apply border-gray rounded-b-xl #{!important};
+  }
+}
+
+//===============================
+// SLIDER
+.p-slider{
+  // @apply bg-red-300 #{!important};
+  .p-slider-range{
+    @apply bg-purple #{!important};
+  }
+  .p-slider-handle{
+    @apply bg-purple-light border-purple #{!important};
+    &:focus{
+      @apply shadow-purple #{!important};
     }
   }
 }

@@ -15,5 +15,20 @@
   <app-table-ui
     headerTable="Danh sách sách"
     [titleTable]="titleTable"
-  ></app-table-ui>
+    [dataTable]="dataTable"
+    [total]="total"
+    (refreshData)="refreshData()"
+  >
+  <ng-template
+      #tableBody
+      let-item="item"
+    > 
+      <td>{{ item?.title }}</td>
+      <td>{{ item?.author }}</td>
+      <td>{{ item?.price }}</td>
+      <td>{{ item?.quantity }}</td>
+      <td>{{ item?.numberOfPages }}</td>
+    </ng-template>
+</app-table-ui>
+  
 </div>
