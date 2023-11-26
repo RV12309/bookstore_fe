@@ -16,6 +16,7 @@ import { ResponseInterceptor } from "./core/interceptors/response.interceptor";
 import { LoadingInterceptor } from "./core/interceptors/loading.interceptor";
 import { PipesModule } from "./core/pipes/pipes.module";
 import { SafeUrlPipe } from "./core/pipes/safe-url.pipe";
+import { DecimalPipe } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { SafeUrlPipe } from "./core/pipes/safe-url.pipe";
     DialogService,
     MessageService,
     SafeUrlPipe,
+    DecimalPipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,
