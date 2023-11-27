@@ -129,7 +129,7 @@
     </ng-template>
   </div>
   <div class="bg-red-2000 grid grid-cols-4 gap-x-10">
-    <div class="col-span-3">
+    <div class="col-span-4">
       <div class="font-bold text-2xl text-neutral-400 flex gap-x-10 mb-5">
         <p
           *ngFor="let i of tabInfo;let index=index"
@@ -155,7 +155,7 @@
             </tr>
             <tr>
               <th>Ngôn ngữ</th>
-              <td>{{dataBook?.language}}</td>
+              <td>{{dataBook?.language || '-'}}</td>
             </tr>
             <tr>
               <th>Ngày xuất bản</th>
@@ -180,8 +180,13 @@
       </ng-container>
 
     </div>
-    <div class="col-span-1">
-      <p class="font-semibold text-xl">Sản phẩm liên quan</p>
-    </div>
+    <!-- <div class="col-span-1">
+      <p class="font-semibold text-xl mb-5">Sản phẩm liên quan</p>
+      <div class="grid grid-cols-2 gap-x-2">
+        <ng-container *ngFor="let i of [1,2]">
+          <app-book-card></app-book-card>
+        </ng-container>
+      </div>
+    </div> -->
   </div>
 </div>

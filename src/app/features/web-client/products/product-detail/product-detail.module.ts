@@ -12,6 +12,7 @@ import { RatingUiModule } from "src/app/components/rating-ui/rating-ui.module";
 import {ImageModule} from 'primeng/image';
 import { ButtonModule } from "primeng/button";
 import { PipesModule } from "src/app/core/pipes/pipes.module";
+import { BookCardModule } from "src/app/components/book-card";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { PipesModule } from "src/app/core/pipes/pipes.module";
     RatingUiModule,
     ImageModule,
     ButtonModule,
-    PipesModule
+    PipesModule,
+    BookCardModule
   ],
   exports: [
     ProductDetailComponent
