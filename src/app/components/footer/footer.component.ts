@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BRANCH_NAME } from "src/app/core/constant/common.constant";
 
 @Component({
   selector: 'app-footer',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  public BRANCH_NAME = BRANCH_NAME;
   ngOnInit(): void {
   }
 }

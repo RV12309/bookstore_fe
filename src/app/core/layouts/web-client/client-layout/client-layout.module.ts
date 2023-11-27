@@ -13,16 +13,34 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/features/web-client/home/home.module').then(m => m.HomeModule)
+        loadChildren: () => import('src/app/features/web-client/home/home.module').then(m => m.HomeModule),
+        data: {
+          breadcrumb: ''
+        }
       },
       {
         path: 'products',
-        loadChildren: () => import('src/app/features/web-client/products/products-list/products-list.module').then(m => m.ProductsListModule)
-      },
-      {
-        path: 'products/:isbn ',
-        loadChildren: () => import('src/app/features/web-client/products/product-detail/product-detail.module').then(m => m.ProductDetailModule)
+        data: {
+          breadcrumb: 'Sản phẩm'
+        },
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('src/app/features/web-client/products/products-list/products-list.module').then(m => m.ProductsListModule),
+            data: {
+              breadcrumb: ''
+            }
+          },
+          {
+            path: ':isbn',
+            loadChildren: () => import('src/app/features/web-client/products/product-detail/product-detail.module').then(m => m.ProductDetailModule),
+            data: {
+              breadcrumb: 'Thông tin sản phẩm'
+            }
+          }
+        ]
       }
+
     ]
   },
 ];

@@ -48,12 +48,12 @@
   .p-rating-star {
   }
   .p-rating-star-on {
-    @apply bg-yellow-500;
+    @apply bg-yellow-500 #{!important};
   }
   .p-rating-cancel {
   }
   .p-rating-icon-active {
-    @apply text-orange;
+    @apply text-orange #{!important};
   }
 }
 
@@ -421,11 +421,33 @@ p-inputnumber,
 
 // Breadcrumb
 .p-breadcrumb {
-  @apply bg-transparent #{!important};
+  @apply bg-transparent border-none #{!important};
   homeicon {
     @apply hidden;
   }
+  .p-menuitem-text{
+    @apply font-medium text-neutral-400 #{!important}
+  }
+  .p-breadcrumb-chevron	{
+    @apply text-neutral-300 #{!important}
+  }
+  ul{
+    li{
+      .p-menuitem-link{
+        &:focus{
+          @apply shadow-none #{!important};
+        }
+      }
+    }
+  }
 }
+
+// .p-breadcrumb ul li .p-menuitem-link:focus {
+//   outline: 0 none;
+//   outline-offset: 0;
+//   box-shadow: 0 0 0 0.2rem #BFDBFE;
+// }
+
 
 .p-image {
   .p-image-mask {
@@ -506,4 +528,10 @@ p-inputnumber,
   .p-tooltip-text{
     @apply rounded-full bg-purple-light text-purple #{!important}
   }
+}
+
+// ------------------------------------------------
+// SKELETON
+.p-skeleton{
+  height: initial;
 }

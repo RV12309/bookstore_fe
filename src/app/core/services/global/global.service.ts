@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from '@angular/core';
 import { environment } from "src/environments/environment";
 import { EndPoints } from "../../enums";
-import { IBookSearchForm, IBooksResponse } from "../../interfaces/books.interface";
+import { IBookData, IBookSearchForm, IBooksResponse } from "../../interfaces/books.interface";
 import { Observable } from "rxjs";
 import { IResponse } from "../../interfaces/response.interface";
 import { WCEndPoint } from "../../enums/wc-endpoints.enums";
@@ -19,6 +19,11 @@ export class GlobalService {
   getBooksList(body: IBookSearchForm): Observable<IResponse<IBooksResponse>>{
     return this.http.post<IResponse<IBooksResponse>>(
       `${this.url}/books/list`, body);
+  }
+
+  getBooksDetail(isbn: string): Observable<IResponse<IBookData>>{
+    return this.http.get<IResponse<IBookData>>(
+      `${this.url}/books/${isbn}`);
   }
 
 

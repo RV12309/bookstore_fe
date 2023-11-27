@@ -55,8 +55,8 @@ export class HeaderComponent implements OnInit {
 
   public menu = [
     {
-      label: "Thư viện",
-      icon: "pi pi-book",
+      label: "Sản phẩm",
+      // icon: "pi pi-book",
       command: () => {
         this.router.navigate(["/products"]);
       },

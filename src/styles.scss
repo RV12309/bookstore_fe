@@ -14,12 +14,11 @@
 html {
   // font-family: 'Quicksand', sans-serif !important;
   font-family: 'Inter', sans-serif;
-  // font-weight: 500;
   color: #333;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: scroll;
+  overflow-y: scroll;
   font-size: 14px;
 }
 

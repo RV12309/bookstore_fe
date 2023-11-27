@@ -1,5 +1,6 @@
 import { HttpHeaders } from "@angular/common/http";
 import { HeadersKey } from "../enums";
+import { MenuItem } from "primeng/api";
 
 export const CLOUD_NAME = 'dobuq8yjd';
 export const API_KEY = '724869847322133';
@@ -10,3 +11,11 @@ export const DATA_KEY = 'id';
 export const PAGE_NUMBER_DEFAULT = 5;
 export const HEADERS_NO_TOKEN = new HttpHeaders().set(HeadersKey.NoTokenHeader, 'true');
 export const BRANCH_NAME = 'eFinBooks'
+
+
+export const BREADCRUMB_DEFAULT:MenuItem[] = [
+  {
+    label: "Trang chủ",
+    routerLink: '/'
+  }
+]

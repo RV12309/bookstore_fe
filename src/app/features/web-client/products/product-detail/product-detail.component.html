@@ -1,11 +1,46 @@
-<div class="bg-blue-200">
-  <div class="grid grid-cols-4 bg-blue-300">
-    <div class="col-span-1">
-      <!-- <app-galleria-ui></app-galleria-ui> -->
-      
-    </div>
-    <div>
+<div class="">
+  <app-breadcrumb-ui
+    [items]="breadcrumb"
+  ></app-breadcrumb-ui>
 
-    </div>
+  <div class="grid grid-cols-4 gap-x-10">
+    <ng-container *ngIf="dataBook; else NotDataBookImageCoverTpl">
+      <div
+        class="col-span-1 w-full aspect-3/4 overflow-hidden rounded-xl bg-center bg-cover duration-400"
+        [ngStyle]="{
+          'background-image': 'url(' + dataBook?.urlThumbnail + ')'
+        }"
+      ></div>
+      <div class="col-span-3 grid gap-y-3 content-start">
+        <p class="font-bold text-4xl font-kanit">{{dataBook?.title}}</p>
+        <div>
+          <div class="flex gap-x-3 items-center">
+            <app-rating-ui
+            ></app-rating-ui>
+            <span class="font-extrabold">4.0</span>
+          </div>
+        </div>
+        <div class="font leading-7 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit numquam ducimus ipsum quas neque. Enim, a possimus dicta labore quis quas quibusdam animi autem minima distinctio sit aspernatur ea, itaque minus repellendus iusto repudiandae impedit incidunt, dolorem nulla rem alias? Laudantium porro architecto beatae modi, dicta repellendus eos eligendi numquam.</div>
+      </div>
+    </ng-container>
+
+    <ng-template #NotDataBookImageCoverTpl>
+      <div class="col-span-1">
+        <p-skeleton
+          width="100%"
+          height=""
+          styleClass="aspect-2/3"
+          [borderRadius]="RoundedCSS.Xl"
+        ></p-skeleton>
+      </div>
+      <div class="col-span-3">
+        <p-skeleton
+          width="300px"
+          height="30px"
+          [borderRadius]="RoundedCSS.Xl"
+        ></p-skeleton>
+      </div>
+    </ng-template>
+
   </div>
 </div>

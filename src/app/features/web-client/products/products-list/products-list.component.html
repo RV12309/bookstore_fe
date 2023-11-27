@@ -75,14 +75,26 @@
         [dataList]="sortList"
       ></app-dropdown-ui>
     </div>
+
     <div class="grid grid-cols-4 gap-8">
-      <ng-container *ngFor="let product of dataBooks">
-        <app-book-card
-          [infoFilm]="product"
-        ></app-book-card>
-      </ng-container>
+      <ng-container *ngIf="dataBooks?.length; then dataBooksTpl else NotDataBook"></ng-container>
+      <ng-template #dataBooksTpl>
+        <ng-container *ngFor="let product of dataBooks">
+          <app-book-card
+            [infoFilm]="product"
+          ></app-book-card>
+        </ng-container>
+      </ng-template>
+      <ng-template #NotDataBook>
+        <ng-container *ngFor="let product of [1,2,3,4]">
+          <app-book-card
+            [skeleton]="true"
+          ></app-book-card>
+        </ng-container>
+      </ng-template>
     </div>
     <app-paginator-ui
+      *ngIf="dataBooks?.length"
       [rows]="12"
       [rowsPerPageOptions]="[]"
     ></app-paginator-ui>

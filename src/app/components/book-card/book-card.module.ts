@@ -6,6 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { ButtonModule } from 'primeng/button';
 import {TooltipModule} from 'primeng/tooltip';
 import { PipesModule } from "src/app/core/pipes/pipes.module";
+import {SkeletonModule} from 'primeng/skeleton';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { PipesModule } from "src/app/core/pipes/pipes.module";
     ButtonModule,
     TooltipModule,
     PipesModule,
+    SkeletonModule
   ],
   exports: [
     BookCardComponent

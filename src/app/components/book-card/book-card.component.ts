@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
+import { AspectRatio, RoundedCSS } from "src/app/core/enums";
 import { IBookData } from "src/app/core/interfaces/books.interface";
 
 @Component({
@@ -10,6 +11,10 @@ import { IBookData } from "src/app/core/interfaces/books.interface";
 export class BookCardComponent {
   @Input() infoFilm!:IBookData | any;
   @Input() showFavorite:boolean = true;
+  @Input() skeleton:boolean = false;
+
+  public RoundedCSS = RoundedCSS;
+  public AspectRatio = AspectRatio;
 
   constructor(
     private router:Router
