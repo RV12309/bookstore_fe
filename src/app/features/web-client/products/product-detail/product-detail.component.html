@@ -1,4 +1,4 @@
-<div class="grid gap-y-5">
+<div class="grid gap-y-16">
   <app-breadcrumb-ui [items]="breadcrumb"></app-breadcrumb-ui>
   <div class="grid grid-cols-4 gap-x-10">
     <ng-container *ngIf="dataBook; else NotDataBookImageCoverTpl">
@@ -128,7 +128,60 @@
       </div>
     </ng-template>
   </div>
-  <div>
-    Detail Product
+  <div class="bg-red-2000 grid grid-cols-4 gap-x-10">
+    <div class="col-span-3">
+      <div class="font-bold text-2xl text-neutral-400 flex gap-x-10 mb-5">
+        <p
+          *ngFor="let i of tabInfo;let index=index"
+          class="cursor-pointer duration-500"
+          [ngClass]="{'text-purple': index === tabIndex}"
+          (click)="chooseTab(index)"
+        >{{i?.label}}</p>
+      </div>
+      <ng-container [ngSwitch]="tabIndex">
+        <ng-container *ngSwitchCase="0">
+          <table class="custom-table-default">
+            <tr>
+              <th>Tiêu đề sách</th>
+              <td>{{dataBook?.title}}</td>
+            </tr>
+            <tr>
+              <th>Tác giả</th>
+              <td>{{dataBook?.author}}</td>
+            </tr>
+            <tr>
+              <th>ISBN</th>
+              <td>{{dataBook?.isbn}}</td>
+            </tr>
+            <tr>
+              <th>Ngôn ngữ</th>
+              <td>{{dataBook?.language}}</td>
+            </tr>
+            <tr>
+              <th>Ngày xuất bản</th>
+              <td>{{dataBook?.publishDate | date: 'dd/ MM/ yyyy'}}</td>
+            </tr>
+            <tr>
+              <th>Nhà xuất bản</th>
+              <td>{{dataBook?.publisher}}</td>
+            </tr>
+            <tr>
+              <th>Danh mục</th>
+              <td>
+                <ng-container></ng-container>
+              </td>
+            </tr>
+          </table>
+          <div class="mt-8">{{dataBook?.description || 'Không có mô tả...'}}</div>
+        </ng-container>
+        <ng-container *ngSwitchCase="1">
+          Tính năng đang phát triển...
+        </ng-container>
+      </ng-container>
+
+    </div>
+    <div class="col-span-1">
+      <p class="font-semibold text-xl">Sản phẩm liên quan</p>
+    </div>
   </div>
 </div>

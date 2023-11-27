@@ -76,3 +76,23 @@ a{
   background-color: transparent !important;
  }
 }
+
+table.custom-table-default {
+  // border-collapse: collapse;
+  border-collapse: separate;
+  @apply w-full text-left border border-solid border-gray box-border rounded-xl;
+  tr{
+    th{
+      @apply font-bold text-lg w-80 ;
+    }
+    &:last-child{
+      td,th{
+        @apply border-b-0;
+      };
+    }
+  }
+  td,th{
+    @apply p-3 border-b border-solid border-gray;
+  };
+
+}

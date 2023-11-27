@@ -18,6 +18,15 @@ export class ProductDetailComponent implements OnInit {
   public AspectRatio = AspectRatio;
   public RoundedCSS = RoundedCSS;
   public breadcrumb:MenuItem[] = [];
+  public tabIndex = 0;
+  public tabInfo = [
+    {
+      label: 'Chi tiết sản phẩm'
+    },
+    {
+      label: 'Ý kiến khách hàng'
+    }
+  ]
 
   private isbn:string = '';
 
@@ -48,6 +57,10 @@ export class ProductDetailComponent implements OnInit {
         ]
       }
     })
+  }
+
+  chooseTab(index:number){
+    this.tabIndex = index;
   }
 
 }
