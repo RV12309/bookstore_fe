@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
+import { IBookData } from "src/app/core/interfaces/books.interface";
 
 @Component({
   selector: 'app-book-card',
@@ -7,7 +8,7 @@ import { Router } from "@angular/router";
   styleUrls: ['./book-card.component.scss']
 })
 export class BookCardComponent {
-  @Input() infoFilm:any;
+  @Input() infoFilm!:IBookData | any;
   @Input() showFavorite:boolean = true;
 
   constructor(
@@ -15,6 +16,6 @@ export class BookCardComponent {
   ){}
 
   detail(){
-    this.router.navigate(['products/123'])
+    this.router.navigate(['products', this.infoFilm?.isbn])
   }
 }

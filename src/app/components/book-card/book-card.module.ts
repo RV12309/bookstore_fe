@@ -4,6 +4,8 @@ import { BookCardComponent } from './book-card.component';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from 'primeng/button';
+import {TooltipModule} from 'primeng/tooltip';
+import { PipesModule } from "src/app/core/pipes/pipes.module";
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ButtonModule } from 'primeng/button';
     CommonModule,
     RatingModule,
     FormsModule,
-    ButtonModule
+    ButtonModule,
+    TooltipModule,
+    PipesModule,
   ],
   exports: [
     BookCardComponent
