@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { DropdownUiModule } from "src/app/components/dropdown-ui/dropdown-ui.module";
 import { BookCardModule } from "src/app/components/book-card";
+import { PaginatorUiModule } from "src/app/components/paginator-ui";
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { BookCardModule } from "src/app/components/book-card";
     SliderModule,
     ButtonModule,
     DropdownUiModule,
-    BookCardModule
+    BookCardModule,
+    PaginatorUiModule
   ],
   exports: [
     ProductsListComponent

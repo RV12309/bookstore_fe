@@ -1,5 +1,5 @@
 <div
-  class="group book-card text-center grid grid-col-1 gap-y-3 hover:scale-110 hover:shadow-#1 duration-500 bg-white relative"
+  class="group book-card text-center grid grid-col-1 gap-y-3 hover:scale-1101 hover:shadow-#1 duration-500 bg-white relative"
 >
   <button
     *ngIf="showFavorite"
@@ -23,7 +23,7 @@
   <img
     [src]="infoFilm?.poster"
     (click)="detail()"
-    class="rounded-xl w-full aspect-3/4 object-cover group-hover:aspect-square duration-500"
+    class="rounded-xl w-full aspect-3/4 object-cover group-hover:aspect-squarer duration-500"
     alt=""
   />
   <p class="font-bold text-lg" (click)="detail()">{{ infoFilm?.title }}</p>

@@ -1,7 +1,21 @@
-<p-paginator
-  (onPageChange)="onPageChange($event)"
+<ng-container *ngIf="rowsPerPageOptions?.length; then haveRowsPerPageOptions else notRowsPerPageOptions"></ng-container>
+<ng-template #haveRowsPerPageOptions>
+  <p-paginator
+    #paginator
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    (onPageChange)="onPageChange($event)"
+  ></p-paginator>
+</ng-template>
+<ng-template #notRowsPerPageOptions>
+  <p-paginator
+  #paginator
   [first]="first"
   [rows]="rows"
   [totalRecords]="totalRecords"
-  [rowsPerPageOptions]="rowsPerPageOptions"
+  (onPageChange)="onPageChange($event)"
 ></p-paginator>
+</ng-template>
+

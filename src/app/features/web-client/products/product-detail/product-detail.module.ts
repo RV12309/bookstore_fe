@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProductDetailRoutingModule } from './product-detail-routing.module';
 import { ProductDetailComponent } from './product-detail.component';
+import { GalleriaUiModule } from "src/app/components/galleria-ui/galleria-ui.module";
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ProductDetailComponent } from './product-detail.component';
   ],
   imports: [
     CommonModule,
-    ProductDetailRoutingModule
+    ProductDetailRoutingModule,
+    GalleriaUiModule
   ],
   exports: [
     ProductDetailComponent

@@ -35,10 +35,10 @@
 .p-paginator {
   .p-paginator-pages {
     .p-paginator-page {
-      @apply rounded-xl;
+      @apply rounded-xl #{!important};
     }
     .p-highlight {
-      @apply bg-purple-light text-purple;
+      @apply bg-purple-light text-purple #{!important};
     }
   }
 }

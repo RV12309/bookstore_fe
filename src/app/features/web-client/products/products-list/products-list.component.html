@@ -79,7 +79,10 @@
       <ng-container *ngFor="let product of [1,2,3,4,5,6,7,8]">
         <app-book-card></app-book-card>
       </ng-container>
-
     </div>
+    <app-paginator-ui
+      [rows]="12"
+      [rowsPerPageOptions]="[]"
+    ></app-paginator-ui>
   </div>
 </div>
