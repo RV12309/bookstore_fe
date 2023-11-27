@@ -9,6 +9,9 @@ import { BreadcrumbUiModule } from "src/app/components/breadcrumb-ui/breadcrumb-
 import {RatingModule} from 'primeng/rating';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RatingUiModule } from "src/app/components/rating-ui/rating-ui.module";
+import {ImageModule} from 'primeng/image';
+import { ButtonModule } from "primeng/button";
+import { PipesModule } from "src/app/core/pipes/pipes.module";
 
 
 @NgModule({
@@ -24,7 +27,10 @@ import { RatingUiModule } from "src/app/components/rating-ui/rating-ui.module";
     RatingModule,
     FormsModule,
     ReactiveFormsModule,
-    RatingUiModule
+    RatingUiModule,
+    ImageModule,
+    ButtonModule,
+    PipesModule
   ],
   exports: [
     ProductDetailComponent

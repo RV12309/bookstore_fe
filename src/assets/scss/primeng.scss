@@ -70,11 +70,12 @@
     @apply rounded-full #{!important};
   }
   .p-badge {
-    @apply w-6 h-6 p-0 ml-2 center;
+    @apply w-6 h-6 p-0 ml-2 center #{!important};
   }
   .p-button-icon {
+    @apply w-10 h-10 center;
     &.p-button-icon-left {
-      @apply mr-2;
+      @apply mr-2 #{!important};
     }
   }
 }
@@ -421,7 +422,7 @@ p-inputnumber,
 
 // Breadcrumb
 .p-breadcrumb {
-  @apply bg-transparent border-none #{!important};
+  @apply bg-transparent border-none p-0 #{!important};
   homeicon {
     @apply hidden;
   }

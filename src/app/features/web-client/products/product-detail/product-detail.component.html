@@ -1,8 +1,5 @@
-<div class="">
-  <app-breadcrumb-ui
-    [items]="breadcrumb"
-  ></app-breadcrumb-ui>
-
+<div class="grid gap-y-5">
+  <app-breadcrumb-ui [items]="breadcrumb"></app-breadcrumb-ui>
   <div class="grid grid-cols-4 gap-x-10">
     <ng-container *ngIf="dataBook; else NotDataBookImageCoverTpl">
       <div
@@ -12,15 +9,104 @@
         }"
       ></div>
       <div class="col-span-3 grid gap-y-3 content-start">
-        <p class="font-bold text-4xl font-kanit">{{dataBook?.title}}</p>
-        <div>
+        <p class="font-bold text-4xl font-kanit">{{ dataBook?.title }}</p>
+        <div class="flex justify-between">
           <div class="flex gap-x-3 items-center">
-            <app-rating-ui
-            ></app-rating-ui>
+            <app-rating-ui></app-rating-ui>
             <span class="font-extrabold">4.0</span>
+            <div class="flex items-center gap-x-1 text-purple font-medium">
+              <img
+                src="assets/icons/active/ic-message-writing-f.svg"
+                class="w-6"
+                alt=""
+              />
+              <p>{{ 639 }} Reviews</p>
+            </div>
+          </div>
+          <div>
+            <button
+              pButton
+              class="p-button p-button-rounded p-button-outlined p-button-icon"
+            >
+              <img
+                src="assets/icons/active/ic-share-alt.svg"
+                class="w-6 p-button-icon-left"
+                alt=""
+              />
+              <span>Chia sẻ</span>
+            </button>
           </div>
         </div>
-        <div class="font leading-7 text-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit numquam ducimus ipsum quas neque. Enim, a possimus dicta labore quis quas quibusdam animi autem minima distinctio sit aspernatur ea, itaque minus repellendus iusto repudiandae impedit incidunt, dolorem nulla rem alias? Laudantium porro architecto beatae modi, dicta repellendus eos eligendi numquam.</div>
+        <div class="font leading-7 text-base">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit
+          numquam ducimus ipsum quas neque. Enim, a possimus dicta labore quis
+          quas quibusdam animi autem minima distinctio sit aspernatur ea, itaque
+          minus repellendus iusto repudiandae impedit incidunt, dolorem nulla
+          rem alias? Laudantium porro architecto beatae modi, dicta repellendus
+          eos eligendi numquam.
+        </div>
+        <div class="flex justify-between">
+          <div class="flex gap-x-20">
+            <div>
+              <p class="font-medium text-neutral-400">Tác giả</p>
+              <p class="font-semibold mt-1 text-lg">{{ dataBook?.author }}</p>
+            </div>
+            <div>
+              <p class="font-medium text-neutral-400">NXB</p>
+              <p class="font-semibold mt-1 text-lg">
+                {{ dataBook?.publisher }}
+              </p>
+            </div>
+            <div>
+              <p class="font-medium text-neutral-400">Năm</p>
+              <p class="font-semibold mt-1 text-lg">
+                {{ dataBook?.publishDate | date : "YYYY" }}
+              </p>
+            </div>
+          </div>
+          <div class="text-purple bg-purple-light rounded-xl center w-fit py-2 px-3 font-medium">
+            <img
+              src="assets/icons/active/ic-thunder-f.svg"
+              class="w-6 mr-1"
+              alt=""
+            />
+            <span>Miễn phí ship</span>
+          </div>
+        </div>
+        <div class="py-3 border-t-2 border-dashed border-gray flex justify-between items-end">
+          <p class="text-3xl font-bold text-purple">{{dataBook?.price! | price}}</p>
+          <div class="flex gap-x-4">
+            <div class="border border-solid border-gray rounded-xl flex items-center px-1">
+              <img
+                src="assets/icons/active/ic-minus.svg"
+                class="w-6 cursor-pointer"
+                alt=""
+              />
+              <input
+                type="text"
+                class="py-3 px-4 font-semibold text-center h-full"
+                style="border: none !important; width: 80px !important;"
+                [value]="1"
+              >
+              <img
+                src="assets/icons/active/ic-plus.svg"
+                class="w-6 cursor-pointer"
+                alt=""
+              />
+            </div>
+            <button
+              pButton
+              class="p-button p-button-rounded p-button-icon"
+            >
+              <img
+                src="assets/icons/white/ic-shopping-cart.svg"
+                class="w-6 p-button-icon-left"
+                alt=""
+              />
+              <span>Thêm vào giỏ hàng</span>
+            </button>
+          </div>
+        </div>
       </div>
     </ng-container>
 
@@ -41,6 +127,8 @@
         ></p-skeleton>
       </div>
     </ng-template>
-
+  </div>
+  <div>
+    Detail Product
   </div>
 </div>
