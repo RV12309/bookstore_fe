@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { DefaultValue } from "src/app/core/enums";
 import { ISelectItem } from "src/app/core/interfaces";
-import { IBookData } from "src/app/core/interfaces/books.interface";
+import { IBookData, IBookSearchForm } from "src/app/core/interfaces/books.interface";
 import { ICategoryData } from "src/app/core/interfaces/category.interface";
 import { GlobalService } from "src/app/core/services";
 import { ModalService } from "src/app/core/services/modal";
@@ -32,12 +32,17 @@ export class ProductsListComponent implements OnInit {
   public categories: ICategoryData[] = [];
   public checkedItem: any[] = [];
   public selectedValues: any[] = [];
+  public currentParams: IBookSearchForm = {};
   constructor(
     private fb: FormBuilder, 
     private globalService: GlobalService,
     private modalService: ModalService)  {}
 
   ngOnInit(): void {
+    this.currentParams = {
+      page: 0,
+      size: 10
+    }
     this.initForm();
     this.getBookList();
     this.getCategoryList();
@@ -47,17 +52,12 @@ export class ProductsListComponent implements OnInit {
     this.productsForm = this.fb.group({
       priceRange: [[DefaultValue.MinPrice, DefaultValue.MaxPrice]],
     });
-    this.productsForm.valueChanges.subscribe((value) => {
-      console.log(value);
-    });
+    // this.productsForm.valueChanges.subscribe((value) => {
+    //   console.log(value);
+    // });
   }
-  getBookList(params?: any) {
-    const param = {
-      page: 0,
-      size: 12,
-      ...params
-    }
-    this.globalService.getBooksList(param).subscribe({
+  getBookList() {
+    this.globalService.getBooksList(this.currentParams).subscribe({
       next: resp => {
         this.dataBooks = resp.data?.content;
       }
@@ -82,12 +82,22 @@ export class ProductsListComponent implements OnInit {
     })
   }
 
-  onCheckedItem(e: any){
+  onCheckedItem(){
     console.log(this.selectedValues);
-    this.getBookList({categoryIds: this.selectedValues});
+    this.currentParams = {
+      ...this.currentParams,
+      categoryIds: this.selectedValues
+    }
+    this.getBookList();
   }
 
-  onRangeChange(e: any){
-    console.log(e);
+  filterByRange(){
+    this.currentParams = {
+      ...this.currentParams,
+      priceFrom: this.priceRangeControl.value[0],
+      priceTo: this.priceRangeControl.value[1],
+    }
+    console.log(this.currentParams);
+    this.getBookList();
   }
 }

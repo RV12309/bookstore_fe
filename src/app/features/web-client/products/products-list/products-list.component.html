@@ -19,7 +19,7 @@
             [ngModelOptions]="{standalone: true}"
               name="group"
               value="{{category.id}}"
-              (onChange)="onCheckedItem($event)"
+              (onChange)="onCheckedItem()"
             ></p-checkbox>
             <label
               for=""
@@ -41,7 +41,6 @@
           [max]="DefaultValue.MaxPrice"
           formControlName="priceRange"
           [range]="true"
-          (onChange)="onRangeChange($event)"
         ></p-slider>
         <div class="flex justify-between font-medium text-sm my-3">
           <p>{{ priceRangeControl?.value[0] | number }}</p>
@@ -53,6 +52,13 @@
         </p>
       </p-accordionTab>
     </p-accordion>
+    <button
+      pButton
+      class="p-button p-button-rounded w-full"
+      (click)="filterByRange()"
+    >
+      Áp dụng
+    </button>
     <button
       pButton
       class="p-button p-button-rounded p-button-danger w-full"
@@ -81,7 +87,7 @@
     </div>
 
     <div class="grid grid-cols-4 gap-8">
-      <ng-container *ngIf="dataBooks?.length; then dataBooksTpl else NotDataBook"></ng-container>
+      <ng-container *ngIf="(dataBooks && dataBooks.length > 0); then dataBooksTpl else NotDataBook"></ng-container>
       <ng-template #dataBooksTpl>
         <ng-container *ngFor="let product of dataBooks">
           <app-book-card
@@ -90,11 +96,17 @@
         </ng-container>
       </ng-template>
       <ng-template #NotDataBook>
-        <ng-container *ngFor="let product of [1,2,3,4]">
+        <!-- <ng-container *ngFor="let product of [1,2,3,4]">
           <app-book-card
             [skeleton]="true"
           ></app-book-card>
-        </ng-container>
+        </ng-container> -->
+        <div class="items-center">
+          <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a817ecbf71878.png" alt="">
+      </div>
+      <div class="blank-txt text-center">
+        Không tìm thấy kết quả nào
+      </div>
       </ng-template>
     </div>
     <app-paginator-ui

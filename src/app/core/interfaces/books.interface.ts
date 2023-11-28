@@ -1,7 +1,7 @@
 export interface IBookSearchForm {
     title?: string,
     author?: string,
-    categoryId?: number,
+    categoryIds?: string[],
     page?: number,
     size?: number,
     sort?: string[] | any,
