@@ -4,13 +4,14 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { IResponse } from '../../interfaces/response.interface';
 import { ICategoryForm, ICategoryData, ICategorySearch, ICategoryUpdate } from '../../interfaces/category.interface';
 import { Observable } from 'rxjs';
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
 
-  private baseUrl = env.baseUrl;
+  private baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
   getCategoryAll(): Observable<IResponse<ICategoryData[]>>{

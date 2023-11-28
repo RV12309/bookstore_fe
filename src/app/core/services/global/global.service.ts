@@ -13,7 +13,7 @@ import { ICategoryData } from "../../interfaces/category.interface";
 })
 export class GlobalService {
 
-  private url = `${environment.baseUrl}/${EndPoints.Global}`;
+  private url = `${environment.baseUrl}${EndPoints.Global}`;
   constructor(private http: HttpClient) { }
 
 
