@@ -38,6 +38,21 @@ export class HeaderComponent implements OnInit {
       },
     },
   ];
+
+  users = [
+    {
+      label: "Đăng nhập",
+      command: () => {
+        this.router.navigate(['/auth/login'])
+      },
+    },
+    {
+      label: "Đăng ký",
+      command: () => {
+        this.router.navigate(['/auth/register'])
+      },
+    },
+  ];
   public isLogin = false;
 
   constructor(
@@ -63,14 +78,4 @@ export class HeaderComponent implements OnInit {
     },
   ];
 
-  navigateUser() {
-    return;
-    const token = sessionStorage.getItem("token");
-    if (token) {
-      this.router.navigate(["/"]);
-      sessionStorage.removeItem("userData");
-    } else {
-      this.router.navigate(["/auth/login"]);
-    }
-  }
 }

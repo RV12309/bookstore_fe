@@ -12,17 +12,20 @@
         <div class="grid grid-cols-1 xl:grid-cols-2 gap-x-2 gap-y-6">
           <div
             class="flex items-center gap-x-2"
-            *ngFor="let categories of [1, 2, 3, 4, 5]"
+            *ngFor="let category of categories"
           >
             <p-checkbox
-              name="categories"
-              value="val1"
+            [(ngModel)]="selectedValues"
+            [ngModelOptions]="{standalone: true}"
+              name="group"
+              value="{{category.id}}"
+              (onChange)="onCheckedItem($event)"
             ></p-checkbox>
             <label
               for=""
               style="margin: 0 !important"
             >
-              Danh mục 0{{ categories }}
+              {{category.name}}
             </label>
           </div>
         </div>
@@ -38,6 +41,7 @@
           [max]="DefaultValue.MaxPrice"
           formControlName="priceRange"
           [range]="true"
+          (onChange)="onRangeChange($event)"
         ></p-slider>
         <div class="flex justify-between font-medium text-sm my-3">
           <p>{{ priceRangeControl?.value[0] | number }}</p>

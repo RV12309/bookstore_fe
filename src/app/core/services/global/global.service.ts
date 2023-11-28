@@ -6,6 +6,7 @@ import { IBookData, IBookSearchForm, IBooksResponse } from "../../interfaces/boo
 import { Observable } from "rxjs";
 import { IResponse } from "../../interfaces/response.interface";
 import { WCEndPoint } from "../../enums/wc-endpoints.enums";
+import { ICategoryData } from "../../interfaces/category.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,8 @@ export class GlobalService {
       `${this.url}/books/${isbn}`);
   }
 
+  getCategoryAll(): Observable<IResponse<ICategoryData[]>>{
+    return this.http.get<IResponse<ICategoryData[]>>(`${this.url}/categories/all`);
+  }
 
 }

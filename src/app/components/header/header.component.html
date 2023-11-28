@@ -80,7 +80,7 @@
         </svg>
       </button>
       <div *ngIf="!isLogin">
-        <div (click)="navigateUser()">
+        <div (click)="menuNonLogin.toggle($event)">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -113,5 +113,13 @@
   [showTransitionOptions]="'0ms'"
   [hideTransitionOptions]="'0ms'"
   [model]="items"
+  [popup]="true"
+></p-menu>
+
+<p-menu
+  #menuNonLogin
+  [showTransitionOptions]="'0ms'"
+  [hideTransitionOptions]="'0ms'"
+  [model]="users"
   [popup]="true"
 ></p-menu>
