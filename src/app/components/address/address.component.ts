@@ -50,7 +50,7 @@ export class AddressComponent implements OnInit {
               value: item
             }
           }
-        )
+        ).sort((a, b) => a?.name.localeCompare(b?.name))
       }
     })
   }
@@ -72,7 +72,7 @@ export class AddressComponent implements OnInit {
             value: item
           }
         }
-      )
+      ).sort((a, b) => a?.name.localeCompare(b?.name))
     });
 
     this.districtControl.valueChanges
@@ -90,7 +90,7 @@ export class AddressComponent implements OnInit {
             value: item
           }
         }
-      )
+      ).sort((a, b) => a?.name.localeCompare(b?.name))
     });
   }
 
