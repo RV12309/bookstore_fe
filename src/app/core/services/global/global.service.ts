@@ -6,6 +6,7 @@ import { IBookData, IBookSearchForm, IBooksResponse } from "../../interfaces/boo
 import { Observable } from "rxjs";
 import { IResponse } from "../../interfaces/response.interface";
 import { WCEndPoint } from "../../enums/wc-endpoints.enums";
+import { IDistricts, IProvinces, IWards } from "../../interfaces";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,17 @@ export class GlobalService {
       `${this.url}/books/${isbn}`);
   }
 
+  provinces():Observable<IResponse<IProvinces[]>>{
+    return this.http.get<IResponse<IProvinces[]>>(
+      `${this.url}/address/provinces`);
+  }
+
+  districts(provinceId:number):Observable<IResponse<IDistricts[]>>{
+    return this.http.get<IResponse<IDistricts[]>>(`${this.url}/address/districts/${provinceId}`);
+  }
+
+  wards(districtId:number):Observable<IResponse<IWards[]>>{
+    return this.http.get<IResponse<IWards[]>>(`${this.url}/address/wards/${districtId}`);
+  }
 
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddressComponent } from './address.component';
 import { DropdownUiModule } from "../dropdown-ui/dropdown-ui.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 
@@ -11,7 +12,9 @@ import { DropdownUiModule } from "../dropdown-ui/dropdown-ui.module";
   ],
   imports: [
     CommonModule,
-    DropdownUiModule
+    DropdownUiModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     AddressComponent

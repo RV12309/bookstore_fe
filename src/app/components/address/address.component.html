@@ -1,19 +1,28 @@
-<div [class]="addressContainerClass">
+<div
+  [formGroup]="addressForm"
+  [class]="addressContainerClass"
+>
   <div>
     <label for="">Tỉnh/ Thành phố</label>
     <app-dropdown-ui
+      [dataList]="provincesList"
+      formControlName="province"
       placeholder="Chọn Tỉnh/ Thành phố"
     ></app-dropdown-ui>
   </div>
   <div>
     <label for="">Quận/ Huyện</label>
     <app-dropdown-ui
+      [dataList]="districtList"
+      formControlName="district"
       placeholder="Chọn Quận/ Huyện"
     ></app-dropdown-ui>
   </div>
   <div>
     <label for="">Phường/ Xã</label>
     <app-dropdown-ui
+      [dataList]="wardList"
+      formControlName="ward"
       placeholder="Chọn Phường/ Xã"
     ></app-dropdown-ui>
   </div>
