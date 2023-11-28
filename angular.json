@@ -63,7 +63,6 @@
                   "with": "src/environments/environment.local.ts"
                 }
               ],
-              "outputHashing": "all",
               "sourceMap": true
             },
             "development": {
@@ -82,6 +81,9 @@
           "configurations": {
             "production": {
               "browserTarget": "efin-book:build:production"
+            },
+            "localhost": {
+              "browserTarget": "efin-book:build:localhost"
             },
             "development": {
               "browserTarget": "efin-book:build:development"
