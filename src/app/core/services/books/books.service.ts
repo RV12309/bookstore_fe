@@ -5,13 +5,14 @@ import { IBookData, IBookSearchForm, IBooksResponse } from '../../interfaces/boo
 import { IResponse } from '../../interfaces/response.interface';
 import { Observable, from } from 'rxjs';
 import { HEADERS_NO_TOKEN } from "../../constant/common.constant";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksService {
 
-  private baseUrl = env.baseUrl;
+  private baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
   getBooksList(body: IBookSearchForm): Observable<IResponse<IBooksResponse>>{

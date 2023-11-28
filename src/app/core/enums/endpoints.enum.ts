@@ -1,3 +1,3 @@
 export enum EndPoints {
-  Global = 'global'
+  Global = 'api/v1/global'
 }

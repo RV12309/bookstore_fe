@@ -12,7 +12,7 @@ import { WCEndPoint } from "../../enums/wc-endpoints.enums";
 })
 export class GlobalService {
 
-  private url = `${environment.baseUrl}/${EndPoints.Global}`;
+  private url = `${environment.baseUrl}${EndPoints.Global}`;
   constructor(private http: HttpClient) { }
 
 
