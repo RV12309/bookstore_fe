@@ -63,14 +63,20 @@
       </div>
     </div>
     <div class="flex items-center gap-8">
-      <button class="button button-gray aspect-square">
+      <button
+        pBadge
+        value="2"
+        class="group button button-gray aspect-square hover:shadow-#6 duration-300"
+        severity="warning"
+        (click)="cart()"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="w-6 h-6"
+          class="w-6 aspect-square"
         >
           <path
             stroke-linecap="round"

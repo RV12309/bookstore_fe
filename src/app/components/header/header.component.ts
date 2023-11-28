@@ -22,7 +22,7 @@ import { ModalProfileComponent } from "src/app/features/web-client/profile/modal
 export class HeaderComponent implements OnInit {
   @ViewChild("menuUser", { static: false }) menuUser!: Menu;
   public BRANCH_NAME = BRANCH_NAME;
-  items = [
+  public items = [
     {
       label: "Thông tin cá nhân",
       command: () => {
@@ -72,5 +72,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this.router.navigate(["/auth/login"]);
     }
+  }
+
+  cart(){
+    this.router.navigate(["/cart"]);
   }
 }

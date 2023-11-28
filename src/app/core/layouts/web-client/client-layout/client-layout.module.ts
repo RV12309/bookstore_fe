@@ -41,6 +41,13 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'cart',
+        loadChildren: () => import('src/app/features/web-client/cart/cart.module').then( m => m.CartModule),
+        data: {
+          breadcrumb: 'Giỏ hàng'
+        }
+      },
+      {
         path: 'checkout',
         loadChildren: () => import('src/app/features/web-client/checkout/checkout.module').then( m => m.CheckoutModule),
         data: {

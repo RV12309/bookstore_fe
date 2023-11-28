@@ -13,6 +13,7 @@ import {ImageModule} from 'primeng/image';
 import { ButtonModule } from "primeng/button";
 import { PipesModule } from "src/app/core/pipes/pipes.module";
 import { BookCardModule } from "src/app/components/book-card";
+import { QuantityModule } from "src/app/components/quantity/quantity.module";
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { BookCardModule } from "src/app/components/book-card";
     ImageModule,
     ButtonModule,
     PipesModule,
-    BookCardModule
+    BookCardModule,
+    QuantityModule
   ],
   exports: [
     ProductDetailComponent

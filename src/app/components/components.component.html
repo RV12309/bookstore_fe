@@ -11,45 +11,138 @@
   </p-card>
 
   <p-card header="Input text">
-    <div>
-    </div>
+    <div></div>
   </p-card>
 
   <p-card header="Button">
     <div class="mt-3">
       <p class="">Button</p>
       <div class="card flex flex-wrap gap-3 justify-content-center">
-        <button pButton label="Primary" ></button>
-        <button pButton label="Secondary" class="p-button-secondary"></button>
-        <button pButton label="Success" class="p-button-success"></button>
-        <button pButton label="Info" class="p-button-info"></button>
-        <button pButton label="Warning" class="p-button-warning"></button>
-        <button pButton label="Help" class="p-button-help"></button>
-        <button pButton label="Danger" class="p-button-danger"></button>
+        <button
+          pButton
+          label="Primary"
+        ></button>
+        <button
+          pButton
+          label="Secondary"
+          class="p-button-secondary"
+        ></button>
+        <button
+          pButton
+          label="Success"
+          class="p-button-success"
+        ></button>
+        <button
+          pButton
+          label="Info"
+          class="p-button-info"
+        ></button>
+        <button
+          pButton
+          label="Warning"
+          class="p-button-warning"
+        ></button>
+        <button
+          pButton
+          label="Help"
+          class="p-button-help"
+        ></button>
+        <button
+          pButton
+          label="Danger"
+          class="p-button-danger"
+        ></button>
       </div>
       <p class="mt-5">Outline Button</p>
       <div class="card flex flex-wrap gap-3 justify-content-center">
-        <button pButton label="Primary" class="p-button-outlined"></button>
-        <button pButton label="Secondary" class="p-button-outlined p-button-secondary"></button>
-        <button pButton label="Success" class="p-button-outlined p-button-success"></button>
-        <button pButton label="Info" class="p-button-outlined p-button-info"></button>
-        <button pButton label="Warning" class="p-button-outlined p-button-warning"></button>
-        <button pButton label="Help" class="p-button-outlined p-button-help"></button>
-        <button pButton label="Danger" class="p-button-outlined p-button-danger"></button>
+        <button
+          pButton
+          label="Primary"
+          class="p-button-outlined"
+        ></button>
+        <button
+          pButton
+          label="Secondary"
+          class="p-button-outlined p-button-secondary"
+        ></button>
+        <button
+          pButton
+          label="Success"
+          class="p-button-outlined p-button-success"
+        ></button>
+        <button
+          pButton
+          label="Info"
+          class="p-button-outlined p-button-info"
+        ></button>
+        <button
+          pButton
+          label="Warning"
+          class="p-button-outlined p-button-warning"
+        ></button>
+        <button
+          pButton
+          label="Help"
+          class="p-button-outlined p-button-help"
+        ></button>
+        <button
+          pButton
+          label="Danger"
+          class="p-button-outlined p-button-danger"
+        ></button>
       </div>
       <p class="mt-5">Rounded Button</p>
       <div class="card flex flex-wrap gap-3 justify-content-center">
-        <button pButton label="Primary" class="p-button-rounded"></button>
-        <button pButton label="Secondary" class="p-button-rounded p-button-secondary"></button>
-        <button pButton label="Success" class="p-button-rounded p-button-success"></button>
-        <button pButton label="Info" class="p-button-rounded p-button-info"></button>
-        <button pButton label="Warning" class="p-button-rounded p-button-warning"></button>
-        <button pButton label="Help" class="p-button-rounded p-button-help"></button>
-        <button pButton label="Danger" class="p-button-rounded p-button-danger"></button>
+        <button
+          pButton
+          label="Primary"
+          class="p-button-rounded"
+        ></button>
+        <button
+          pButton
+          label="Secondary"
+          class="p-button-rounded p-button-secondary"
+        ></button>
+        <button
+          pButton
+          label="Success"
+          class="p-button-rounded p-button-success"
+        ></button>
+        <button
+          pButton
+          label="Info"
+          class="p-button-rounded p-button-info"
+        ></button>
+        <button
+          pButton
+          label="Warning"
+          class="p-button-rounded p-button-warning"
+        ></button>
+        <button
+          pButton
+          label="Help"
+          class="p-button-rounded p-button-help"
+        ></button>
+        <button
+          pButton
+          label="Danger"
+          class="p-button-rounded p-button-danger"
+        ></button>
       </div>
       <div class="mt-5 card flex justify-content-center gap-x-3">
-        <button pButton label="Emails" badge="8"></button>
-        <button pButton label="Messages" icon="pi pi-users" severity="warning" badge="8" badgeClass="p-badge-danger"></button>
+        <button
+          pButton
+          label="Emails"
+          badge="8"
+        ></button>
+        <button
+          pButton
+          label="Messages"
+          icon="pi pi-users"
+          severity="warning"
+          badge="8"
+          badgeClass="p-badge-danger"
+        ></button>
       </div>
     </div>
   </p-card>
@@ -67,5 +160,89 @@
         </ul>
       </ng-template>
     </p-fileUpload> -->
+  </p-card>
+
+  <p-card header="Badge">
+    <h5>Numbers</h5>
+    <div class="badges">
+      <p-badge
+        value="2"
+        styleClass="mr-2"
+      ></p-badge>
+      <p-badge
+        value="8"
+        severity="success"
+        styleClass="mr-2"
+      ></p-badge>
+      <p-badge
+        value="4"
+        severity="info"
+        styleClass="mr-2"
+      ></p-badge>
+      <p-badge
+        value="12"
+        severity="warning"
+        styleClass="mr-2"
+      ></p-badge>
+      <p-badge
+        value="3"
+        severity="danger"
+      ></p-badge>
+    </div>
+
+    <h5>Positioned Badge</h5>
+    <i
+      class="pi pi-bell mr-4 p-text-secondary"
+      pBadge
+      style="font-size: 2rem"
+      value="2"
+    ></i>
+    <i
+      class="pi pi-calendar mr-4 p-text-secondary"
+      pBadge
+      style="font-size: 2rem"
+      value="'10+'"
+      severity="danger"
+    ></i>
+    <i
+      class="pi pi-envelope p-text-secondary"
+      pBadge
+      style="font-size: 2rem"
+      severity="danger"
+    ></i>
+
+    <h5>Inline Button Badge</h5>
+    <p-button
+      label="Emails"
+      badge="8"
+      styleClass="mr-2"
+    ></p-button>
+    <p-button
+      label="Messages"
+      icon="pi pi-users"
+      styleClass="p-button-warning"
+      badge="8"
+      badgeClass="p-badge-danger"
+    ></p-button>
+
+    <h5>Sizes</h5>
+    <div class="badges">
+      <p-badge
+        value="2"
+        styleClass="mr-2"
+      ></p-badge>
+      <p-badge
+        value="4"
+        size="large"
+        severity="warning"
+        styleClass="mr-2"
+      ></p-badge>
+      <p-badge
+        value="6"
+        size="xlarge"
+        severity="success"
+        styleClass="mr-2"
+      ></p-badge>
+    </div>
   </p-card>
 </div>

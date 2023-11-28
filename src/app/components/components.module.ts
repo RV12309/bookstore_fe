@@ -7,6 +7,7 @@ import { PaginatorUiModule } from "./paginator-ui";
 import { DropdownUiModule } from "./dropdown-ui/dropdown-ui.module";
 import { ButtonModule } from "primeng/button";
 import { FileUploadModule } from "primeng/fileupload";
+import {BadgeModule} from 'primeng/badge';
 
 const routes: Routes = [
   {
@@ -26,7 +27,8 @@ const routes: Routes = [
     DropdownUiModule,
     RouterModule.forChild(routes),
     ButtonModule,
-    FileUploadModule
+    FileUploadModule,
+    BadgeModule,
   ]
 })
 export class ComponentsModule { }

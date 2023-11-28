@@ -76,7 +76,8 @@
         <div class="py-3 border-t-2 border-dashed border-gray flex justify-between items-end">
           <p class="text-3xl font-bold text-purple">{{dataBook?.price! | price}}</p>
           <div class="flex gap-x-4">
-            <div class="border border-solid border-gray rounded-xl flex items-center px-1">
+            <app-quantity></app-quantity>
+            <!-- <div class="border border-solid border-gray rounded-xl flex items-center px-1">
               <img
                 src="assets/icons/active/ic-minus.svg"
                 class="w-6 cursor-pointer"
@@ -93,7 +94,7 @@
                 class="w-6 cursor-pointer"
                 alt=""
               />
-            </div>
+            </div> -->
             <button
               pButton
               class="p-button p-button-rounded p-button-icon"

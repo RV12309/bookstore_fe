@@ -4,6 +4,7 @@ import { HeaderComponent } from './header.component';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
+import {BadgeModule} from 'primeng/badge';
 
 
 
@@ -15,7 +16,8 @@ import { MenuModule } from 'primeng/menu';
     CommonModule,
     ButtonModule,
     AvatarModule,
-    MenuModule
+    MenuModule,
+    BadgeModule
   ],
   exports: [
     HeaderComponent

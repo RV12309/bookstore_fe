@@ -1,0 +1,47 @@
+<div class="grid content-start gap-y-10">
+  <div class="grid grid-cols-5 gap-x-10">
+    <div class="col-span-5 grid content-start gap-y-6">
+      <p class="font-medium font-kanit text-2xl">Giỏ hàng</p>
+      <div
+        *ngFor="let i of [1, 2, 3, 4]; let last = last"
+        class="grid grid-cols-3 gap-x-4"
+        [ngClass]="last ? '' : 'pb-6 border-b border-solid border-gray'"
+      >
+        <div class="flex items-center gap-x-3">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRu0uMrWC1Loi263r61OddlfLUMTZDb-gd_jcKA_PB39ARilq2Gqc66BCMP_E5vK_zkZw&usqp=CAU"
+            alt=""
+            class="w-[80px] object-cover rounded-xl aspect-2/3"
+          />
+          <div>
+            <p class="text-xl font-bold text-neutral-700">Title here</p>
+            <p class="text-base font-medium text-neutral-400">Author here</p>
+          </div>
+        </div>
+        <div class="flex items-center justify-end">
+          <app-quantity></app-quantity>
+        </div>
+        <div class="flex items-center justify-end font-bold text-purple">
+          {{ 1000000 | price }}
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-span-2 bg-blue-100 grid content-start gap-y-6">
+      <p class="font-medium font-kanit text-2xl">Giỏ hàng</p>
+    </div> -->
+  </div>
+  <p-divider></p-divider>
+  <div class="flex justify-end gap-x-8 items-center">
+    <span class="font-semibold text-xl">Tổng tiền hàng:</span>
+    <span class="font-bold text-2xl text-orange">{{ 5000000 | price }}</span>
+  </div>
+  <div class="flex justify-end">
+    <button
+      pButton
+      class="p-button-rounded w-40"
+      (click)="checkout()"
+    >
+      Mua ngay
+    </button>
+  </div>
+</div>

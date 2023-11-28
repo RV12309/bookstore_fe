@@ -422,7 +422,7 @@ p-inputnumber,
 
 // Breadcrumb
 .p-breadcrumb {
-  @apply bg-transparent border-none p-0 #{!important};
+  @apply bg-transparent border-none px-0 #{!important};
   homeicon {
     @apply hidden;
   }
@@ -535,4 +535,22 @@ p-inputnumber,
 // SKELETON
 .p-skeleton{
   height: initial;
+}
+
+
+// --------------- BADGE -----------------
+.p-badge{
+  @apply	center #{!important};
+}
+.p-badge-success{
+  @apply bg-green #{!important};
+}
+.p-badge-info{
+  @apply bg-info #{!important};
+}
+.p-badge-warning{
+  @apply bg-orange #{!important};
+}
+.p-badge-danger{
+  @apply bg-danger #{!important};
 }
