@@ -7,6 +7,7 @@ import { Observable } from "rxjs";
 import { IResponse } from "../../interfaces/response.interface";
 import { WCEndPoint } from "../../enums/wc-endpoints.enums";
 import { ICategoryData } from "../../interfaces/category.interface";
+import { ICart, ICartItem } from "../../interfaces/cart";
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,20 @@ export class GlobalService {
   getCategoryAll(): Observable<IResponse<ICategoryData[]>>{
     return this.http.get<IResponse<ICategoryData[]>>(`${this.url}/categories/all`);
   }
+
+  getCart(): Observable<IResponse<ICart>>{
+    return this.http.get<IResponse<ICart>>(`${this.url}/carts`);
+  }
+
+  addToCart(body: ICartItem): Observable<IResponse<ICart>>{
+    return this.http.post<IResponse<ICart>>(`${this.url}/carts`, body);
+  }
+
+  removeFromCart(body: ICartItem): Observable<IResponse<ICart>>{
+    return this.http.delete<IResponse<ICart>>(`${this.url}/carts`, {body});
+  }
+
+
+
 
 }
