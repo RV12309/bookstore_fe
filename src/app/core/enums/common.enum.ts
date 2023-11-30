@@ -24,5 +24,5 @@ export enum HeadersKey {
 
 export enum DefaultValue {
   MinPrice = 0,
-  MaxPrice = 10000000
+  MaxPrice = 1000000
 }

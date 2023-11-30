@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { CartRoutingModule } from './cart-routing.module';
 import { CartComponent } from './cart.component';
 import { PipesModule } from "src/app/core/pipes/pipes.module";

@@ -10,7 +10,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { AuthService } from "../services/auth/auth.service";
 import { ModalService } from "../services/modal";
 import { StoreService } from "../services";
-import { JWTStorageKey } from "../enums";
+import { JWTStorageKey, StorageKey } from "../enums";
 import { Router } from "@angular/router";
 
 @Injectable()
@@ -29,6 +29,7 @@ export class ResponseInterceptor implements HttpInterceptor {
       catchError((event:any) => {
           try {
             const error = event?.error;
+            if(this.storeService.getSession(StorageKey.accessToken)){
             const expireTime = this.authService.getDataByKey(JWTStorageKey.exp);
             if(event instanceof HttpErrorResponse){
               switch (event?.status) {
@@ -65,6 +66,24 @@ export class ResponseInterceptor implements HttpInterceptor {
                   return throwError(() =>error);
               }
             }
+          }
+          if(event instanceof HttpErrorResponse){
+            switch (event?.status) {
+              case 401:
+                this.authService.logout();
+                return throwError(()=>null);
+              case 403:
+                this.modalService.alert(
+                  {
+                    type: 'warning',
+                    message: "Không có quyền truy cập"
+                  }
+                )
+                return throwError(()=>null);
+              default:
+                return throwError(() =>error);
+            }
+          }
             // Trả về lỗi cho tất cả các key chưa được handle;
             throwError(() => null);
           } catch (error) {
