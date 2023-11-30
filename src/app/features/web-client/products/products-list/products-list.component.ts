@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { DefaultValue } from "src/app/core/enums";
+import { DefaultValue, StorageKey } from "src/app/core/enums";
 import { ISelectItem } from "src/app/core/interfaces";
 import { IBookData, IBookSearchForm } from "src/app/core/interfaces/books.interface";
 import { ICategoryData } from "src/app/core/interfaces/category.interface";
-import { GlobalService } from "src/app/core/services";
+import { GlobalService, StoreService } from "src/app/core/services";
 import { ModalService } from "src/app/core/services/modal";
 
 @Component({
@@ -36,7 +36,8 @@ export class ProductsListComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private globalService: GlobalService,
-    private modalService: ModalService)  {}
+    private modalService: ModalService,
+    private storageService: StoreService)  {}
 
   ngOnInit(): void {
     this.currentParams = {
@@ -46,6 +47,7 @@ export class ProductsListComponent implements OnInit {
     this.initForm();
     this.getBookList();
     this.getCategoryList();
+    this.getCart();
   }
 
   initForm() {
@@ -99,5 +101,24 @@ export class ProductsListComponent implements OnInit {
     }
     console.log(this.currentParams);
     this.getBookList();
+  }
+
+  public getCart(){
+    let param = 0;
+    // if(this.storageService.getSession(StorageKey.accessToken)){
+    //  param = Number(this.storageService.getSession(StorageKey.accessToken));
+    //  console.log(param);
+    // } else 
+    if(this.storageService.getSession(StorageKey.cart)){
+      param = Number(this.storageService.getSession(StorageKey.cart));
+    }
+    this.globalService.getCart(param).subscribe({
+      next: (res) => {
+        this.storageService.setSession(StorageKey.cart, res.data.id)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

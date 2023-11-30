@@ -5,6 +5,7 @@ import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { MenuModule } from 'primeng/menu';
 import {BadgeModule} from 'primeng/badge';
+import { ModalProfileModule } from 'src/app/features/web-client/profile/modal-profile/modal-profile.module';
 
 
 

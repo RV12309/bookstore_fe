@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Router } from "@angular/router";
-import { AspectRatio, RoundedCSS } from "src/app/core/enums";
+import { AspectRatio, RoundedCSS, StorageKey } from "src/app/core/enums";
 import { IBookData } from "src/app/core/interfaces/books.interface";
-import { GlobalService } from 'src/app/core/services';
+import { GlobalService, StoreService } from 'src/app/core/services';
 import { ModalService } from 'src/app/core/services/modal';
 
 @Component({
@@ -21,7 +21,8 @@ export class BookCardComponent {
   constructor(
     private router: Router,
     private globalService: GlobalService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private storeService: StoreService
   ){}
 
   detail(){
@@ -29,12 +30,14 @@ export class BookCardComponent {
   }
 
   addCart(){
+    const id = this.storeService.getSession(StorageKey.cart);
     const params = {
       bookId: this.infoFilm.id,
       quantity: 1,
-      sessionId: ''
+      sessionId: id || '',
+      action: 'ADD'
     }
-    this.globalService.addToCart(params).subscribe({
+    this.globalService.updateCart(params).subscribe({
       next: (res) => {
         console.log(res)
       },
