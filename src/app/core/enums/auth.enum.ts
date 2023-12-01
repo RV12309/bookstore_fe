@@ -30,5 +30,6 @@ export enum StorageKey {
   expireTime = 'expireTime',
   refreshToken = 'refreshToken',
   isExpand = 'isExpand',
-  isOnl = 'isOnl'
+  isOnl = 'isOnl',
+  cart = 'cart'
 }

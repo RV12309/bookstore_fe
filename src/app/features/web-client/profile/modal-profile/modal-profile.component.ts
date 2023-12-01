@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
+import { JWTStorageKey } from 'src/app/core/enums';
+import { ISelectItem } from 'src/app/core/interfaces';
+import { StoreService } from 'src/app/core/services';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { BooksService } from 'src/app/core/services/books/books.service';
+import { CategoryService } from 'src/app/core/services/category/category.service';
+import { ModalService } from 'src/app/core/services/modal';
+import { UploadService } from 'src/app/core/services/upload.service';
+import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-modal-profile',
@@ -7,9 +18,101 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalProfileComponent implements OnInit {
 
-  constructor() { }
+  public form!: FormGroup;
+  public selectedFile: File | null = null;
+  public categoryList!: ISelectItem[];
+  public imageUrl: string[] = [];
 
+  constructor(
+    private formBuilder: FormBuilder,
+    // private modalRef: DynamicDialogRef,
+    private uploadService: UploadService,
+    private modalService: ModalService,
+    private userService: UserService,
+    private authService: AuthService
+  ){}
   ngOnInit(): void {
+    this.initForm();
+  }
+
+  public initForm(){
+    this.form = this.formBuilder.group({
+      name: ['', Validators.required],
+      gender: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      dob: ['', Validators.required],
+      province: [null, Validators.required],
+      ward: [null, Validators.required],
+      district: [null, Validators.required],
+    })
+  }
+
+  submit(){
+    console.log(this.form?.value);
+    const id = this.authService.getDataByKey(JWTStorageKey.account);
+    console.log(id);
+  //   const {name, gender, email, 
+  //   phone,
+  //   dob,
+  //   province,
+  //   ward,
+  //   district} = this.form.value;
+  //   const params = {
+  //     name, 
+  //     gender: gender.code, 
+  //     email, 
+  //   phone,
+  //   dob,
+  //   province,
+  //   provinceId: '0001',
+  //   ward,
+  //   wardCode: '0100', 
+  //   district,
+  //   districtId: '0473',
+  //   id
+  // }
+  //   console.log(params);
+  //   this.userService.update(params).subscribe({
+  //     next: () => {
+  //       this.modalService.alert({
+  //         type: 'success',
+  //         message: 'Thay đổi thông tin thành công'
+  //       })
+  //     },
+  //     error: (err) => {
+  //       this.modalService.alert({
+  //         type: 'error',
+  //         message: err.message
+  //       })
+  //     }
+  //   })
+  }
+
+  closeModal(){
+    // this.modalRef.close();
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+
+  uploadImage() {
+    if (this.selectedFile) {
+      this.uploadService.uploadImage(this.selectedFile).subscribe(
+        response => {
+          console.log('Upload successful!', response);
+        },
+        error => {
+          console.error('Error uploading image:', error);
+        }
+      );
+    }
+  }
+
+
+  onUploadFile(e: any){
+    console.log(e.url);
   }
 
 }

@@ -45,15 +45,15 @@ export class GlobalService {
     return this.http.get<IResponse<ICategoryData[]>>(`${this.url}/categories/all`);
   }
 
-  getCart(): Observable<IResponse<ICart>>{
-    return this.http.get<IResponse<ICart>>(`${this.url}/carts`);
+  getCart(param: string | number): Observable<IResponse<ICart>>{
+    return this.http.get<IResponse<ICart>>(`${this.url}/carts?sessionId=${param}`);
   }
 
-  addToCart(body: ICartItem): Observable<IResponse<ICart>>{
-    return this.http.post<IResponse<ICart>>(`${this.url}/carts`, body);
+  updateCart(body: ICartItem): Observable<IResponse<ICart>>{
+    return this.http.put<IResponse<ICart>>(`${this.url}/carts`, body);
   }
 
-  removeFromCart(body: ICartItem): Observable<IResponse<ICart>>{
+  removeCart(body: ICartItem): Observable<IResponse<ICart>>{
     return this.http.delete<IResponse<ICart>>(`${this.url}/carts`, {body});
   }
 

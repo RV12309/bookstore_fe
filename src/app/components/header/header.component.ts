@@ -8,7 +8,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { Menu } from "primeng/menu";
 import { BRANCH_NAME } from "src/app/core/constant/common.constant";
-import { StorageKey } from "src/app/core/enums";
+import { ModalSize, StorageKey } from "src/app/core/enums";
 import { StoreService } from "src/app/core/services";
 import { AuthService } from "src/app/core/services/auth/auth.service";
 import { ModalService } from "src/app/core/services/modal";
@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
       command: () => {
         this.modalService.open(ModalProfileComponent, {
           header: "Thông tin cá nhân",
+          width: ModalSize.Large
         });
       },
     },
