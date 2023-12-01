@@ -12,6 +12,7 @@ import { ButtonModule } from "primeng/button";
 import { DropdownUiModule } from "src/app/components/dropdown-ui/dropdown-ui.module";
 import { BookCardModule } from "src/app/components/book-card";
 import { PaginatorUiModule } from "src/app/components/paginator-ui";
+import { PipesModule } from "src/app/core/pipes/pipes.module";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { PaginatorUiModule } from "src/app/components/paginator-ui";
     ButtonModule,
     DropdownUiModule,
     BookCardModule,
-    PaginatorUiModule
+    PaginatorUiModule,
+    PipesModule
   ],
   exports: [
     ProductsListComponent

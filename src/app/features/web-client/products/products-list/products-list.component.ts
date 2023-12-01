@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
+import { finalize, takeUntil } from "rxjs";
 import { DefaultValue } from "src/app/core/enums";
 import { ISelectItem } from "src/app/core/interfaces";
 import { IBookData, IBookSearchForm } from "src/app/core/interfaces/books.interface";
@@ -33,8 +34,10 @@ export class ProductsListComponent implements OnInit {
   public checkedItem: any[] = [];
   public selectedValues: any[] = [];
   public currentParams: IBookSearchForm = {};
+  public skeleton = true;
+
   constructor(
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private globalService: GlobalService,
     private modalService: ModalService)  {}
 
@@ -57,7 +60,11 @@ export class ProductsListComponent implements OnInit {
     // });
   }
   getBookList() {
-    this.globalService.getBooksList(this.currentParams).subscribe({
+    this.globalService.getBooksList(this.currentParams)
+    .pipe(
+      finalize(() => this.skeleton = false)
+    )
+    .subscribe({
       next: resp => {
         this.dataBooks = resp.data?.content;
       }

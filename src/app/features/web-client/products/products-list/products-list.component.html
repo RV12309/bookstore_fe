@@ -15,8 +15,8 @@
             *ngFor="let category of categories"
           >
             <p-checkbox
-            [(ngModel)]="selectedValues"
-            [ngModelOptions]="{standalone: true}"
+              [(ngModel)]="selectedValues"
+              [ngModelOptions]="{standalone: true}"
               name="group"
               value="{{category.id}}"
               (onChange)="onCheckedItem()"
@@ -43,8 +43,8 @@
           [range]="true"
         ></p-slider>
         <div class="flex justify-between font-medium text-sm my-3">
-          <p>{{ priceRangeControl?.value[0] | number }}</p>
-          <p>{{ priceRangeControl?.value[1] | number }}</p>
+          <p>{{ priceRangeControl?.value[0] | price }}</p>
+          <p>{{ priceRangeControl?.value[1] | price }}</p>
         </div>
         <p class="text-sm">
           Đơn vị:
@@ -86,29 +86,35 @@
       ></app-dropdown-ui>
     </div>
 
-    <div class="grid grid-cols-4 gap-8">
-      <ng-container *ngIf="(dataBooks && dataBooks.length > 0); then dataBooksTpl else NotDataBook"></ng-container>
+      <ng-container *ngIf="(dataBooks?.length); then dataBooksTpl else NotDataBook"></ng-container>
       <ng-template #dataBooksTpl>
-        <ng-container *ngFor="let product of dataBooks">
-          <app-book-card
-            [infoFilm]="product"
-          ></app-book-card>
-        </ng-container>
+        <div class="grid grid-cols-4 gap-8">
+          <ng-container *ngFor="let product of dataBooks">
+            <app-book-card
+              [infoFilm]="product"
+            ></app-book-card>
+          </ng-container>
+        </div>
       </ng-template>
       <ng-template #NotDataBook>
-        <!-- <ng-container *ngFor="let product of [1,2,3,4]">
-          <app-book-card
-            [skeleton]="true"
-          ></app-book-card>
-        </ng-container> -->
-        <div class="items-center">
-          <img src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/search/a60759ad1dabe909c46a817ecbf71878.png" alt="">
-      </div>
-      <div class="blank-txt text-center">
-        Không tìm thấy kết quả nào
-      </div>
+        <ng-container *ngIf="skeleton;else noDataTpl">
+          <div class="grid grid-cols-4 gap-8">
+            <ng-container *ngFor="let product of [1,2,3,4]">
+              <app-book-card
+                [skeleton]="skeleton"
+              ></app-book-card>
+            </ng-container>
+          </div>
+        </ng-container>
+        <ng-template #noDataTpl>
+          <div class="py-10 mx-auto text-center">
+            <img src="assets/gifs/ic-empty.gif" class="w-20" alt="">
+            <p class="mt-10 font-bold">
+              Không tìm thấy kết quả nào
+            </p>
+          </div>
+        </ng-template>
       </ng-template>
-    </div>
     <app-paginator-ui
       *ngIf="dataBooks?.length"
       [rows]="12"
