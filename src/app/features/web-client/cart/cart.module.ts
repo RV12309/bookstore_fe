@@ -6,6 +6,8 @@ import { PipesModule } from "src/app/core/pipes/pipes.module";
 import { QuantityModule } from "src/app/components/quantity/quantity.module";
 import {DividerModule} from 'primeng/divider';
 import { ButtonModule } from "primeng/button";
+import { TableUiModule } from "src/app/components/table-ui/table-ui.module";
+import { InputTextModule } from "primeng/inputtext";
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { ButtonModule } from "primeng/button";
     PipesModule,
     QuantityModule,
     DividerModule,
-    ButtonModule
+    ButtonModule,
+    TableUiModule,
+    InputTextModule
   ],
   exports: [
     CartComponent

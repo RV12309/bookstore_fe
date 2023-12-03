@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { StorageKey } from 'src/app/core/enums';
 import { ICart, ICartItem } from 'src/app/core/interfaces/cart';
+import { ITitleTable } from "src/app/core/interfaces/table.interface";
 import { GlobalService, StoreService } from 'src/app/core/services';
 import { ModalService } from 'src/app/core/services/modal';
 
@@ -13,6 +14,22 @@ import { ModalService } from 'src/app/core/services/modal';
 export class CartComponent implements OnInit {
 
   public cart!: ICart;
+  public dataTable = [1,2,3,4];
+  public titleTable: ITitleTable[] = [
+    {
+      title: 'Ảnh sản phẩm',
+    },
+    {
+      title: 'Tên sản phẩm',
+    },
+    {
+      title: 'Số lượng',
+    },
+    {
+      title: 'Thành tiền',
+    }
+  ]
+
   constructor(
     private router: Router,
     private globalService: GlobalService,
@@ -63,5 +80,17 @@ export class CartComponent implements OnInit {
         })
       }
     })
+  }
+
+  public shopping(){
+    this.router.navigate(['/products'])
+  }
+
+  public deleteProduct(item:any){
+    this.modalService.confirm(
+      {
+        message: "Bạn chắc chắn xóa sản phẩm khỏi giỏ hàng ?"
+      }
+    )
   }
 }
