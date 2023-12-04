@@ -16,12 +16,13 @@ import { StoreService } from "../store.service";
 import { JWTStorageKey, StorageKey } from "../../enums";
 import { ModalService } from "../modal";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  private baseUrl = env.baseUrl;
+  private baseUrl = environment.baseUrl;
   constructor(
     private http: HttpClient,
     private storeService: StoreService,

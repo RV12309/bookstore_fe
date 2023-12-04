@@ -45,8 +45,8 @@ export class GlobalService {
     return this.http.get<IResponse<ICategoryData[]>>(`${this.url}/categories/all`);
   }
 
-  getCart(param: string | number): Observable<IResponse<ICart>>{
-    return this.http.get<IResponse<ICart>>(`${this.url}/carts?sessionId=${param}`);
+  getCart(sessionId: number, refId: number): Observable<IResponse<ICart>>{
+    return this.http.get<IResponse<ICart>>(`${this.url}/carts?sessionId=${sessionId}&refId=${refId}`);
   }
 
   updateCart(body: ICartItem): Observable<IResponse<ICart>>{

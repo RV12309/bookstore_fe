@@ -39,7 +39,10 @@ export class BookCardComponent {
     }
     this.globalService.updateCart(params).subscribe({
       next: (res) => {
-        console.log(res)
+        this.modalService.alert({
+          type: 'success',
+          message: 'Thêm sách thành công!'
+        })
       },
       error: (error) => {
         this.modalService.alert({

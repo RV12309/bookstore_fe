@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { StorageKey } from 'src/app/core/enums';
+import { JWTStorageKey, StorageKey } from 'src/app/core/enums';
 import { ICart, ICartItem } from 'src/app/core/interfaces/cart';
 import { GlobalService, StoreService } from 'src/app/core/services';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ModalService } from 'src/app/core/services/modal';
 
 @Component({
@@ -17,7 +18,8 @@ export class CartComponent implements OnInit {
     private router: Router,
     private globalService: GlobalService,
     private storeService: StoreService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -29,8 +31,15 @@ export class CartComponent implements OnInit {
   }
 
   public getCart(){
-    const id = this.storeService.getSession(StorageKey.cart);
-    this.globalService.getCart(id || 0).subscribe({
+    let sessionId = 0;
+    let userId = 0;
+    if(this.authService.getDataByKey(JWTStorageKey.account)){
+     userId = Number(this.authService.getDataByKey(JWTStorageKey.account).userId);
+    }  
+    if(this.storeService.getSession(StorageKey.cart)){
+      sessionId = Number(this.storeService.getSession(StorageKey.cart));
+    }
+    this.globalService.getCart(sessionId, userId).subscribe({
       next: (res) => {
         this.cart = res.data;
         console.log(this.cart);
@@ -54,7 +63,10 @@ export class CartComponent implements OnInit {
     }
     this.globalService.updateCart(params).subscribe({
       next: (res) => {
-        console.log(res)
+        this.modalService.alert({
+          type: 'success',
+          message: 'Xóa sách thành công!'
+        })
       },
       error: (error) => {
         this.modalService.alert({

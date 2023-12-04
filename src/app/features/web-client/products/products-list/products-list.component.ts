@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import { finalize, takeUntil } from "rxjs";
-import { DefaultValue, StorageKey } from "src/app/core/enums";
+import { finalize } from "rxjs";
+import { DefaultValue, JWTStorageKey, StorageKey } from "src/app/core/enums";
 import { ISelectItem } from "src/app/core/interfaces";
 import { IBookData, IBookSearchForm } from "src/app/core/interfaces/books.interface";
 import { ICategoryData } from "src/app/core/interfaces/category.interface";
 import { GlobalService, StoreService } from "src/app/core/services";
+import { AuthService } from "src/app/core/services/auth/auth.service";
 import { ModalService } from "src/app/core/services/modal";
 
 @Component({
@@ -40,7 +41,8 @@ export class ProductsListComponent implements OnInit {
     private fb: FormBuilder,
     private globalService: GlobalService,
     private modalService: ModalService,
-    private storageService: StoreService)  {}
+    private storageService: StoreService,
+    private authService: AuthService)  {}
 
   ngOnInit(): void {
     this.currentParams = {
@@ -111,15 +113,16 @@ export class ProductsListComponent implements OnInit {
   }
 
   public getCart(){
-    let param = 0;
-    // if(this.storageService.getSession(StorageKey.accessToken)){
-    //  param = Number(this.storageService.getSession(StorageKey.accessToken));
-    //  console.log(param);
-    // } else
+    let sessionId = 0;
+    let userId = 0;
+    if(this.authService.getDataByKey(JWTStorageKey.account)){
+     userId = Number(this.authService.getDataByKey(JWTStorageKey.account).userId);
+    }  
     if(this.storageService.getSession(StorageKey.cart)){
-      param = Number(this.storageService.getSession(StorageKey.cart));
+      sessionId = Number(this.storageService.getSession(StorageKey.cart));
     }
-    this.globalService.getCart(param).subscribe({
+    console.log(sessionId, userId);
+    this.globalService.getCart(sessionId, userId).subscribe({
       next: (res) => {
         this.storageService.setSession(StorageKey.cart, res.data.id)
       },

@@ -25,7 +25,7 @@ export class ModalProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    // private modalRef: DynamicDialogRef,
+    private modalRef: DynamicDialogRef,
     private uploadService: UploadService,
     private modalService: ModalService,
     private userService: UserService,
@@ -50,47 +50,48 @@ export class ModalProfileComponent implements OnInit {
 
   submit(){
     console.log(this.form?.value);
-    const id = this.authService.getDataByKey(JWTStorageKey.account);
+    const id = this.authService.getDataByKey(JWTStorageKey.account).id;
     console.log(id);
-  //   const {name, gender, email, 
-  //   phone,
-  //   dob,
-  //   province,
-  //   ward,
-  //   district} = this.form.value;
-  //   const params = {
-  //     name, 
-  //     gender: gender.code, 
-  //     email, 
-  //   phone,
-  //   dob,
-  //   province,
-  //   provinceId: '0001',
-  //   ward,
-  //   wardCode: '0100', 
-  //   district,
-  //   districtId: '0473',
-  //   id
-  // }
-  //   console.log(params);
-  //   this.userService.update(params).subscribe({
-  //     next: () => {
-  //       this.modalService.alert({
-  //         type: 'success',
-  //         message: 'Thay đổi thông tin thành công'
-  //       })
-  //     },
-  //     error: (err) => {
-  //       this.modalService.alert({
-  //         type: 'error',
-  //         message: err.message
-  //       })
-  //     }
-  //   })
+    const {name, gender, email, 
+    phone,
+    dob,
+    province,
+    ward,
+    district} = this.form.value;
+    const params = {
+      name, 
+      gender: gender.code, 
+      email, 
+    phone,
+    dob,
+    province,
+    provinceId: '0001',
+    ward,
+    wardCode: '0100', 
+    district,
+    districtId: '0473',
+    id
+  }
+    console.log(params);
+    this.userService.update(params).subscribe({
+      next: () => {
+        this.modalService.alert({
+          type: 'success',
+          message: 'Thay đổi thông tin thành công'
+        });
+        this.closeModal
+      },
+      error: (err) => {
+        this.modalService.alert({
+          type: 'error',
+          message: err.message
+        })
+      }
+    })
   }
 
   closeModal(){
-    // this.modalRef.close();
+    this.modalRef.close();
   }
 
   onFileSelected(event: any) {
