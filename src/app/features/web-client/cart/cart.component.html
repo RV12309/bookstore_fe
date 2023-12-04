@@ -1,44 +1,168 @@
-<div class="grid content-start gap-y-10">
+<!-- <div class="grid content-start gap-y-10">
   <div class="grid grid-cols-5 gap-x-10">
     <div class="col-span-5 grid content-start gap-y-6">
       <p class="font-medium font-kanit text-2xl">Giỏ hàng</p>
       <div
-        *ngFor="let item of cart.items; let last = last"
+        *ngFor="let item of [1,2,3,4,5]; let last = last"
         class="grid grid-cols-3 gap-x-4"
         [ngClass]="last ? '' : 'pb-6 border-b border-solid border-gray'"
       >
         <div class="flex items-center gap-x-3">
           <img
-            src={{item?.urlThumbnail}}
+            src="https://edit.org/images/cat/book-covers-big-2019101610.jpg"
             alt=""
             class="w-[80px] object-cover rounded-xl aspect-2/3"
           />
           <div>
-            <p class="text-xl font-bold text-neutral-700">{{item?.title}}</p>
-            <p class="text-base font-medium text-neutral-400">{{item?.author}}</p>
+            <p class="text-xl font-bold text-neutral-700">Title</p>
+            <p class="text-base font-medium text-neutral-400">Author</p>
           </div>
         </div>
         <div class="flex items-center justify-end">
           <app-quantity></app-quantity>
         </div>
         <div class="flex items-center justify-end font-bold text-purple">
-          {{ item?.total || 0 | price }}
+          30000
         </div>
       </div>
     </div>
-    <!-- <div class="col-span-2 bg-blue-100 grid content-start gap-y-6">
-      <p class="font-medium font-kanit text-2xl">Giỏ hàng</p>
-    </div> -->
   </div>
   <p-divider></p-divider>
   <div class="flex justify-end gap-x-8 items-center">
     <span class="font-semibold text-xl">Tổng tiền hàng:</span>
-    <span class="font-bold text-2xl text-orange">{{ cart.total| price }}</span>
+    <span class="font-bold text-2xl text-orange">30000</span>
   </div>
   <div class="flex justify-end">
     <button
       pButton
       class="p-button-rounded w-40"
+      (click)="checkout()"
+    >
+      Mua ngay
+    </button>
+  </div>
+</div> -->
+
+<div class="grid grid-cols-4 gap-x-10">
+  <div class="col-span-2 grid content-start gap-y-5">
+    <!-- <app-table-ui
+      headerTable="Giỏ hàng"
+      [checkbox]="false"
+      [titleTable]="titleTable"
+      [isRefresh]="false"
+      [dataTable]="dataTable"
+      [paginator]="false"
+      [rows]="10"
+    >
+      <ng-template #tableBody>
+        <td>
+          <img
+            src="https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+            alt=""
+            class="w-32 object-cover rounded-xl aspect-square"
+          />
+        </td>
+        <td>Tác giả</td>
+        <td>Số lượng</td>
+        <td>Thành tiền</td>
+      </ng-template>
+
+    </app-table-ui> -->
+    <div
+      *ngFor="let item of [1, 2, 3, 4, 5]; let index = index; let last = last"
+      class="border-r-2 border-solid border-white hover:border-purple box-border duration-400 pr-2"
+    >
+      <div class="flex gap-x-3">
+        <img
+          src="https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+          alt=""
+          class="w-32 object-cover rounded-md rounded-l-3xl aspect-2/3"
+        />
+        <div class="w-full grid">
+          <div class="grid content-start gap-y-4">
+            <p class="font-semibold text-xl">Tên sản phẩm</p>
+            <div class="flex items-center gap-x-6">
+              <span class="font-medium text-neutral-500">Số lượng</span>
+              <app-quantity></app-quantity>
+            </div>
+            <div class="flex items-end gap-x-6">
+              <span class="font-medium text-neutral-500">Đơn giá</span>
+              <span class="font-bold text-brown">
+                {{ (index + 2) * 10000 | price }}
+                <span class="font-normal">/sản phẩm</span>
+              </span>
+            </div>
+          </div>
+          <div class="flex items-end justify-between text-orange">
+            <div class="flex items-end gap-x-6">
+              <span class="font-medium text-lg">Thành tiền</span>
+              <span class="font-bold text-lg">
+                {{ (index + 2) * 10000 | price }}
+              </span>
+            </div>
+            <button
+              class="w-fit aspect-square rounded-xl cursor-pointer bg-white hover:bg-brown-light duration-400"
+              (click)="deleteProduct(item)"
+            >
+              <img
+                src="assets/icons/default/ic-trash.svg"
+                class="w-8"
+                alt=""
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div></div>
+  <div class="col-span-1 grid content-start gap-y-6 h-fit">
+    <div
+      class="rounded-xl bg-gray/30 p-6 box-border grid content-start gap-y-6"
+    >
+      <button
+        pButton
+        class="w-full p-button-info"
+        (click)="shopping()"
+      >
+        Tiếp tục mua sắm
+      </button>
+      <div class="flex justify-between">
+        <span class="text-neutral-500 font-bold">Mã vận chuyển</span>
+        <span>Lorem ipsum dolor sit</span>
+      </div>
+      <div class="flex gap-x-3">
+        <input
+          type="text"
+          pInputText
+          placeholder="Nhập voucher..."
+        />
+        <button
+          pButton
+          class="min-w-fit"
+        >
+          Áp dụng
+        </button>
+      </div>
+      <p-divider
+        align="left"
+        type="dashed"
+      ></p-divider>
+      <div class="flex justify-between">
+        <span class="font-bold text-neutral-500">Tổng tiền hàng</span>
+        <span class="font-semibold text-orange">{{ 3000000 | price }}</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="font-bold text-neutral-500">Phí dịch vụ</span>
+        <span class="font-semibold text-orange">{{ 100000 | price }}</span>
+      </div>
+      <div class="flex justify-between">
+        <span class="font-bold text-lg">Tổng</span>
+        <span class="font-bold text-purple text-lg">{{ 100000 | price }}</span>
+      </div>
+    </div>
+    <button
+      pButton
       (click)="checkout()"
     >
       Mua ngay

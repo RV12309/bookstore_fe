@@ -34,6 +34,7 @@ export class TableUiComponent implements OnInit{
   @Input() dataKey = DATA_KEY;
   @Input() sortIcon = '';
   @Input() selectionPageOnly = false;
+  @Input() showHeaderTable = true;
 
   @Output() searchChange = new EventEmitter<string>();
   @Output() refreshData = new EventEmitter<any>();
