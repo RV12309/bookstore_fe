@@ -9,9 +9,9 @@ export interface ICartItem {
     sessionId?: string,
     bookId: string,
     quantity: number,
-    title?: string,
-    price?: string,
-    total?: number,
+    title: string,
+    price: number,
+    total: number,
     urlThumbnail?: string,
     author?: string
 }

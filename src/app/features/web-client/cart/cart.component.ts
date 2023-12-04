@@ -15,21 +15,7 @@ import { ModalService } from 'src/app/core/services/modal';
 export class CartComponent implements OnInit {
 
   public cart!: ICart;
-  public dataTable = [1,2,3,4];
-  public titleTable: ITitleTable[] = [
-    {
-      title: 'Ảnh sản phẩm',
-    },
-    {
-      title: 'Tên sản phẩm',
-    },
-    {
-      title: 'Số lượng',
-    },
-    {
-      title: 'Thành tiền',
-    }
-  ]
+  public totalItems: number = 0;
 
   constructor(
     private router: Router,
@@ -50,7 +36,7 @@ export class CartComponent implements OnInit {
   public getCart(){
     let sessionId = 0;
     let userId = 0;
-    if(this.authService.getDataByKey(JWTStorageKey.account)){
+    if(this.storeService.getSession(StorageKey.accessToken)){
      userId = Number(this.authService.getDataByKey(JWTStorageKey.account).userId);
     }  
     if(this.storeService.getSession(StorageKey.cart)){
@@ -59,6 +45,9 @@ export class CartComponent implements OnInit {
     this.globalService.getCart(sessionId, userId).subscribe({
       next: (res) => {
         this.cart = res.data;
+        this.cart.items?.forEach((item: ICartItem) => {
+          this.totalItems += item.quantity;
+        })
         console.log(this.cart);
       },
       error: (err) => {
@@ -83,7 +72,8 @@ export class CartComponent implements OnInit {
         this.modalService.alert({
           type: 'success',
           message: 'Xóa sách thành công!'
-        })
+        });
+        this.getCart();
       },
       error: (error) => {
         this.modalService.alert({
@@ -98,10 +88,11 @@ export class CartComponent implements OnInit {
     this.router.navigate(['/products'])
   }
 
-  public deleteProduct(item:any){
+  public deleteProduct(item: ICartItem){
     this.modalService.confirm(
       {
-        message: "Bạn chắc chắn xóa sản phẩm khỏi giỏ hàng ?"
+        message: "Bạn chắc chắn xóa sản phẩm khỏi giỏ hàng ?",
+        accept: () => {this.removeFromCart(item)}
       }
     )
   }

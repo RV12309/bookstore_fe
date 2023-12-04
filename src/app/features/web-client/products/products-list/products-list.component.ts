@@ -115,7 +115,7 @@ export class ProductsListComponent implements OnInit {
   public getCart(){
     let sessionId = 0;
     let userId = 0;
-    if(this.authService.getDataByKey(JWTStorageKey.account)){
+    if(this.storageService.getSession(StorageKey.accessToken)){
      userId = Number(this.authService.getDataByKey(JWTStorageKey.account).userId);
     }  
     if(this.storageService.getSession(StorageKey.cart)){

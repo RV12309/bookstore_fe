@@ -69,26 +69,26 @@
 
     </app-table-ui> -->
     <div
-      *ngFor="let item of [1, 2, 3, 4, 5]; let index = index; let last = last"
+      *ngFor="let item of cart.items; let index = index; let last = last"
       class="border-r-2 border-solid border-white hover:border-purple box-border duration-400 pr-2"
     >
       <div class="flex gap-x-3">
         <img
-          src="https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+          src="{{item.urlThumbnail}}"
           alt=""
           class="w-32 object-cover rounded-md rounded-l-3xl aspect-2/3"
         />
         <div class="w-full grid">
           <div class="grid content-start gap-y-4">
-            <p class="font-semibold text-xl">Tên sản phẩm</p>
+            <p class="font-semibold text-xl">{{item.title}}</p>
             <div class="flex items-center gap-x-6">
               <span class="font-medium text-neutral-500">Số lượng</span>
-              <app-quantity></app-quantity>
+              <app-quantity [quantity]="item.quantity"></app-quantity>
             </div>
             <div class="flex items-end gap-x-6">
               <span class="font-medium text-neutral-500">Đơn giá</span>
               <span class="font-bold text-brown">
-                {{ (index + 2) * 10000 | price }}
+                {{ item.price| price }}
                 <span class="font-normal">/sản phẩm</span>
               </span>
             </div>
@@ -97,7 +97,7 @@
             <div class="flex items-end gap-x-6">
               <span class="font-medium text-lg">Thành tiền</span>
               <span class="font-bold text-lg">
-                {{ (index + 2) * 10000 | price }}
+                {{ item.total | price }}
               </span>
             </div>
             <button
@@ -149,8 +149,12 @@
         type="dashed"
       ></p-divider>
       <div class="flex justify-between">
+        <span class="font-bold text-neutral-500">Tổng sản phẩm</span>
+        <span class="font-semibold text-orange">{{ totalItems }} sản phẩm</span>
+      </div>
+      <div class="flex justify-between">
         <span class="font-bold text-neutral-500">Tổng tiền hàng</span>
-        <span class="font-semibold text-orange">{{ 3000000 | price }}</span>
+        <span class="font-semibold text-orange">{{ cart.total| price }}</span>
       </div>
       <div class="flex justify-between">
         <span class="font-bold text-neutral-500">Phí dịch vụ</span>

@@ -49,11 +49,11 @@ export class GlobalService {
     return this.http.get<IResponse<ICart>>(`${this.url}/carts?sessionId=${sessionId}&refId=${refId}`);
   }
 
-  updateCart(body: ICartItem): Observable<IResponse<ICart>>{
+  updateCart(body: any): Observable<IResponse<ICart>>{
     return this.http.put<IResponse<ICart>>(`${this.url}/carts`, body);
   }
 
-  removeCart(body: ICartItem): Observable<IResponse<ICart>>{
+  removeCart(body: any): Observable<IResponse<ICart>>{
     return this.http.delete<IResponse<ICart>>(`${this.url}/carts`, {body});
   }
 
