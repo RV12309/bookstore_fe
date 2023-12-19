@@ -19,4 +19,8 @@ export class UserService {
   update(body: any): Observable<IResponse<any>>{
     return this.http.put<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Customers}`, body);
   }
+
+  getCustomerInfo(): Observable<IResponse<any>>{
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Customers}`);
+  }
 }

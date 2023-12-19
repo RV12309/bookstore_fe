@@ -22,6 +22,11 @@ export class ModalProfileComponent implements OnInit {
   public selectedFile: File | null = null;
   public categoryList!: ISelectItem[];
   public imageUrl: string[] = [];
+  public genders = [
+    {name: 'Nam', code: 'MALE', value: 'MALE'},
+    {name: 'Nữ', code: 'FEMALE', value: 'FEMALE'},
+    {name: 'Khác', code: 'OTHER', value: 'OTHER'}
+  ]
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,8 +36,10 @@ export class ModalProfileComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService
   ){}
+
   ngOnInit(): void {
     this.initForm();
+    this.getCustomerInfo();
   }
 
   public initForm(){
@@ -111,9 +118,30 @@ export class ModalProfileComponent implements OnInit {
     }
   }
 
+  getCustomerInfo(){
+    this.userService.getCustomerInfo().subscribe({
+      next: res => {
+        console.log(res);
+        this.form.patchValue(res.data);
+        const gender = this.genders.find((item) => 
+          item.code === res.data.gender
+        );
+        this.formControls['gender'].patchValue(gender);
+        console.log(gender);
+      },
+      error: err => this.modalService.alert({
+        type: 'error',
+        message: err.message
+      })
+    })
+  }
 
   onUploadFile(e: any){
     console.log(e.url);
+  }
+
+  public get formControls(){
+    return this.form.controls;
   }
 
 }
