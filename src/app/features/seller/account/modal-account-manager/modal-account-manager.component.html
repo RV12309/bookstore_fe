@@ -1,1 +1,138 @@
-<p>modal-account-manager works!</p>
+<div
+  class="flex flex-col gap-y-3"
+  [formGroup]="form"
+>
+  <div class="grid grid-cols-2 gap-3">
+    <div class="col-span-2">
+      <label
+        for=""
+        class="w-full"
+      >
+        Họ Tên
+      </label>
+      <input
+        type="text"
+        pInputText
+        formControlName="name"
+        placeholder="Nhập tên người dùng"
+      />
+    </div>
+    <ng-container>
+      <div
+        *ngIf="form?.invalid && this.form.controls['title']?.touched"
+        class="error-text"
+      >
+        <p *ngIf="this.form.controls['title']?.hasError('required')">
+          Vui lòng nhập tên người dùng
+        </p>
+      </div>
+    </ng-container>
+    <div class="">
+        <label for="">số điện thoại</label>
+        <input
+        formControlName="phone"
+          appNumberOnly
+          placeholder="Nhập số điện thoại"
+          type="text"
+          pInputText
+        />
+      </div>
+        <div class="">
+      <label for="">giới tính</label>
+      <app-dropdown-ui formControlName="gender"
+      [dataList]="genders"
+       placeholder="Chọn giới tính"></app-dropdown-ui>
+    </div>
+    <div class="col-span-2">
+      <label
+        for=""
+        class="w-full"
+      >
+        Email
+      </label>
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        placeholder="Nhập email"
+      />
+    </div>
+    <div class="">
+        <label for="">Ngày sinh</label>
+        <app-date-ui formControlName="dob"
+        placeholder="Chọn ngày sinh"></app-date-ui>
+      </div>
+    <div class="">
+      <label for="">Tỉnh/Thành</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="province"
+        placeholder="Nhập tỉnh/thành"
+      />
+    </div>
+    <div class="">
+      <label for="">Quận/Huyện</label>
+      <input
+      formControlName="district"
+        placeholder="Nhập quận/huyện"
+        pInputText
+      />
+    </div>
+    <div class="">
+      <label for="">Phường/Xã</label>
+      <input
+      formControlName="ward"
+        placeholder="Nhập phường/xã"
+        pInputText
+      />
+    </div>
+    <div class="col-span-2">
+        <label
+          for=""
+          class="w-full"
+        >
+          Địa chỉ cụ thể
+        </label>
+        <input
+          type="text"
+          pInputText
+          formControlName="specificAddr"
+          placeholder="Nhập địa chỉ"
+        />
+      </div>
+    <div>
+      <label
+        for=""
+        class="w-full"
+      >
+        Ảnh đại diện
+      </label>
+      <div class="mt-2">
+        <app-base-upload
+          [chooseLabel]="'Chọn ảnh đại diện'" [fileLimit]="1"
+          (filesUpload)="onUploadFile($event)"
+          [autoUpload]="true"
+        ></app-base-upload>
+      </div>
+    </div>
+  </div>
+
+  <!-- <p-divider></p-divider> -->
+
+  <p-divider></p-divider>
+  <!-- footer -->
+  <div class="flex gap-x-3 justify-end">
+    <button
+      pButton
+      class="p-button p-button-secondary"
+      (click)="closeModal()"
+    >
+      Đóng
+    </button>
+    <button (click)="submit()"
+      class="w-32"
+      pButton
+    >Lưu</button>
+  </div>
+</div>

@@ -45,8 +45,8 @@ export class AddressComponent implements OnInit {
         this.provincesList = resp?.data?.map(
           (item: IProvinces) => {
             return {
-              name: item?.ProvinceName,
-              code: item?.ProvinceID,
+              name: item?.provinceName,
+              code: item?.provinceId,
               value: item
             }
           }
@@ -67,12 +67,14 @@ export class AddressComponent implements OnInit {
       this.districtList = resp?.data?.map(
         (item: IDistricts) => {
           return {
-            name: item?.DistrictName,
-            code: item?.DistrictID,
+            name: item?.districtName,
+            code: item?.districtId,
             value: item
           }
         }
-      ).sort((a, b) => a?.name?.localeCompare(b?.name))
+      ).sort((a, b) => a?.name?.localeCompare(b?.name));
+      console.log(resp);
+      console.log(this.districtList);
     });
 
     this.districtControl.valueChanges
@@ -85,8 +87,8 @@ export class AddressComponent implements OnInit {
       this.wardList = resp?.data?.map(
         (item: IWards) => {
           return {
-            name: item?.WardName,
-            code: item?.WardCode,
+            name: item?.wardName,
+            code: item?.wardCode,
             value: item
           }
         }

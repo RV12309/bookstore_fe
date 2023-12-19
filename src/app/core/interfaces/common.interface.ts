@@ -39,8 +39,8 @@ export interface ILoading {
 }
 
 export interface IProvinces {
-  ProvinceID: number;
-  ProvinceName: string;
+  provinceId: number;
+  provinceName: string;
   CountryID: number;
   Code: string;
   NameExtension: string[];
@@ -59,9 +59,9 @@ export interface IProvinces {
 }
 
 export interface IDistricts {
-  DistrictID: number;
-  ProvinceID: number;
-  DistrictName: string;
+  districtId: number;
+  provinceId: number;
+  districtName: string;
   Code: string;
   Type: number;
   SupportType: number;
@@ -94,9 +94,9 @@ interface IWhiteListClient {
 }
 
 export interface IWards {
-  WardCode: string;
-  DistrictID: number;
-  WardName: string;
+  wardCode: string;
+  districtId: number;
+  wardName: string;
   NameExtension: string[];
   IsEnable: number;
   CanUpdateCOD: boolean;
