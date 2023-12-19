@@ -40,11 +40,7 @@
         <div class="">
       <label for="">giới tính</label>
       <app-dropdown-ui formControlName="gender"
-      [dataList]="[
-        {name: 'Nam', code: 'MALE', value: 'MALE'},
-        {name: 'Nữ', code: 'FEMALE', value: 'FEMALE'},
-        {name: 'Khác', code: 'OTHER', value: 'OTHER'}
-      ]"
+      [dataList]="genders"
        placeholder="Chọn giới tính"></app-dropdown-ui>
     </div>
     <div class="col-span-2">
