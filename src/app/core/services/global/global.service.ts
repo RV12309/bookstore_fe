@@ -45,7 +45,7 @@ export class GlobalService {
     return this.http.get<IResponse<ICategoryData[]>>(`${this.url}/categories/all`);
   }
 
-  getCart(sessionId: number, refId: number): Observable<IResponse<ICart>>{
+  getCart(sessionId: string | number, refId: string | number): Observable<IResponse<ICart>>{
     return this.http.get<IResponse<ICart>>(`${this.url}/carts?sessionId=${sessionId}&refId=${refId}`);
   }
 
@@ -57,6 +57,10 @@ export class GlobalService {
     return this.http.delete<IResponse<ICart>>(`${this.url}/carts`, {body});
   }
 
+  initOrder(body: any): Observable<IResponse<any>>{
+    return this.http.post<IResponse<any>>(
+      `${this.url}/orders`, body);
+  }
 
 
 

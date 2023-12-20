@@ -21,9 +21,9 @@ export class RequestInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
     const accessToken = this.storeService.getSession(StorageKey.accessToken);
     if (accessToken) {
-      if(request.url?.includes(EndPoints.Global)){
-        return next.handle(request);
-      }
+      // if(request.url?.includes(EndPoints.Global) && !request.url?.includes('orders')){
+      //   return next.handle(request);
+      // }
         if(request.url?.includes(CloudinaryValue.ApiUploadUrl)){
           return next.handle(request)}
         request = request.clone({

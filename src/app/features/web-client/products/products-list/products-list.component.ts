@@ -113,16 +113,16 @@ export class ProductsListComponent implements OnInit {
   }
 
   public getCart(){
-    let sessionId = 0;
-    let userId = 0;
+    let sessionId = '';
+    let userId = '';
     if(this.storageService.getSession(StorageKey.accessToken)){
-     userId = Number(this.authService.getDataByKey(JWTStorageKey.account).userId);
+     userId = (this.authService.getDataByKey(JWTStorageKey.account).userId).toString();
     }  
     if(this.storageService.getSession(StorageKey.cart)){
-      sessionId = Number(this.storageService.getSession(StorageKey.cart));
+      sessionId = (this.storageService.getSession(StorageKey.cart))?.toString() || '';
     }
     console.log(sessionId, userId);
-    this.globalService.getCart(sessionId, userId).subscribe({
+    this.globalService.getCart(sessionId || 0, userId || 0).subscribe({
       next: (res) => {
         this.storageService.setSession(StorageKey.cart, res.data.id)
       },

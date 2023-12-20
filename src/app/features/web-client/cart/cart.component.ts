@@ -30,19 +30,44 @@ export class CartComponent implements OnInit {
   }
 
   checkout(){
-    this.router.navigate(['/checkout'])
+    const params = {
+      sessionId: (this.storeService.getSession(StorageKey.cart))?.toString() || 0,
+      email: 'shinku.izumi111@gmail.com',
+      phone: '0987654321',
+      name: 'yennh',
+      paymentProvider: 'PAYPAL',
+      total: this.cart.total,
+      provinceId: 22,
+      districtId: 555,
+      wardCode: 44,
+      province: 'Hà Nội',
+      district: 'Đống Đa',
+      ward: 'Láng Hạ',
+      firstAddress: 'số 22',
+      addressId: 0,
+    };
+    this.globalService.initOrder(params).subscribe({
+      next: (res) => {console.log(res)},
+      error: (err) => {
+        this.modalService.alert({
+          type: 'error',
+          message: err.message
+        })
+      }
+    })
+    // this.router.navigate(['/checkout'])
   }
 
   public getCart(){
-    let sessionId = 0;
-    let userId = 0;
+    let sessionId = '';
+    let userId = '';
     if(this.storeService.getSession(StorageKey.accessToken)){
-     userId = Number(this.authService.getDataByKey(JWTStorageKey.account).userId);
+     userId = (this.authService.getDataByKey(JWTStorageKey.account).userId)?.toString();
     }  
     if(this.storeService.getSession(StorageKey.cart)){
-      sessionId = Number(this.storeService.getSession(StorageKey.cart));
+      sessionId = this.storeService.getSession(StorageKey.cart)?.toString() || '';
     }
-    this.globalService.getCart(sessionId, userId).subscribe({
+    this.globalService.getCart(sessionId || 0, userId || 0).subscribe({
       next: (res) => {
         this.cart = res.data;
         this.cart.items?.forEach((item: ICartItem) => {
@@ -55,7 +80,6 @@ export class CartComponent implements OnInit {
           type: 'error',
           message: err.message
         })
-
       }
     })
   }
