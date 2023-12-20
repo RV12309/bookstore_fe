@@ -1,8 +1,10 @@
 <div class="border border-solid border-gray rounded-xl flex items-center px-1">
   <img
+    id="decrease"
     src="assets/icons/active/ic-minus.svg"
     class="w-6 cursor-pointer"
     alt=""
+    (click)="changeValue($event)"
   />
   <input
     type="text"
@@ -11,8 +13,10 @@
     [value]="quantity || 1"
   >
   <img
+    id="increase"
     src="assets/icons/active/ic-plus.svg"
     class="w-6 cursor-pointer"
     alt=""
+    (click)="changeValue($event)"
   />
 </div>

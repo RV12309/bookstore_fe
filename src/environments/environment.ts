@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   baseUrl: 'http://ec2-52-63-0-24.ap-southeast-2.compute.amazonaws.com/'
 };
-
+// http://ec2-52-63-0-24.ap-southeast-2.compute.amazonaws.com/api/swagger-ui/index.html
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

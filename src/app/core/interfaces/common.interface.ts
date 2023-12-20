@@ -41,45 +41,18 @@ export interface ILoading {
 export interface IProvinces {
   provinceId: number;
   provinceName: string;
-  CountryID: number;
-  Code: string;
-  NameExtension: string[];
-  IsEnable: number;
-  RegionID: number;
-  RegionCPN: number;
-  UpdatedBy: number;
-  CreatedAt: string;
-  UpdatedAt: string;
-  CanUpdateCOD: boolean;
-  Status: number;
-  UpdatedIP: string;
-  UpdatedEmployee: number;
-  UpdatedSource: string;
-  UpdatedDate: string;
+  code: string;
+  nameExtension: string[];
+  countryId: number;
 }
 
 export interface IDistricts {
   districtId: number;
   provinceId: number;
   districtName: string;
-  Code: string;
-  Type: number;
-  SupportType: number;
-  NameExtension: string[];
-  IsEnable: number;
-  UpdatedBy: number;
-  CreatedAt: string;
-  UpdatedAt: string;
-  CanUpdateCOD: boolean;
-  Status: number;
-  PickType: number;
-  DeliverType: number;
-  WhiteListClient: IWhiteListClient;
-  WhiteListDistrict: IWhiteListDistrict;
-  ReasonCode: string;
-  ReasonMessage: string;
-  OnDates?: any;
-  UpdatedDate: string;
+  code: string;
+  type: number;
+  supportType: number;
 }
 
 interface IWhiteListDistrict {
@@ -94,24 +67,9 @@ interface IWhiteListClient {
 }
 
 export interface IWards {
-  wardCode: string;
-  districtId: number;
+  wardCode: number;
   wardName: string;
-  NameExtension: string[];
-  IsEnable: number;
-  CanUpdateCOD: boolean;
-  UpdatedBy: number;
-  CreatedAt: string;
-  UpdatedAt: string;
-  SupportType: number;
-  PickType: number;
-  DeliverType: number;
-  WhiteListClient: IWhiteListClient;
-  WhiteListWard: IWhiteListWard;
-  Status: number;
-  ReasonCode: string;
-  ReasonMessage: string;
-  OnDates?: any;
+  districtId: number;
 }
 
 interface IWhiteListWard {
