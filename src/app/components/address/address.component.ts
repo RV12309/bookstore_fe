@@ -72,7 +72,9 @@ export class AddressComponent implements OnInit {
             value: item
           }
         }
-      ).sort((a, b) => a?.name?.localeCompare(b?.name))
+      ).sort((a, b) => a?.name?.localeCompare(b?.name));
+      console.log(resp);
+      console.log(this.districtList);
     });
 
     this.districtControl.valueChanges

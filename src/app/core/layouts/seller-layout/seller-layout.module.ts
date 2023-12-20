@@ -10,6 +10,7 @@ import { BadgeModule } from 'primeng/badge';
 import { InputTextModule } from 'primeng/inputtext';
 import { SidebarMenuModule } from "src/app/components/sidebar-menu/sidebar-menu.module";
 import { LoadingModule } from "src/app/components/loading/loading.module";
+import { ModalAccountManagerModule } from 'src/app/features/seller/account/modal-account-manager/modal-account-manager.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { LoadingModule } from "src/app/components/loading/loading.module";
     MenuModule,
     BadgeModule,
     SidebarMenuModule,
-    LoadingModule
+    LoadingModule,
+    ModalAccountManagerModule
   ]
 })
 export class SellerLayoutModule { }
