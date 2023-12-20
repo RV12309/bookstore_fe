@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { ModalService } from 'src/app/core/services/modal';
 import { UploadService } from 'src/app/core/services/upload.service';
 import { UserService } from 'src/app/core/services/user/user.service';
+import * as dayjs from 'dayjs';
 
 @Component({
   selector: 'app-modal-account-manager',
@@ -85,7 +86,7 @@ export class ModalAccountManagerComponent {
           type: 'success',
           message: 'Thay đổi thông tin thành công'
         });
-        this.closeModal
+        this.closeModal();
       },
       error: (err) => {
         this.modalService.alert({
@@ -126,7 +127,7 @@ export class ModalAccountManagerComponent {
           item.code === res.data.gender
         );
         this.formControls['gender'].patchValue(gender);
-        console.log(gender);
+        this.formControls['dob'].patchValue(dayjs(res.data.dob).toDate());
       },
       error: err => this.modalService.alert({
         type: 'error',
