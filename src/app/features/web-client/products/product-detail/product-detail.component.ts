@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { MenuItem } from "primeng/api";
 import { BREADCRUMB_DEFAULT } from "src/app/core/constant/common.constant";
-import { AspectRatio, RoundedCSS } from "src/app/core/enums";
+import { AspectRatio, RoundedCSS, StorageKey } from "src/app/core/enums";
 import { IBookData } from "src/app/core/interfaces/books.interface";
 import { IResponse } from "src/app/core/interfaces/response.interface";
-import { GlobalService } from "src/app/core/services";
+import { GlobalService, StoreService } from "src/app/core/services";
+import { ModalService } from 'src/app/core/services/modal';
 
 @Component({
   selector: 'app-product-detail',
@@ -32,7 +33,9 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private globalService: GlobalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private modalService: ModalService,
+    private storeService: StoreService
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +64,30 @@ export class ProductDetailComponent implements OnInit {
 
   chooseTab(index:number){
     this.tabIndex = index;
+  }
+
+  addCart(){
+    const id = this.storeService.getSession(StorageKey.cart);
+    const params = {
+      bookId: this.dataBook.id,
+      quantity: 1,
+      sessionId: id || '',
+      action: 'ADD'
+    }
+    this.globalService.updateCart(params).subscribe({
+      next: (res) => {
+        this.modalService.alert({
+          type: 'success',
+          message: 'Thêm sách thành công!'
+        })
+      },
+      error: (error) => {
+        this.modalService.alert({
+          type: 'error',
+          message: error.message
+        })
+      }
+    })
   }
 
 }
