@@ -346,9 +346,8 @@ p-inputnumber,
   .p-datepicker {
     @apply rounded-xl;
     .p-datepicker-group-container {
-      @apply rounded-xl p-2;
       .p-datepicker-group {
-        // @apply rounded-xl overflow-hidden;
+        @apply rounded-xl overflow-hidden #{!important};
         .p-datepicker-header {
           @apply rounded-t-xl;
         }
@@ -368,7 +367,7 @@ p-inputnumber,
     }
   }
   .p-datepicker-calendar {
-    @apply p-2;
+    @apply p-2 #{!important};
     table {
       th,
       td {
@@ -376,6 +375,11 @@ p-inputnumber,
       }
     }
   }
+}
+
+.p-datepicker-touch-ui, .p-calendar .p-datepicker-touch-ui {
+  // min-width: 35vw;
+  @apply min-w-[25vw] w-[300px] #{!important};
 }
 
 //  CHECKBOX

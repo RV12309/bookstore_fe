@@ -25,6 +25,7 @@ export class DateUiComponent implements OnInit, ControlValueAccessor {
   @Input() minDateValue!:Date;
   @Input() maxDateValue!:Date;
   @Input() dateFormat = "dd-mm-yy";
+  @Input() touchUI = true;
 
   @Output() onSelect = new EventEmitter();
   @Output() onBlur = new EventEmitter();
