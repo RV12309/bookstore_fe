@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, forwardRef } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
 @Component({
@@ -16,6 +16,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 export class QuantityComponent implements OnInit, ControlValueAccessor {
 
   @Input() quantity!: number;
+  @Output() changeQuantity = new EventEmitter<any>();
 
   constructor() { }
 
@@ -44,7 +45,14 @@ export class QuantityComponent implements OnInit, ControlValueAccessor {
 
 
   changeValue(e:any){
-    console.log(e?.target.id);
-
+    switch(e?.target.id) {
+      case 'decrease': 
+        this.quantity--;
+        break;
+      case 'increase': 
+        this.quantity++;
+        break;
+    }
+    this.changeQuantity.emit({quantity: this.quantity, type: e?.target.id});
   }
 }

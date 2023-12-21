@@ -84,6 +84,31 @@ export class CartComponent implements OnInit {
     })
   }
 
+  onChangeQuantity(e: any, item: ICartItem){
+    console.log(e);
+      const id = this.storeService.getSession(StorageKey.cart);
+      const params = {
+        bookId: item.bookId,
+        quantity: e?.quantity,
+        sessionId: this.storeService.getSession(StorageKey.cart) || '',
+        action: e.type === 'increase' ? 'ADD' : 'REMOVE'
+      }
+      this.globalService.updateCart(params).subscribe({
+        // next: (res) => {
+        //   this.modalService.alert({
+        //     type: 'success',
+        //     message: 'Thêm sách thành công!'
+        //   })
+        // },
+        error: (error) => {
+          this.modalService.alert({
+            type: 'error',
+            message: error.message
+          })
+        }
+      })
+  }
+
   public removeFromCart(item: ICartItem){
     const params = {
       sessionId: this.storeService.getSession(StorageKey.cart) || '',

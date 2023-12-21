@@ -83,7 +83,7 @@
             <p class="font-semibold text-xl">{{item.title}}</p>
             <div class="flex items-center gap-x-6">
               <span class="font-medium text-neutral-500">Số lượng</span>
-              <app-quantity [quantity]="item.quantity"></app-quantity>
+              <app-quantity (changeQuantity)="onChangeQuantity($event, item)" [quantity]="item.quantity"></app-quantity>
             </div>
             <div class="flex items-end gap-x-6">
               <span class="font-medium text-neutral-500">Đơn giá</span>
