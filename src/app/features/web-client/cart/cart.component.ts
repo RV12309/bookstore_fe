@@ -30,32 +30,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout(){
-    const params = {
-      sessionId: (this.storeService.getSession(StorageKey.cart))?.toString() || 0,
-      email: 'shinku.izumi111@gmail.com',
-      phone: '0987654321',
-      name: 'yennh',
-      paymentProvider: 'PAYPAL',
-      total: this.cart.total,
-      provinceId: 22,
-      districtId: 555,
-      wardCode: 44,
-      province: 'Hà Nội',
-      district: 'Đống Đa',
-      ward: 'Láng Hạ',
-      firstAddress: 'số 22',
-      addressId: 0,
-    };
-    this.globalService.initOrder(params).subscribe({
-      next: (res) => {console.log(res)},
-      error: (err) => {
-        this.modalService.alert({
-          type: 'error',
-          message: err.message
-        })
-      }
-    })
-    // this.router.navigate(['/checkout'])
+    this.router.navigate(['/checkout'])
   }
 
   public getCart(){
@@ -84,14 +59,14 @@ export class CartComponent implements OnInit {
     })
   }
 
-  onChangeQuantity(e: any, item: ICartItem){
+  public onChangeQuantity(e: any, item: ICartItem){
     console.log(e);
       const id = this.storeService.getSession(StorageKey.cart);
       const params = {
         bookId: item.bookId,
-        quantity: e?.quantity,
+        quantity: e,
         sessionId: this.storeService.getSession(StorageKey.cart) || '',
-        action: e.type === 'increase' ? 'ADD' : 'REMOVE'
+        action: 'UPDATE'
       }
       this.globalService.updateCart(params).subscribe({
         // next: (res) => {

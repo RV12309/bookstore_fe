@@ -1,3 +1,115 @@
 <div>
-  <app-address></app-address>
+  <div
+  class="flex flex-col gap-y-3"
+  [formGroup]="form"
+>
+  <div class="grid grid-cols-2 gap-3">
+    <div class="col-span-2">
+      <label
+        for=""
+        class="w-full"
+      >
+        Họ tên người nhận
+      </label>
+      <input
+        type="text"
+        pInputText
+        formControlName="name"
+        placeholder="Nhập họ tên người nhận"
+      />
+    </div>
+    <ng-container>
+      <div
+        *ngIf="form?.invalid && this.form.controls['title']?.touched"
+        class="error-text"
+      >
+        <p *ngIf="this.form.controls['title']?.hasError('required')">
+          Vui lòng nhập tên người nhận
+        </p>
+      </div>
+    </ng-container>
+    <div class="">
+        <label for="">Số điện thoại</label>
+        <input
+        formControlName="phone"
+          appNumberOnly
+          placeholder="Nhập số điện thoại"
+          type="text"
+          pInputText
+        />
+      </div>
+    <div class="col-span-2">
+      <label
+        for=""
+        class="w-full"
+      >
+        Email
+      </label>
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        placeholder="Nhập email"
+      />
+    </div>
+    <app-address (changeValue)="onChangeAddress($event)"></app-address>
+    <div class="col-span-2">
+      <label
+        for=""
+        class="w-full"
+      >
+        Địa chỉ cụ thể
+      </label>
+      <input
+        type="text"
+        pInputText
+        formControlName="specificAddr"
+        placeholder="Số nhá, tên đường,..."
+      />
+    </div>
+    <!-- <div class="">
+      <label for="">Tỉnh/Thành</label>
+      <input
+        type="text"
+        pInputText
+        formControlName="province"
+        placeholder="Nhập tỉnh/thành"
+      />
+    </div>
+    <div class="">
+      <label for="">Quận/Huyện</label>
+      <input
+      formControlName="district"
+        placeholder="Nhập quận/huyện"
+        pInputText
+      />
+    </div>
+    <div class="">
+      <label for="">Phường/Xã</label>
+      <input
+      formControlName="ward"
+        placeholder="Nhập phường/xã"
+        pInputText
+      />
+    </div> -->
+  </div>
+
+  <!-- <p-divider></p-divider> -->
+
+  <p-divider></p-divider>
+  <!-- footer -->
+  <div class="flex gap-x-3 justify-end">
+    <button
+      pButton
+      class="p-button p-button-secondary"
+      (click)="back()"
+    >
+      Quay lại
+    </button>
+    <button (click)="placeOrder()"
+      class="w-32"
+      pButton
+    >Mua hàng</button>
+  </div>
+</div>
 </div>

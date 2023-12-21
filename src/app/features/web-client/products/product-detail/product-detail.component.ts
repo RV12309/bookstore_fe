@@ -30,6 +30,7 @@ export class ProductDetailComponent implements OnInit {
   ]
 
   private isbn:string = '';
+  public quantity = 0;
 
   constructor(
     private globalService: GlobalService,
@@ -70,7 +71,7 @@ export class ProductDetailComponent implements OnInit {
     const id = this.storeService.getSession(StorageKey.cart);
     const params = {
       bookId: this.dataBook.id,
-      quantity: 1,
+      quantity: this.quantity,
       sessionId: id || '',
       action: 'ADD'
     }
@@ -88,6 +89,10 @@ export class ProductDetailComponent implements OnInit {
         })
       }
     })
+  }
+
+  public onChangeQuantity(e: number){
+    this.quantity = e;
   }
 
 }

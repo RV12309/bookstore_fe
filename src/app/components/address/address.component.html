@@ -21,6 +21,7 @@
   <div>
     <label for="">Phường/ Xã</label>
     <app-dropdown-ui
+    (dropdownOnChange)="onChangeWard()"
       [dataList]="wardList"
       formControlName="ward"
       placeholder="Chọn Phường/ Xã"

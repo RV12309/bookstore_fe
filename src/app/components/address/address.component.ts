@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 import { of, switchMap } from "rxjs";
 import { IDistricts, IProvinces, ISelectItem, IWards } from "src/app/core/interfaces";
@@ -12,6 +12,7 @@ import { GlobalService } from "src/app/core/services";
 export class AddressComponent implements OnInit {
 
   @Input() addressContainerClass = 'w-full grid grid-cols-3 gap-x-4';
+  @Output() changeValue = new EventEmitter<any>();
 
   public addressForm!:FormGroup;
   public provincesList:ISelectItem[] = [];
@@ -73,8 +74,6 @@ export class AddressComponent implements OnInit {
           }
         }
       ).sort((a, b) => a?.name?.localeCompare(b?.name));
-      console.log(resp);
-      console.log(this.districtList);
     });
 
     this.districtControl.valueChanges
@@ -92,8 +91,13 @@ export class AddressComponent implements OnInit {
             value: item
           }
         }
-      ).sort((a, b) => a?.name?.localeCompare(b?.name))
+      ).sort((a, b) => a?.name?.localeCompare(b?.name));
     });
+  }
+
+  public onChangeWard() {
+    console.log(this.addressForm.value);
+    this.changeValue.emit(this.addressForm.value)
   }
 
   get provinceControl(): FormControl {

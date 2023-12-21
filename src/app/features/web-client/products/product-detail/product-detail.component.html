@@ -76,7 +76,7 @@
         <div class="py-3 border-t-2 border-dashed border-gray flex justify-between items-end">
           <p class="text-3xl font-bold text-purple">{{dataBook?.price! | price}}</p>
           <div class="flex gap-x-4">
-            <app-quantity></app-quantity>
+            <app-quantity (changeQuantity)="onChangeQuantity($event)" [quantity]="1"></app-quantity>
             <!-- <div class="border border-solid border-gray rounded-xl flex items-center px-1">
               <img
                 src="assets/icons/active/ic-minus.svg"
