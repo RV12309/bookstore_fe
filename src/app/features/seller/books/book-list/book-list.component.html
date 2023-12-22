@@ -17,6 +17,10 @@
     [titleTable]="titleTable"
     [dataTable]="dataTable"
     [total]="total"
+    [isSearch]="true"
+    [showAction]="true"
+    [checkbox]="false"
+    [radio]="false"
     (refreshData)="refreshData()"
   >
   <ng-template
@@ -27,7 +31,38 @@
       <td>{{ item?.author }}</td>
       <td>{{ item?.price }}</td>
       <td>{{ item?.quantity }}</td>
-      <td>{{ item?.numberOfPages }}</td>
+      <!-- <td>{{ item?.numberOfPages }}</td> -->
+    </ng-template>
+    <ng-template #tableAction let-item="item">
+      <ng-container>
+        <button
+          class="p-button p-button-outlined p-button-secondary button-table"
+          (click)="view(item)"
+        >
+          <img
+            src="assets/icons/default/ic-eye.svg"
+            alt=""
+          />
+        </button>
+        <button
+          class="p-button p-button-outlined p-button-secondary button-table"
+          (click)="update(item)"
+        >
+          <img
+            src="assets/icons/default/ic-edit-pencil.svg"
+            alt=""
+          />
+        </button>
+        <button
+          class="p-button p-button-outlined p-button-secondary button-table"
+          (click)="delete(item)"
+        >
+          <img
+            src="assets/icons/default/ic-trash.svg"
+            alt=""
+          />
+        </button>
+      </ng-container>
     </ng-template>
 </app-table-ui>
   

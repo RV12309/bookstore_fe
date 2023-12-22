@@ -146,7 +146,7 @@ export class ModalProfileComponent implements OnInit {
       page: 0,
       size: 5
     }
-    this.orderService.getBooksList(params).subscribe({
+    this.orderService.getOrderList(params).subscribe({
       next: (res) => console.log(res),
       error: err => this.modalService.alert({
         type: 'error',

@@ -13,7 +13,13 @@ export class OrdersService {
   private baseUrl = environment.baseUrl;
   constructor(private http: HttpClient) { }
 
-  getBooksList(body: any): Observable<IResponse<any>>{
+  getOrderList(body: any): Observable<IResponse<any>>{
     return this.http.post<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}`, body);
+  }
+  getOrderDetail(id: string | number): Observable<IResponse<any>>{
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/${id}`);
+  }
+  updateOrderStatus(id: string| number, body: any): Observable<IResponse<any>>{
+    return this.http.patch<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/${id}/status`, body);
   }
 }

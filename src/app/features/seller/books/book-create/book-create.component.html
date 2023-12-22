@@ -119,7 +119,7 @@
         pInputText
       />
     </div>
-    <div>
+    <div *ngIf="action !== Action.Detail">
       <label
         for=""
         class="w-full"
@@ -134,7 +134,7 @@
         ></app-base-upload>
       </div>
     </div>
-    <div>
+    <div *ngIf="action !== Action.Detail">
       <label
         for=""
         class="w-full"
@@ -155,7 +155,7 @@
   <!-- <p-divider></p-divider> -->
 
   <p-divider></p-divider>
-  <div>
+  <div *ngIf="action !== Action.Detail">
     <label
       for=""
       class="w-full"
@@ -178,7 +178,7 @@
     >
       Đóng
     </button>
-    <button (click)="submit()"
+    <button [disabled]="action === Action.Detail" (click)="submit()"
       class="w-32"
       pButton
     >Lưu</button>

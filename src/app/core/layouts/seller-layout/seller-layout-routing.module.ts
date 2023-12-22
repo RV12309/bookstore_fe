@@ -21,10 +21,13 @@ export const routes:Routes = [
           breadcrumb: "Danh mục"
         }
       },
-      // {
-      //   path: 'order',
-      //   component: HomeComponent
-      // },
+      {
+        path: 'order',
+        loadChildren: () => import('src/app/features/seller/orders/order-list/order-list.module').then(m => m.OrderListModule),
+        data: {
+          breadcrumb: "Đơn hàng"
+        }
+      },
       // {
       //   path: 'statistics',
       //   component : HomeComponent

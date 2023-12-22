@@ -21,7 +21,7 @@ export class SellerLayoutComponent implements OnInit {
       children: [
         {
           icon: 'ic-books-list.svg',
-          title: 'Danh sách',
+          title: 'Danh sách sách',
           key: '',
           route: '/seller/books'
         },
@@ -40,7 +40,7 @@ export class SellerLayoutComponent implements OnInit {
       children: [
         {
           icon: 'ic-order.svg',
-          title: 'Danh sách',
+          title: 'Danh sách đơn hàng',
           key: '',
           route: '/seller/order'
         }

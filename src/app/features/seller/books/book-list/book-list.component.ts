@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BooksService } from "src/app/core/services/books/books.service";
 import { ModalService } from 'src/app/core/services/modal';
 import { BookCreateComponent } from "../book-create/book-create.component";
-import { ModalSize } from "src/app/core/enums";
+import { Action, ModalSize } from "src/app/core/enums";
 import { CategoryService } from "src/app/core/services/category/category.service";
 import { DropdownService } from "src/app/core/services/dropdown.service";
 import { ISelectItem } from "src/app/core/interfaces/common.interface";
@@ -14,6 +14,7 @@ import { GlobalService } from "src/app/core/services";
 import { BehaviorSubject, EMPTY, Observable, catchError, mergeMap, tap } from 'rxjs';
 import { IBookData, IBookSearchForm } from 'src/app/core/interfaces/books.interface';
 import { IResponse } from 'src/app/core/interfaces/response.interface';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-book-list',
@@ -89,9 +90,6 @@ export class BookListComponent implements OnInit{
     {
       title: 'Số lượng'
     },
-    {
-      title: 'Số trang'
-    }
   ]
 
   public bookList$: Observable<any> = new Observable<any>();
@@ -159,6 +157,68 @@ export class BookListComponent implements OnInit{
     this.changeParams();
   }
 
+  view(item: IBookData){
+    console.log('view')
+    this.modalService.open(
+      BookCreateComponent,
+      {
+        header: 'Thông tin sách',
+        width: ModalSize.Large,
+        data: {
+          type: Action.Detail,
+          item
+        }
+      }
+    )
+    // this.create( 'Chi tiết danh mục', Action.Detail, item);
+  }
+
+  update(item: IBookData){
+    console.log('update')
+    this.modalService.open(
+      BookCreateComponent,
+      {
+        header: 'Cập nhật sách',
+        width: ModalSize.Large,
+        data: {
+          type: Action.Update,
+          item
+        }
+      }
+    )
+    // this.create( 'Cập nhật danh mục', Action.Update, item);
+  }
+
+  delete(item: IBookData){
+    this.modalService.confirm({
+      message: 'Bạn chắc chắn xóa sách này?',
+      accept: () => {
+        this.booksService.delete(item?.isbn as string)
+        .subscribe({
+          next: () => {
+            this.modalService.alert(
+              {
+                type: 'success',
+                message: 'Xóa thành công',
+              }
+            );
+            this.refreshData();
+          },
+          error: error => {
+            this.modalService.alert(
+              {
+                type: 'error',
+                message: error?.error?.message || 'Lỗi hệ thống',
+                btnOkName: 'Đóng',
+              }
+            )
+          }
+        })
+      }
+    })
+
+  }
+
   getCategoryList(){
     this.categoryService.getCategoryAll()
     .subscribe({
@@ -187,20 +247,15 @@ export class BookListComponent implements OnInit{
   }
 
   create(){
-    this.modalService.open(
+    const modal: DynamicDialogRef = this.modalService.open(
       BookCreateComponent,
       {
         header: 'Tạo mới sách',
         width: ModalSize.Large
       }
     )
-    // this.modalService.alert(
-    //   {
-    //     message: 'Bạn xác nhận tạo sách ?',
-    //     accept: () => {
-    //       console.log('Đã accept')
-    //     }
-    //   }
-    // )
+    modal.onClose.subscribe(() => {
+      this.refreshData();
+    })
   }
 }

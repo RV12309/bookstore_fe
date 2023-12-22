@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { DynamicDialogRef } from "primeng/dynamicdialog";
+import { DynamicDialogConfig, DynamicDialogRef } from "primeng/dynamicdialog";
+import { Action } from 'src/app/core/enums';
 import { ISelectItem } from 'src/app/core/interfaces';
+import { IBookCreate, IBookData } from 'src/app/core/interfaces/books.interface';
 import { BooksService } from 'src/app/core/services/books/books.service';
 import { CategoryService } from 'src/app/core/services/category/category.service';
 import { ModalService } from 'src/app/core/services/modal';
@@ -18,18 +20,24 @@ export class BookCreateComponent implements OnInit{
   public selectedFile: File | null = null;
   public categoryList!: ISelectItem[];
   public imageUrl: string[] = [];
-
+  public action:  Action = Action.Create;
+  public data: IBookData = {};
+  public Action = Action
+  
   constructor(
     private formBuilder: FormBuilder,
     private modalRef: DynamicDialogRef,
     private uploadService: UploadService,
     private categoryService: CategoryService,
     private modalService: ModalService,
-    private bookService: BooksService
+    private bookService: BooksService,
+    private dialogConfig: DynamicDialogConfig,
   ){}
   ngOnInit(): void {
     this.initForm();
     this.getList();
+    this.initParams();
+    this.handleRoute();
   }
 
   public initForm(){
@@ -59,9 +67,18 @@ export class BookCreateComponent implements OnInit{
       imagesUrls: this.imageUrl
     }
     console.log(params);
-    this.bookService.createBook(params).subscribe((res) => {
+    if(this.action === Action.Create) {this.bookService.createBook(params).subscribe((res) => {
       this.closeModal();
-    })
+    })} else if(this.action === Action.Update) {
+      const param = {
+        ...params,
+        id: this.data.id,
+        isbn: this.data.isbn
+      }
+      this.bookService.update(param).subscribe((res) => {
+        this.closeModal();
+      })
+    }
   }
 
   closeModal(){
@@ -120,6 +137,23 @@ export class BookCreateComponent implements OnInit{
       case 'preview':
         this.imageUrl?.push(e.url.toString());
         // this.formBook.controls['imagesUrls'].patchValue(e.url);
+        break;
+    }
+  }
+
+  initParams(){
+    this.action = this.dialogConfig.data?.type;
+    this.data = this.dialogConfig.data?.item;
+  }
+
+  handleRoute(){
+    switch(this.action){
+      case Action.Detail:
+        this.formBook.patchValue(this.data);
+        this.formBook.disable();
+        break;
+      case Action.Update:
+        this.formBook.patchValue(this.data);
         break;
     }
   }

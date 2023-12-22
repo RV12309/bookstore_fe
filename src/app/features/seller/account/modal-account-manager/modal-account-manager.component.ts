@@ -8,6 +8,7 @@ import { ModalService } from 'src/app/core/services/modal';
 import { UploadService } from 'src/app/core/services/upload.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import * as dayjs from 'dayjs';
+import { OrdersService } from 'src/app/core/services/orders/orders.service';
 
 @Component({
   selector: 'app-modal-account-manager',
@@ -32,12 +33,14 @@ export class ModalAccountManagerComponent {
     private uploadService: UploadService,
     private modalService: ModalService,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private orderService: OrdersService
   ){}
 
   ngOnInit(): void {
     this.initForm();
     this.getCustomerInfo();
+    this.getOrderList();
   }
 
   public initForm(){
@@ -129,6 +132,20 @@ export class ModalAccountManagerComponent {
         this.formControls['gender'].patchValue(gender);
         this.formControls['dob'].patchValue(dayjs(res.data.dob).toDate());
       },
+      error: err => this.modalService.alert({
+        type: 'error',
+        message: err.message
+      })
+    })
+  }
+
+  public getOrderList(){
+    const params = {
+      page: 0,
+      size: 5
+    }
+    this.orderService.getOrderList(params).subscribe({
+      next: (res) => console.log(res),
       error: err => this.modalService.alert({
         type: 'error',
         message: err.message
