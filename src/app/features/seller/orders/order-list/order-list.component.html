@@ -17,8 +17,8 @@
         let-item="item"
       >
         <td>{{ item?.orderId }}</td>
-        <td><img [src]="item?.item[0]?.urlThumbnail">{{item?.item[0]?.title}} </td>
-        <td>{{ item?.total }}</td>
+        <td><img [src]="item[0]?.urlThumbnail">{{item[0]?.title}} </td>
+        <td>{{ item?.total  | number}}</td>
       </ng-template>
       <ng-template #tableAction let-item="item">
         <ng-container>

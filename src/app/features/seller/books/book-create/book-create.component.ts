@@ -72,10 +72,9 @@ export class BookCreateComponent implements OnInit{
     })} else if(this.action === Action.Update) {
       const param = {
         ...params,
-        id: this.data.id,
         isbn: this.data.isbn
       }
-      this.bookService.update(param).subscribe((res) => {
+      this.bookService.update(this.data.id || '', param).subscribe((res) => {
         this.closeModal();
       })
     }

@@ -38,7 +38,7 @@ export class BooksService {
     return this.http.delete<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Book}/${id}`);
   }
 
-  update(body: any): Observable<IResponse<any>>{
-    return this.http.put<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Book}`, body);
+  update(id: string | number, body: any): Observable<IResponse<any>>{
+    return this.http.put<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Book}/${id}`, body);
   }
 }

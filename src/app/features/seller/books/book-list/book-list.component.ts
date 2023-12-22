@@ -185,7 +185,9 @@ export class BookListComponent implements OnInit{
           item
         }
       }
-    )
+    ).onClose.subscribe(() => {
+      this.refreshData();
+    })
     // this.create( 'Cập nhật danh mục', Action.Update, item);
   }
 
@@ -251,7 +253,10 @@ export class BookListComponent implements OnInit{
       BookCreateComponent,
       {
         header: 'Tạo mới sách',
-        width: ModalSize.Large
+        width: ModalSize.Large,
+        data: {
+          type: Action.Create,
+        }
       }
     )
     modal.onClose.subscribe(() => {

@@ -23,7 +23,7 @@ export class OrderListComponent implements OnInit {
       title: 'Thành tiền'
     },
   ];
-  public dataTable: IOrder[] = [];
+  public dataTable: any;
   public total = 0;
   constructor(
     private orderService: OrdersService,
@@ -40,12 +40,19 @@ export class OrderListComponent implements OnInit {
   getAll(){
     this.orderService.getOrderList({
       size: 10,
-      page: 1
+      page: 0
     })
     .subscribe({
       next: resp => {
-        this.dataTable = resp.data;
-        this.total = this.dataTable?.length
+        this.dataTable = resp.data?.content;
+        this.total = resp?.data?.totalElements
+        console.log(this.dataTable);
+      },
+      error: err => {
+        this.modalService.alert({
+          type: 'error',
+          message: err?.message
+        })
       }
     })
   }

@@ -53,7 +53,7 @@ export class CheckoutComponent implements OnInit {
       email: email,
       phone: phone,
       name: name,
-      paymentProvider: 'PAYPAL',
+      paymentProvider: 'COD',
       total: this.cart.total,
       provinceId: address?.province?.code,
       districtId: address?.district?.code,
@@ -65,7 +65,10 @@ export class CheckoutComponent implements OnInit {
     };
     console.log(params);
     this.globalService.initOrder(params).subscribe({
-      next: (res) => {console.log(res)},
+      next: () => {this.modalService.alert({
+        type: 'success',
+        message: 'Mua hàng thành công'
+      })},
       error: (err) => {
         this.modalService.alert({
           type: 'error',
