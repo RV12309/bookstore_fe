@@ -1,27 +1,14 @@
 <div
-  class="h-screen box-border p-3 relative duration-500 overflow-hidden"
+  class="h-screen box-border p-3 relative duration-500 overflow-scroll"
   [ngClass]="isExpand ? 'w-[300px]' : 'w-[70px]'"
 >
   <div class="w-full text-center flex items-center h-[70px]">
-    <!-- <button
-      class="rounded-xl center aspect-square bg-white hover:bg-purple-light"
-      (click)="expand()"
-    >
-      <img
-        src="assets/icons/default/ic-align-justify.svg"
-        class="w-10 h-10"
-        alt=""
-      />
-    </button> -->
-    <!-- <img src="assets/images/logo.png" class="w-20 h-20" alt="" *ngIf="isExpand"> -->
     <div *ngIf="isExpand" class="flex gap-x-2 font-kanit">
       <span class=" text-4xl ml-1">eFinBooks</span>
       <span class="text-xs font-medium">for Seller</span>
     </div>
   </div>
-  <!-- menu -->
-
-  <div class="mt-5">
+  <div class="mt-5 ">
     <div
       *ngFor="let item of menuList"
       class="border-t border-solid border-purple-light mt-8 pt-6"
@@ -56,28 +43,25 @@
       </ng-container>
     </div>
   </div>
-  <div class="absolute p-3 bottom-0 left-0 font-medium bg-white w-full">
-    <!-- <div class="group rounded-xl aspect-3/2 bg-gray mb-5 overflow-hidden relative">
-      <img #website src="assets/gifs/bookmarks.gif" class="w-full group-hover:blur-sm duration-400" alt="">
-    </div> -->
-    <button
-      class="mb-3 w-10 aspect-square rounded-xl center hover:bg-purple-light cursor-pointer duration-400"
-      (click)="expand()"
-    >
-      <img
-        src="assets/icons/default/ic-chevron-back-outline.svg"
-        class="duration-400"
-        [ngClass]="isExpand ? '' : 'rotate-180'"
-        alt=""
-      />
-    </button>
-    <div class="flex items-center gap-x-3 w-[max-content] text-sm font-medium hover:text-purple duration-300" (click)="logout()">
-      <img
-        src="assets/icons/default/ic-logout.svg"
-        class="w-6"
-        alt=""
-      />
-      <span *ngIf="isExpand" class="">Đăng xuất</span>
-    </div>
+s</div>
+<div class="absolute p-3 bottom-0 left-0 font-medium bg-white w-[300px]">
+  <button
+    class="mb-3 w-10 aspect-square rounded-xl center hover:bg-purple-light cursor-pointer duration-400"
+    (click)="expand()"
+  >
+    <img
+      src="assets/icons/default/ic-chevron-back-outline.svg"
+      class="duration-400"
+      [ngClass]="isExpand ? '' : 'rotate-180'"
+      alt=""
+    />
+  </button>
+  <div class="flex items-center gap-x-3 w-[max-content] text-sm font-medium hover:text-purple duration-300" (click)="logout()">
+    <img
+      src="assets/icons/default/ic-logout.svg"
+      class="w-6"
+      alt=""
+    />
+    <span *ngIf="isExpand" class="">Đăng xuất</span>
   </div>
 </div>
