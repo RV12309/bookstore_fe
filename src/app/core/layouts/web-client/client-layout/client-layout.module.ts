@@ -53,6 +53,10 @@ const routes: Routes = [
         data: {
           breadcrumb: 'Thanh toán'
         }
+      },
+      {
+        path: 'order-success',
+        loadChildren: () => import('src/app/components/order-result/order-result.module').then( m => m.OrderResultModule)
       }
 
     ]

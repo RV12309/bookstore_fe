@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { MenuItem } from "primeng/api";
+import { BREADCRUMB_DEFAULT } from "src/app/core/constant/common.constant";
 import { JWTStorageKey, StorageKey } from 'src/app/core/enums';
 import { ICart, ICartItem } from 'src/app/core/interfaces/cart';
 import { ITitleTable } from "src/app/core/interfaces/table.interface";
@@ -16,6 +18,7 @@ export class CartComponent implements OnInit {
 
   public cart!: ICart;
   public totalItems: number = 0;
+  public breadcrumb:MenuItem[] = [];
 
   constructor(
     private router: Router,
@@ -27,6 +30,12 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCart();
+    this.breadcrumb = [
+      ...BREADCRUMB_DEFAULT,
+      {
+        label: "Giỏ hàng",
+      }
+    ]
   }
 
   checkout(){

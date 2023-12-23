@@ -31,7 +31,7 @@ import { DecimalPipe } from "@angular/common";
     HttpClientModule,
     ToastModule,
     ButtonModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'}),
     PipesModule
   ],
   providers: [

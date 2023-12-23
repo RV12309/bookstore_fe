@@ -10,6 +10,7 @@ import { filter } from "rxjs";
 })
 export class BreadcrumbUiComponent implements OnInit {
   @Input() items!: MenuItem[];
+  @Input() title!:string;
 
   public home: MenuItem | undefined;
   constructor(private route: ActivatedRoute, private router: Router) {}

@@ -8,6 +8,7 @@ import {DividerModule} from 'primeng/divider';
 import { ButtonModule } from "primeng/button";
 import { TableUiModule } from "src/app/components/table-ui/table-ui.module";
 import { InputTextModule } from "primeng/inputtext";
+import { BreadcrumbUiModule } from "src/app/components/breadcrumb-ui/breadcrumb-ui.module";
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { InputTextModule } from "primeng/inputtext";
     DividerModule,
     ButtonModule,
     TableUiModule,
-    InputTextModule
+    InputTextModule,
+    BreadcrumbUiModule
   ],
   exports: [
     CartComponent

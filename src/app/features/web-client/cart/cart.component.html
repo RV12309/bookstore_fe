@@ -42,134 +42,143 @@
     </button>
   </div>
 </div> -->
-
-<div class="grid grid-cols-4 gap-x-10">
-  <div class="col-span-2 grid content-start gap-y-5">
-    <!-- <app-table-ui
-      headerTable="Giỏ hàng"
-      [checkbox]="false"
-      [titleTable]="titleTable"
-      [isRefresh]="false"
-      [dataTable]="dataTable"
-      [paginator]="false"
-      [rows]="10"
-    >
-      <ng-template #tableBody>
-        <td>
+<app-breadcrumb-ui [items]="breadcrumb"></app-breadcrumb-ui>
+<h3 class="title-page">Giỏ hàng</h3>
+<ng-container *ngIf="cart?.items; else emptyTpl">
+  <div class="grid grid-cols-4 gap-x-10">
+    <div class="col-span-2 grid content-start gap-y-5">
+      <div
+        *ngFor="let item of cart?.items; let index = index; let last = last"
+        class="border-r-2 border-solid border-white hover:border-purple box-border duration-400 pr-2"
+      >
+        <div class="flex gap-x-3">
           <img
-            src="https://edit.org/images/cat/book-covers-big-2019101610.jpg"
+            src="{{ item.urlThumbnail }}"
             alt=""
-            class="w-32 object-cover rounded-xl aspect-square"
+            class="w-32 object-cover rounded-md rounded-l-3xl aspect-2/3"
           />
-        </td>
-        <td>Tác giả</td>
-        <td>Số lượng</td>
-        <td>Thành tiền</td>
-      </ng-template>
-
-    </app-table-ui> -->
-    <div
-      *ngFor="let item of cart?.items; let index = index; let last = last"
-      class="border-r-2 border-solid border-white hover:border-purple box-border duration-400 pr-2"
-    >
-      <div class="flex gap-x-3">
-        <img
-          src="{{item.urlThumbnail}}"
-          alt=""
-          class="w-32 object-cover rounded-md rounded-l-3xl aspect-2/3"
-        />
-        <div class="w-full grid">
-          <div class="grid content-start gap-y-4">
-            <p class="font-semibold text-xl">{{item.title}}</p>
-            <div class="flex items-center gap-x-6">
-              <span class="font-medium text-neutral-500">Số lượng</span>
-              <app-quantity (changeQuantity)="onChangeQuantity($event, item)" [quantity]="item.quantity"></app-quantity>
+          <div class="w-full grid">
+            <div class="grid content-start gap-y-4">
+              <p class="font-semibold text-xl">{{ item.title }}</p>
+              <div class="flex items-center gap-x-6">
+                <span class="font-medium text-neutral-500">Số lượng</span>
+                <app-quantity
+                  (changeQuantity)="onChangeQuantity($event, item)"
+                  [quantity]="item.quantity"
+                ></app-quantity>
+              </div>
+              <div class="flex items-end gap-x-6">
+                <span class="font-medium text-neutral-500">Đơn giá</span>
+                <span class="font-bold text-brown">
+                  {{ item.price | price }}
+                  <span class="font-normal">/sản phẩm</span>
+                </span>
+              </div>
             </div>
-            <div class="flex items-end gap-x-6">
-              <span class="font-medium text-neutral-500">Đơn giá</span>
-              <span class="font-bold text-brown">
-                {{ item.price| price }}
-                <span class="font-normal">/sản phẩm</span>
-              </span>
+            <div class="flex items-end justify-between text-orange">
+              <div class="flex items-end gap-x-6">
+                <span class="font-medium text-lg">Thành tiền</span>
+                <span class="font-bold text-lg">
+                  {{ item.total | price }}
+                </span>
+              </div>
+              <button
+                class="w-fit aspect-square rounded-xl cursor-pointer bg-white hover:bg-brown-light duration-400"
+                (click)="deleteProduct(item)"
+              >
+                <img
+                  src="assets/icons/default/ic-trash.svg"
+                  class="w-8"
+                  alt=""
+                />
+              </button>
             </div>
-          </div>
-          <div class="flex items-end justify-between text-orange">
-            <div class="flex items-end gap-x-6">
-              <span class="font-medium text-lg">Thành tiền</span>
-              <span class="font-bold text-lg">
-                {{ item.total | price }}
-              </span>
-            </div>
-            <button
-              class="w-fit aspect-square rounded-xl cursor-pointer bg-white hover:bg-brown-light duration-400"
-              (click)="deleteProduct(item)"
-            >
-              <img
-                src="assets/icons/default/ic-trash.svg"
-                class="w-8"
-                alt=""
-              />
-            </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div></div>
-  <div class="col-span-1 grid content-start gap-y-6 h-fit">
-    <div
-      class="rounded-xl bg-gray/30 p-6 box-border grid content-start gap-y-6"
-    >
+    <div></div>
+    <div class="col-span-1 grid content-start gap-y-6 h-fit">
+      <div
+        class="rounded-xl bg-gray/30 p-6 box-border grid content-start gap-y-6"
+      >
+        <button
+          pButton
+          class="w-full p-button-rounded p-button-info"
+          (click)="shopping()"
+        >
+          Tiếp tục mua sắm
+        </button>
+        <div class="flex justify-between">
+          <span class="text-neutral-500 font-bold">Mã vận chuyển</span>
+          <span>Lorem ipsum dolor sit</span>
+        </div>
+        <div class="flex gap-x-3">
+          <input
+            type="text"
+            pInputText
+            placeholder="Nhập voucher..."
+          />
+          <button
+            pButton
+            class="min-w-fit p-button-rounded"
+          >
+            Áp dụng
+          </button>
+        </div>
+        <p-divider
+          align="left"
+          type="dashed"
+        ></p-divider>
+        <div class="flex justify-between">
+          <span class="font-bold text-neutral-500">Tổng sản phẩm</span>
+          <span class="font-semibold text-orange">
+            {{ totalItems }} sản phẩm
+          </span>
+        </div>
+        <div class="flex justify-between">
+          <span class="font-bold text-neutral-500">Tổng tiền hàng</span>
+          <span class="font-semibold text-orange">
+            {{ cart?.total! | price }}
+          </span>
+        </div>
+        <div class="flex justify-between">
+          <span class="font-bold text-neutral-500">Phí dịch vụ</span>
+          <span class="font-semibold text-orange">{{ 100000 | price }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="font-bold text-lg">Tổng</span>
+          <span class="font-bold text-purple text-lg">
+            {{ 100000 | price }}
+          </span>
+        </div>
+      </div>
       <button
         pButton
-        class="w-full p-button-info"
+        class="p-button-rounded"
+        (click)="checkout()"
+      >
+        Mua ngay
+      </button>
+    </div>
+  </div>
+</ng-container>
+<ng-template #emptyTpl>
+  <div class="center">
+    <div class="grid grid-cols-1 gap-y-3 place-items-center">
+      <img
+        src="assets/svgs/undraw_empty_cart_co35.svg"
+        class="w-64"
+        alt=""
+      />
+      <p>Chưa có sản phẩm trong giỏ hàng của bạn.</p>
+      <button
+        pButton
+        class="w-fit p-button-rounded p-button-info"
         (click)="shopping()"
       >
         Tiếp tục mua sắm
       </button>
-      <div class="flex justify-between">
-        <span class="text-neutral-500 font-bold">Mã vận chuyển</span>
-        <span>Lorem ipsum dolor sit</span>
-      </div>
-      <div class="flex gap-x-3">
-        <input
-          type="text"
-          pInputText
-          placeholder="Nhập voucher..."
-        />
-        <button
-          pButton
-          class="min-w-fit"
-        >
-          Áp dụng
-        </button>
-      </div>
-      <p-divider
-        align="left"
-        type="dashed"
-      ></p-divider>
-      <div class="flex justify-between">
-        <span class="font-bold text-neutral-500">Tổng sản phẩm</span>
-        <span class="font-semibold text-orange">{{ totalItems }} sản phẩm</span>
-      </div>
-      <div class="flex justify-between">
-        <span class="font-bold text-neutral-500">Tổng tiền hàng</span>
-        <span class="font-semibold text-orange">{{ cart?.total! | price }}</span>
-      </div>
-      <div class="flex justify-between">
-        <span class="font-bold text-neutral-500">Phí dịch vụ</span>
-        <span class="font-semibold text-orange">{{ 100000 | price }}</span>
-      </div>
-      <div class="flex justify-between">
-        <span class="font-bold text-lg">Tổng</span>
-        <span class="font-bold text-purple text-lg">{{ 100000 | price }}</span>
-      </div>
     </div>
-    <button
-      pButton
-      (click)="checkout()"
-    >
-      Mua ngay
-    </button>
   </div>
-</div>
+</ng-template>

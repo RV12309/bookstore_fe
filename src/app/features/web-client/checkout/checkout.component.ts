@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MenuItem } from "primeng/api";
+import { BREADCRUMB_DEFAULT } from "src/app/core/constant/common.constant";
 import { JWTStorageKey, StorageKey } from 'src/app/core/enums';
 import { ICart, ICartItem } from 'src/app/core/interfaces/cart';
 import { GlobalService, StoreService } from 'src/app/core/services';
@@ -18,6 +20,19 @@ export class CheckoutComponent implements OnInit {
   public cart!: ICart;
   public totalItems: number = 0;
   public form!: FormGroup;
+  public breadcrumb:MenuItem[] = [];
+  public paymentMethodList = [
+    {
+      value : 'vnpay',
+      img: 'https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR.png',
+      label: 'Ví VNPAY'
+    },
+    {
+      value : 'bank',
+      img: 'https://thebankz.com/wp-content/uploads/2023/05/logo-ngan-hang-vietcombank-moi.jpg',
+      label: 'Ngân hàng nội địa'
+    }
+  ];
   
   constructor(
     private router: Router,
@@ -30,6 +45,16 @@ export class CheckoutComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.breadcrumb = [
+      ...BREADCRUMB_DEFAULT,
+      {
+        label: "Giỏ hàng",
+        routerLink: '/cart'
+      },
+      {
+        label: "Thanh toán",
+      }
+    ]
     this.initForm();
     this.getCustomerInfo();
     this.getCart();
@@ -40,7 +65,7 @@ export class CheckoutComponent implements OnInit {
       name: [],
       address: [],
       phone: [],
-      paymentProvider: [],
+      paymentProvider: ['vnpay'],
       email: [],
       specificAddr: []
     })
