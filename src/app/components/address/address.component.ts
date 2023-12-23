@@ -11,7 +11,7 @@ import { GlobalService } from "src/app/core/services";
 })
 export class AddressComponent implements OnInit {
 
-  @Input() addressContainerClass = 'w-full grid grid-cols-3 gap-x-4';
+  @Input() addressContainerClass = 'w-full grid grid-cols-1 md:grid-cols-3 gap-y-3 md:gap-y-0 gap-x-3';
   @Output() changeValue = new EventEmitter<any>();
 
   public addressForm!:FormGroup;
