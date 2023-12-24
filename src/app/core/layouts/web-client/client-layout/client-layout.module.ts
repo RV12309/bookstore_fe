@@ -57,8 +57,11 @@ const routes: Routes = [
       {
         path: 'order-success',
         loadChildren: () => import('src/app/components/order-result/order-result.module').then( m => m.OrderResultModule)
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('src/app/features/web-client/profile/profile-layout/profile-layout.module').then(m => m.ProfileLayoutModule)
       }
-
     ]
   },
 ];

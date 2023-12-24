@@ -38,6 +38,12 @@ export class HeaderComponent implements OnInit {
         this.authService.logout();
       },
     },
+    {
+      label: "Quản lý tài khoản",
+      command: () => {
+        this.router.navigate(['/profile'])
+      },
+    },
   ];
 
   users = [
