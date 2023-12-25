@@ -51,6 +51,7 @@ export class CartComponent implements OnInit {
     if(this.storeService.getSession(StorageKey.cart)){
       sessionId = this.storeService.getSession(StorageKey.cart)?.toString() || '';
     }
+    this.totalItems = 0;
     this.globalService.getCart(sessionId || 0, userId || 0).subscribe({
       next: (res) => {
         this.cart = res.data;
@@ -78,6 +79,7 @@ export class CartComponent implements OnInit {
         action: 'UPDATE'
       }
       this.globalService.updateCart(params).subscribe({
+        next: () => this.getCart(),
         // next: (res) => {
         //   this.modalService.alert({
         //     type: 'success',

@@ -23,13 +23,19 @@ export class HeaderComponent implements OnInit {
   @ViewChild("menuUser", { static: false }) menuUser!: Menu;
   public BRANCH_NAME = BRANCH_NAME;
   public items = [
+    // {
+    //   label: "Thông tin cá nhân",
+    //   command: () => {
+    //     this.modalService.open(ModalProfileComponent, {
+    //       header: "Thông tin cá nhân",
+    //       width: ModalSize.Large
+    //     });
+    //   },
+    // },
     {
-      label: "Thông tin cá nhân",
+      label: "Quản lý tài khoản",
       command: () => {
-        this.modalService.open(ModalProfileComponent, {
-          header: "Thông tin cá nhân",
-          width: ModalSize.Large
-        });
+        this.router.navigate(['/profile'])
       },
     },
     {
@@ -37,13 +43,7 @@ export class HeaderComponent implements OnInit {
       command: () => {
         this.authService.logout();
       },
-    },
-    {
-      label: "Quản lý tài khoản",
-      command: () => {
-        this.router.navigate(['/profile'])
-      },
-    },
+    }
   ];
 
   users = [

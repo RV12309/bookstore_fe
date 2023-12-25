@@ -144,12 +144,12 @@
         </div>
         <div class="flex justify-between">
           <span class="font-bold text-neutral-500">Phí dịch vụ</span>
-          <span class="font-semibold text-orange">{{ 100000 | price }}</span>
+          <span class="font-semibold text-orange">Miễn phí</span>
         </div>
         <div class="flex justify-between">
           <span class="font-bold text-lg">Tổng</span>
           <span class="font-bold text-purple text-lg">
-            {{ 100000 | price }}
+            {{ cart?.total! | price }}
           </span>
         </div>
       </div>

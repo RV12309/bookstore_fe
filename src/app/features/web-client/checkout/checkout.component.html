@@ -133,15 +133,15 @@
           <tbody>
             <tr>
               <td class="font-medium text-neutral-600">Thành tiền</td>
-              <td class="text-right">{{300000 | price}}</td>
+              <td class="text-right">{{cart?.total!| price}}</td>
             </tr>
             <tr>
               <td class="font-medium text-neutral-600">Phí vận chuyển</td>
-              <td class="text-right">{{300000 | price}}</td>
+              <td class="text-right">Miễn phí</td>
             </tr>
             <tr>
               <td class="font-semibold text-lg text-neutral-700">Tổng tiền</td>
-              <td class="text-lg font-bold text-orange">{{300000 | price}}</td>
+              <td class="text-lg font-bold text-orange">{{cart?.total! | price}}</td>
             </tr>
           </tbody>
         </table>

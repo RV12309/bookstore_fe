@@ -16,20 +16,20 @@ export class ProfileLayoutComponent implements OnInit {
       icon: '/default/ic-user-01.svg',
       label: 'Tài khoản của tôi',
       route: '',
-      children: [
-        {
-          // icon: 'ic-books-list.svg',
-          title: 'Hồ sơ',
-          key: '',
-          // route: '/seller/books'
-        },
-        {
-          // icon: 'ic-category.svg',
-          title: 'Địa chỉ',
-          key: '',
-          // route: '/seller/books/categories'
-        }
-      ]
+      // children: [
+      //   {
+      //     // icon: 'ic-books-list.svg',
+      //     title: 'Hồ sơ',
+      //     key: '',
+      //     // route: '/seller/books'
+      //   },
+      //   {
+      //     // icon: 'ic-category.svg',
+      //     title: 'Địa chỉ',
+      //     key: '',
+      //     // route: '/seller/books/categories'
+      //   }
+      // ]
     },
     {
       icon: '/default/ic-document-text.svg',

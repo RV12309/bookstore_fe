@@ -23,14 +23,24 @@ export class CheckoutComponent implements OnInit {
   public breadcrumb:MenuItem[] = [];
   public paymentMethodList = [
     {
-      value : 'vnpay',
-      img: 'https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR.png',
-      label: 'Ví VNPAY'
+      value : 'COD',
+      img: 'https://cdn0.fahasa.com/skin/frontend/base/default/images/payment_icon/ico_cashondelivery.svg',
+      label: 'Thanh toán khi nhận hàng'
     },
     {
-      value : 'bank',
-      img: 'https://thebankz.com/wp-content/uploads/2023/05/logo-ngan-hang-vietcombank-moi.jpg',
+      value : 'BANKING',
+      img: 'https://cdn0.fahasa.com/skin/frontend/base/default/images/payment_icon/ico_zalopayatm.svg',
       label: 'Ngân hàng nội địa'
+    },
+    {
+      value : 'PAYPAL',
+      img: 'https://logowik.com/content/uploads/images/paypal-new-20232814.logowik.com.webp',
+      label: 'PAYPAL'
+    },
+    {
+      value : 'STRIPE',
+      img: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg',
+      label: 'STRIPE'
     }
   ];
   
@@ -65,7 +75,7 @@ export class CheckoutComponent implements OnInit {
       name: [],
       address: [],
       phone: [],
-      paymentProvider: ['vnpay'],
+      paymentProvider: [this.paymentMethodList[0].value],
       email: [],
       specificAddr: []
     })
@@ -78,7 +88,7 @@ export class CheckoutComponent implements OnInit {
       email: email,
       phone: phone,
       name: name,
-      paymentProvider: 'COD',
+      paymentProvider,
       total: this.cart.total,
       provinceId: address?.province?.code,
       districtId: address?.district?.code,
@@ -89,18 +99,18 @@ export class CheckoutComponent implements OnInit {
       firstAddress: specificAddr
     };
     console.log(params);
-    this.globalService.initOrder(params).subscribe({
-      next: () => {this.modalService.alert({
-        type: 'success',
-        message: 'Mua hàng thành công'
-      })},
-      error: (err) => {
-        this.modalService.alert({
-          type: 'error',
-          message: err.message
-        })
-      }
-    })
+    // this.globalService.initOrder(params).subscribe({
+    //   next: () => {this.modalService.alert({
+    //     type: 'success',
+    //     message: 'Mua hàng thành công'
+    //   })},
+    //   error: (err) => {
+    //     this.modalService.alert({
+    //       type: 'error',
+    //       message: err.message
+    //     })
+    //   }
+    // })
   }
 
   public onChangeAddress(e: any){
