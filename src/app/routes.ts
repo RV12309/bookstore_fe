@@ -31,7 +31,12 @@ export const routes: Routes = [
       {
         path: '**',
         component: NotFoundComponent
-      }
+      },
+      {
+        path: 'admin',
+        loadChildren: () => import('src/app/core/layouts/seller-layout/seller-layout.module').then(m => m.SellerLayoutModule),
+        canActivate: [LoggedGuard]
+      },
     ]
   }
 

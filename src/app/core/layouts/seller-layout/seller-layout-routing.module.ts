@@ -36,7 +36,21 @@ export const routes:Routes = [
         path: '',
         redirectTo: 'books',
         pathMatch: 'full'
-      }
+      },
+      {
+        path: 'management/sellers',
+        loadChildren: () => import('src/app/features/admin/management/sellers/sellers.module').then(m => m.SellersModule),
+        data: {
+          breadcrumb: "Quản lý người bán"
+        }
+      },
+      {
+        path: 'management/customers',
+        loadChildren: () => import('src/app/features/admin/management/customers/customers.module').then(m => m.CustomersModule),
+        data: {
+          breadcrumb: "Quản lý người mua"
+        }
+      },
     ]
   }
 ]

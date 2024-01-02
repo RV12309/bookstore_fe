@@ -61,6 +61,47 @@ export class SellerLayoutComponent implements OnInit {
     }
   ]
 
+  public adminMenu: IMenuSidebar[] = [
+    {
+      icon: '',
+      label: 'Quản lý người dùng',
+      route: '',
+      children: [
+        {
+          icon: 'ic-user-01.svg',
+          title: 'Quản lý người bán',
+          key: '',
+          route: '/management/sellers'
+        },
+        {
+          icon: 'ic-user-01.svg',
+          title: 'Quản lý người mua',
+          key: '',
+          route: '/management/customers'
+        }
+      ]
+    },
+    {
+      icon: '',
+      label: 'Thống kê',
+      route: '',
+      children: [
+        {
+          icon: 'ic-statistics.svg',
+          title: 'Số lượng bán',
+          key: '',
+          route: '/seller/statistics'
+        },
+        {
+          icon: 'ic-statistics.svg',
+          title: 'Doanh số bán',
+          key: '',
+          route: '/seller/statistics'
+        }
+      ]
+    }
+  ]
+
   public items: MenuItem[] = [];
   constructor(
     private modalService: ModalService,
