@@ -4,6 +4,8 @@ import { IMenuSidebar } from "../../interfaces/common.interface";
 import { ModalService } from "../../services/modal";
 import { ModalAccountManagerComponent } from "src/app/features/seller/account/modal-account-manager/modal-account-manager.component";
 import { AuthService } from "../../services/auth/auth.service";
+import { IRole } from '../../interfaces';
+import { Authority, JWTStorageKey } from '../../enums';
 
 @Component({
   selector: 'app-seller-layout',
@@ -132,5 +134,10 @@ export class SellerLayoutComponent implements OnInit {
         }
     }
   ];
+  const role: IRole[] = this.authService.getDataByKey(JWTStorageKey.role);
+      if(role[0]?.authority === Authority.Admin){
+        this.menus = this.adminMenu
+      }
+      console.log(this.menus);
   }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -26,5 +26,22 @@ export class UserService {
 
   updateSellerInfo(body: any): Observable<IResponse<any>>{
     return this.http.put<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Seller}`, body);
+  }
+
+  getUserList(form: any): Observable<IResponse<any>>{
+    const queryParams = new HttpParams(
+      {
+        fromObject: {...form}
+      }
+    )
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Users}?${queryParams}`);
+  }
+
+  getUserInfo(id: string | number): Observable<IResponse<any>>{
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Users}/${id}`);
+  }
+
+  lockUser(id: string | number): Observable<IResponse<any>>{
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Users}/${id}/lock`);
   }
 }

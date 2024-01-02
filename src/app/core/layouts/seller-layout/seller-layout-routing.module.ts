@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SellerLayoutComponent } from "./seller-layout.component";
+import { AdminGuard } from '../../guards/admin.guard';
 
 export const routes:Routes = [
   {
@@ -42,15 +43,23 @@ export const routes:Routes = [
         loadChildren: () => import('src/app/features/admin/management/sellers/sellers.module').then(m => m.SellersModule),
         data: {
           breadcrumb: "Quản lý người bán"
-        }
+        },
+        canActivate: [AdminGuard]
       },
       {
         path: 'management/customers',
         loadChildren: () => import('src/app/features/admin/management/customers/customers.module').then(m => m.CustomersModule),
         data: {
           breadcrumb: "Quản lý người mua"
-        }
+        },
+        canActivate: [AdminGuard]
       },
+      // {
+      //   path: '',
+      //   redirectTo: 'management/sellers',
+      //   pathMatch: 'full',
+      //   canActivate: [AdminGuard]
+      // },
     ]
   }
 ]
