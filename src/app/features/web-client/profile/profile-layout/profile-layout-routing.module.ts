@@ -7,7 +7,14 @@ const routes: Routes = [
     path: '',
     component: ProfileLayoutComponent,
     children: [
-      
+      {
+        path: '',
+        loadChildren: () => import('src/app/features/web-client/profile/modal-profile/modal-profile.module').then(m => m.ModalProfileModule)
+      },
+      // {
+      //   path: '',
+      //   loadChildren: () => import('src/app/features/web-client/checkout/checkout.module').then(m => m.CheckoutModule)
+      // }
     ]
   }
 ];

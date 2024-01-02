@@ -33,7 +33,7 @@ export class ModalProfileComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private modalRef: DynamicDialogRef,
+    // private modalRef: DynamicDialogRef,
     private uploadService: UploadService,
     private modalService: ModalService,
     private userService: UserService,
@@ -91,7 +91,7 @@ export class ModalProfileComponent implements OnInit {
           type: 'success',
           message: 'Thay đổi thông tin thành công'
         });
-        this.closeModal
+        // this.closeModal
       },
       error: (err) => {
         this.modalService.alert({
@@ -102,9 +102,9 @@ export class ModalProfileComponent implements OnInit {
     })
   }
 
-  closeModal(){
-    this.modalRef.close();
-  }
+  // closeModal(){
+  //   this.modalRef.close();
+  // }
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];

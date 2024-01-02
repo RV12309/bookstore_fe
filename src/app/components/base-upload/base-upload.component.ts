@@ -27,7 +27,7 @@ export class BaseUploadComponent implements OnInit {
   private uploadPreset = "aoh4fpwm"; // replace with your own upload preset
   private urlsAfterUpload:string[] = []; // url của anh sau khi upload file
 
-  public uploadedFiles: any[] = [];
+  @Input() uploadedFiles: any[] = [];
 
   constructor(
     private uploadService: UploadService,
