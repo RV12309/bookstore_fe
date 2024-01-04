@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MenuItem } from "primeng/api";
+import { BREADCRUMB_DEFAULT } from "src/app/core/constant/common.constant";
 import { GlobalService } from 'src/app/core/services';
 import { ModalService } from 'src/app/core/services/modal';
 
@@ -11,6 +13,8 @@ import { ModalService } from 'src/app/core/services/modal';
 export class TracingComponent implements OnInit {
 
   public form!: FormGroup;
+  public breadcrumb:MenuItem[] = [];
+
   constructor(
     private formBuilder: FormBuilder,
     private globalService: GlobalService,
@@ -20,7 +24,13 @@ export class TracingComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       orderId: ['', Validators.required]
-    })
+    });
+    this.breadcrumb = [
+      ...BREADCRUMB_DEFAULT,
+      {
+        label: "Tra cứu đơn hàng",
+      }
+    ]
   }
 
   public submit(){

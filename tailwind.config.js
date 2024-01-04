@@ -36,7 +36,7 @@ module.exports = {
       boxShadow: {
         '#1': '#6C5DD470 0px 7px 29px 0px',
         '#6': '#6C5DD470 0px 2px 8px 0px',
-
+        '#0': 'rgba(149, 157, 165, 0.2) 0px 8px 24px'
       },
       fontFamily: {
         'second': ['Grandstander'],
