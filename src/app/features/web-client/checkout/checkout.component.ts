@@ -99,18 +99,15 @@ export class CheckoutComponent implements OnInit {
       firstAddress: specificAddr
     };
     console.log(params);
-    // this.globalService.initOrder(params).subscribe({
-    //   next: () => {this.modalService.alert({
-    //     type: 'success',
-    //     message: 'Mua hàng thành công'
-    //   })},
-    //   error: (err) => {
-    //     this.modalService.alert({
-    //       type: 'error',
-    //       message: err.message
-    //     })
-    //   }
-    // })
+    this.globalService.initOrder(params).subscribe({
+      next: (res) => this.router.navigate(['/order-success'], {state: res}),
+      error: (err) => {
+        this.modalService.alert({
+          type: 'error',
+          message: err.message
+        })
+      }
+    })
   }
 
   public onChangeAddress(e: any){

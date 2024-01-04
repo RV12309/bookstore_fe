@@ -10,14 +10,13 @@
         alt=""
       />
       <div>
-        <p class="font-semibold text-xl">Quang Duy</p>
-        <p class="italic mt-2">Sửa hồ sơ</p>
+        <p class="font-semibold text-xl">{{username}}</p>
       </div>
     </div>
     <p-divider></p-divider>
     <div class="grid grid-cols-1 gap-y-3">
       <div *ngFor="let item of menus">
-        <div class="cursor-pointer flex items-center text-[15px]">
+        <div class="cursor-pointer flex items-center text-[15px]" (click)="redirect(item.route)">
           <img [src]="'assets/icons' + item?.icon" class="w-5 mr-2" [alt]="item?.icon">
           <p class="hover:text-purple duration-200">{{item?.label}}</p>
         </div>

@@ -78,9 +78,16 @@ export class HeaderComponent implements OnInit {
   public menu = [
     {
       label: "Sản phẩm",
-      // icon: "pi pi-book",
+      icon: "pi pi-book",
       command: () => {
         this.router.navigate(["/products"]);
+      },
+    },
+    {
+      label: "Tra cứu đơn hàng",
+      icon: "pi pi-shopping-bag",
+      command: () => {
+        this.router.navigate(["/tracing"]);
       },
     },
   ];

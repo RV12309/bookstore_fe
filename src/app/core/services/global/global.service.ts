@@ -62,6 +62,8 @@ export class GlobalService {
       `${this.url}/orders`, body);
   }
 
-
+  getOrderDetail(id: string | number): Observable<IResponse<ICart>>{
+    return this.http.get<IResponse<ICart>>(`${this.url}/orders/${id}`);
+  }
 
 }

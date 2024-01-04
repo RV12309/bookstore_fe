@@ -1,0 +1,39 @@
+<div class="flex w-fit gap-10">
+<div class="mt-10 flex-1">
+    <span class="font-bold text-purple text-3xl">Tra cứu đơn hàng</span>
+    <div class="space-y-6 mt-5">
+<div [formGroup]="form">
+    <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Mã đơn hàng</label>
+    <div class="mt-1 input-icon-left">
+      <input
+        pInputText
+        maxlength="20"
+        id="username"
+        name="username"
+        type="username"
+        required appNonSpace
+        placeholder="Nhập mã đơn hàng"
+        formControlName="orderId"
+        class="w-full pl-10 duration-400"
+      />
+    </div>
+    <ng-container>
+      <div *ngIf="form?.invalid && form.controls['orderId']?.touched" class="error-text">
+        <p *ngIf="form.controls['orderId']?.hasError('required')">
+          Vui lòng nhập mã đơn hàng
+        </p>
+      </div>
+    </ng-container>
+  </div>
+  <div>
+    <button
+      type="submit"
+      class="button button-primary w-full"
+      (click)="submit()"
+    >
+      Tra cứu
+    </button>
+  </div>
+  </div>
+  </div>
+</div>

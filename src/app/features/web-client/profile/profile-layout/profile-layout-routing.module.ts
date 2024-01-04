@@ -11,10 +11,10 @@ const routes: Routes = [
         path: '',
         loadChildren: () => import('src/app/features/web-client/profile/modal-profile/modal-profile.module').then(m => m.ModalProfileModule)
       },
-      // {
-      //   path: '',
-      //   loadChildren: () => import('src/app/features/web-client/checkout/checkout.module').then(m => m.CheckoutModule)
-      // }
+      {
+        path: 'orders',
+        loadChildren: () => import('src/app/features/web-client/profile/orders/order-list/order-list.module').then(m => m.OrderListModule)
+      }
     ]
   }
 ];

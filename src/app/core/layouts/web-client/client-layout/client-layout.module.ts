@@ -4,6 +4,7 @@ import { ClientLayoutComponent } from './client-layout.component';
 import { HeaderModule } from "src/app/components/header";
 import { FooterModule } from "src/app/components/footer/footer.module";
 import { RouterModule, Routes } from "@angular/router";
+import { LoggedGuard } from 'src/app/core/guards/logged.guard';
 
 
 const routes: Routes = [
@@ -60,8 +61,13 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        loadChildren: () => import('src/app/features/web-client/profile/profile-layout/profile-layout.module').then(m => m.ProfileLayoutModule)
-      }
+        loadChildren: () => import('src/app/features/web-client/profile/profile-layout/profile-layout.module').then(m => m.ProfileLayoutModule),
+        canActivate: [LoggedGuard]
+      },
+      {
+        path: 'tracing',
+        loadChildren: () => import('src/app/features/web-client/tracing/tracing.module').then(m => m.TracingModule),
+      },
     ]
   },
 ];
