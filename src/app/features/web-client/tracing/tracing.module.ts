@@ -7,6 +7,8 @@ import { BreadcrumbUiModule } from "src/app/components/breadcrumb-ui/breadcrumb-
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
+import { PricePipe } from 'src/app/core/pipes/price.pipe';
+import { PipesModule } from 'src/app/core/pipes/pipes.module';
 
 const routes: Routes = [
   {
@@ -27,7 +29,8 @@ const routes: Routes = [
     BreadcrumbUiModule,
     ButtonModule,
     CardModule,
-    InputTextModule
+    InputTextModule,
+    PipesModule
   ]
 })
 export class TracingModule { }

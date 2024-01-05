@@ -38,7 +38,7 @@
   </div>
 </div> -->
 
-<div class="bg-red-1000 grid content-start gap-y-8">
+<div class="bg-red-1000 grid content-start gap-y-8" [formGroup]="form">
   <app-breadcrumb-ui
     [items]="breadcrumb"
     [title]="'Tra cứu đơn hàng'"
@@ -95,6 +95,7 @@
       <div class="flex gap-x-4">
         <input
           type="text"
+          formControlName="orderId"
           pInputText
           placeholder="Nhập mã vận đơn..."
           style="border-radius: 50px !important"
@@ -102,35 +103,51 @@
         <button
           type="submit"
           pButton
+          (click)="submit()"
           class="p-button-rounded w-[200px]"
         >
           Submit
         </button>
       </div>
+      <ng-container>
+        <div *ngIf="form?.invalid && form.controls['orderId']?.touched" class="error-text">
+          <p *ngIf="form.controls['orderId']?.hasError('required')">
+            Vui lòng nhập mã đơn hàng
+          </p>
+        </div>
+      </ng-container>
     </div>
   </div>
-  <div>
+  <div *ngIf="tracking$ | async as tracking">
     <p class="text-2xl font-bold text-purple mb-2">Thông tin đơn hàng</p>
     <table class="custom-table-default">
       <tr>
         <th>Mã đơn hàng</th>
-        <td>-</td>
+        <td>{{tracking.orderId || '-'}}</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <th>Ngày lấy dự kiến</th>
-        <td>-</td>
+        <td>{{tracking.}}</td>
       </tr>
       <tr>
         <th>Ngày giao dự kiến</th>
         <td>-</td>
+      </tr> -->
+      <tr>
+        <th>Trạng thái đơn hàng</th>
+        <td>{{tracking.status | status}}</td>
       </tr>
       <tr>
-        <th>Trạng thái hiện tại</th>
-        <td>-</td>
+        <th>Tổng giá trị</th>
+        <td>{{tracking.total | price}}</td>
       </tr>
       <tr>
-        <th>Thông tin thêm</th>
-        <td>-</td>
+        <th>Hình thức thanh toán</th>
+        <td>{{tracking.paymentProvider}}</td>
+      </tr>
+      <tr>
+        <th>Trạng thái thanh toán</th>
+        <td>{{tracking.status | paymentStatus}}</td>
       </tr>
     </table>
   </div>

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ImagePreviewPipe } from "./image-preview.pipe";
 import { SafeUrlPipe } from './safe-url.pipe';
 import { PricePipe } from './price.pipe';
+import { StatusPipe } from './status.pipe';
+import { PaymentStatusPipe } from './payment-status.pipe';
 
 
 
@@ -10,7 +12,10 @@ import { PricePipe } from './price.pipe';
   declarations: [
     ImagePreviewPipe,
     SafeUrlPipe,
-    PricePipe
+    PricePipe,
+    StatusPipe,
+    PaymentStatusPipe,
+    
   ],
   imports: [
     CommonModule
@@ -18,7 +23,9 @@ import { PricePipe } from './price.pipe';
   exports: [
     ImagePreviewPipe,
     SafeUrlPipe,
-    PricePipe
+    PricePipe,
+    StatusPipe,
+    PaymentStatusPipe
   ],
 })
 export class PipesModule { }
