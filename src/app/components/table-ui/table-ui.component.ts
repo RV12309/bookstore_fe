@@ -87,13 +87,11 @@ export class TableUiComponent implements OnInit{
   }
 
   pageChange(e:any){
-    console.log(e);
     const infoPaginator:ITablePageChange = {
       ...e,
       pageIndex: e?.first/e?.rows,
       pageNumber: (e?.first/e?.rows) + 1
     }
-    console.log(infoPaginator);
     this.onPage.emit(infoPaginator);
   }
 
@@ -106,12 +104,10 @@ export class TableUiComponent implements OnInit{
   }
 
   checkboxAllChange(e:any){
-    console.log(e);
     this.selectAllChange.emit(e)
   }
 
   checkboxChange(e:any){
-    console.log(e);
     this.selectionChange.emit(e)
   }
 

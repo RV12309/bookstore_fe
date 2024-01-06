@@ -79,8 +79,6 @@ export class FilterComponent implements OnInit, OnChanges, AfterViewInit, OnDest
           )
           break;
         case InputType.Select:
-          console.log(controlValue);
-          console.log(item?.dataList);
           let selectValue;
           if(controlValue === '' || controlValue === 'all'){
             selectValue = 'all'
@@ -89,7 +87,6 @@ export class FilterComponent implements OnInit, OnChanges, AfterViewInit, OnDest
               selectValue = item?.dataList?.find(i => i?.value == controlValue)
             }
           }
-          console.log(selectValue);
           this.searchForm?.addControl(
             item?.controlName,
             this.addControl(selectValue)

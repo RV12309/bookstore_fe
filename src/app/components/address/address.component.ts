@@ -96,7 +96,6 @@ export class AddressComponent implements OnInit {
   }
 
   public onChangeWard() {
-    console.log(this.addressForm.value);
     this.changeValue.emit(this.addressForm.value)
   }
 

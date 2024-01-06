@@ -20,7 +20,6 @@ export class ModalConfirmComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.dialogConfigData = this.dialogConfig?.data;
-    console.log(this.dialogConfig?.data);
   }
 
   ngOnDestroy(): void {

@@ -58,9 +58,7 @@ export class ModalAccountManagerComponent {
   }
 
   submit(){
-    console.log(this.form?.value);
     const id = this.authService.getDataByKey(JWTStorageKey.account).id;
-    console.log(id);
     const {name, gender, email, 
     phone,
     dob,
@@ -82,7 +80,6 @@ export class ModalAccountManagerComponent {
     id,
     firstAddress: specificAddr
   }
-    console.log(params);
     this.userService.updateSellerInfo(params).subscribe({
       next: () => {
         this.modalService.alert({
@@ -112,10 +109,8 @@ export class ModalAccountManagerComponent {
     if (this.selectedFile) {
       this.uploadService.uploadImage(this.selectedFile).subscribe(
         response => {
-          console.log('Upload successful!', response);
         },
         error => {
-          console.error('Error uploading image:', error);
         }
       );
     }
@@ -124,7 +119,6 @@ export class ModalAccountManagerComponent {
   getCustomerInfo(){
     this.userService.getCustomerInfo().subscribe({
       next: res => {
-        console.log(res);
         this.form.patchValue(res.data);
         const gender = this.genders.find((item) => 
           item.code === res.data.gender
@@ -154,7 +148,6 @@ export class ModalAccountManagerComponent {
   }
 
   onUploadFile(e: any){
-    console.log(e.url);
   }
 
   public get formControls(){

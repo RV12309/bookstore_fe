@@ -94,7 +94,6 @@ export class ProductsListComponent implements OnInit {
   }
 
   onCheckedItem(){
-    console.log(this.selectedValues);
     this.currentParams = {
       ...this.currentParams,
       categoryIds: this.selectedValues
@@ -108,7 +107,6 @@ export class ProductsListComponent implements OnInit {
       priceFrom: this.priceRangeControl.value[0],
       priceTo: this.priceRangeControl.value[1],
     }
-    console.log(this.currentParams);
     this.getBookList();
   }
 
@@ -121,13 +119,11 @@ export class ProductsListComponent implements OnInit {
     if(this.storageService.getSession(StorageKey.cart)){
       sessionId = (this.storageService.getSession(StorageKey.cart))?.toString() || '';
     }
-    console.log(sessionId, userId);
     this.globalService.getCart(sessionId || 0, userId || 0).subscribe({
       next: (res) => {
         this.storageService.setSession(StorageKey.cart, res.data.id)
       },
       error: (err) => {
-        console.log(err);
       }
     })
   }

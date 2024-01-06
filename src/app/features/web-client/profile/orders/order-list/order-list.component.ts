@@ -43,7 +43,6 @@ export class OrderListComponent implements OnInit {
       next: resp => {
         this.dataTable = resp.data?.content;
         this.total = resp?.data?.totalElements
-        console.log(this.dataTable);
       },
       error: err => {
         this.modalService.alert({
@@ -55,7 +54,6 @@ export class OrderListComponent implements OnInit {
   }
 
   view(item:ICategoryData){
-    console.log('view')
   }
   
   refreshData(){

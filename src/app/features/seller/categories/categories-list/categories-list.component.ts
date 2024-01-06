@@ -49,7 +49,6 @@ export class CategoriesListComponent implements OnInit{
       }
     ).subscribe({
       next: resp => {
-        console.log(resp);
       },
       error: error => {
         this.modalService.alert(
@@ -122,6 +121,5 @@ export class CategoriesListComponent implements OnInit{
   }
 
   searchChange(event:any){
-    console.log(event);
   }
 }

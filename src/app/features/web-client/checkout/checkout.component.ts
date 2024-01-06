@@ -98,7 +98,6 @@ export class CheckoutComponent implements OnInit {
       ward: address?.ward?.name,
       firstAddress: specificAddr
     };
-    console.log(params);
     this.globalService.initOrder(params).subscribe({
       next: (res) => this.router.navigate(['/order-success'], {state: res}),
       error: (err) => {
@@ -129,7 +128,6 @@ export class CheckoutComponent implements OnInit {
         this.cart.items?.forEach((item: ICartItem) => {
           this.totalItems += item.quantity;
         })
-        console.log(this.cart);
       },
       error: (err) => {
         this.modalService.alert({
@@ -144,7 +142,6 @@ export class CheckoutComponent implements OnInit {
     if(this.storeService.getSession(StorageKey.accessToken)) {
     this.userService.getCustomerInfo().subscribe({
       next: res => {
-        console.log(res);
         this.form.patchValue(res.data);
       },
       error: err => this.modalService.alert({

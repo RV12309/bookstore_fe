@@ -62,7 +62,6 @@ export class ModalProfileComponent implements OnInit {
 
   submit(){
     const id = this.authService.getDataByKey(JWTStorageKey.account).id;
-    console.log(id);
     const {name, gender, email, 
     phone,
     dob,
@@ -112,10 +111,8 @@ export class ModalProfileComponent implements OnInit {
     if (this.selectedFile) {
       this.uploadService.uploadImage(this.selectedFile).subscribe(
         response => {
-          console.log('Upload successful!', response);
         },
         error => {
-          console.error('Error uploading image:', error);
         }
       );
     }
@@ -153,7 +150,6 @@ export class ModalProfileComponent implements OnInit {
   }
 
   onUploadFile(e: any){
-    console.log(e.url);
   }
 
   public get formControls(){

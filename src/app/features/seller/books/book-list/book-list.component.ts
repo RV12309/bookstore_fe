@@ -136,7 +136,6 @@ export class BookListComponent implements OnInit{
   this.route.queryParams
   .subscribe(
     params => {
-      console.log(params);
       this.getListFromParams(params)
     }
   )
@@ -147,7 +146,6 @@ export class BookListComponent implements OnInit{
       next: resp => {
         this.dataTable = resp?.data?.content;
         this.total = this.dataTable?.length;
-        console.log(this.dataTable)
       },
 
     })
@@ -158,7 +156,6 @@ export class BookListComponent implements OnInit{
   }
 
   view(item: IBookData){
-    console.log('view')
     this.modalService.open(
       BookCreateComponent,
       {
@@ -174,7 +171,6 @@ export class BookListComponent implements OnInit{
   }
 
   update(item: IBookData){
-    console.log('update')
     this.modalService.open(
       BookCreateComponent,
       {
@@ -245,7 +241,6 @@ export class BookListComponent implements OnInit{
         // )
       }
     })
-    console.log(this.filterKeys)
   }
 
   create(){

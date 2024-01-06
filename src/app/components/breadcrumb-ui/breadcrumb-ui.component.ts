@@ -15,11 +15,9 @@ export class BreadcrumbUiComponent implements OnInit {
   public home: MenuItem | undefined;
   constructor(private route: ActivatedRoute, private router: Router) {}
   ngOnInit() {
-    console.log(this.route?.snapshot);
     const routeConfig = this.route.parent?.snapshot?.url;
 
     // routeConfig?.forEach(item => {
-    //   console.log(item);
     //   this.items?.push({
     //     label: "Trang chủ",
     //     iconClass: "hidden",
@@ -31,7 +29,6 @@ export class BreadcrumbUiComponent implements OnInit {
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe(() => {
         this.items = this.createBreadcrumbs(this.route.root);
-        console.log(this.items);
 
       });
 
