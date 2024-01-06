@@ -23,6 +23,7 @@ export interface IBookData  {
     id?: string,
     isbn?: string,
     title?: string,
+    categories?: any,
     author?: string,
     description?: string,
     urlThumbnail?: string,

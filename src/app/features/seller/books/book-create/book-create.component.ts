@@ -8,6 +8,8 @@ import { BooksService } from 'src/app/core/services/books/books.service';
 import { CategoryService } from 'src/app/core/services/category/category.service';
 import { ModalService } from 'src/app/core/services/modal';
 import { UploadService } from "src/app/core/services/upload.service";
+import * as dayjs from 'dayjs';
+import { ICategoryData } from 'src/app/core/interfaces/category.interface';
 
 @Component({
   selector: 'app-book-create',
@@ -22,7 +24,10 @@ export class BookCreateComponent implements OnInit{
   public imageUrl: string[] = [];
   public action:  Action = Action.Create;
   public data: IBookData = {};
-  public Action = Action
+  public Action = Action;
+  public urlThumbnail: any;
+  public urlImageCover: any;
+  public imagesUrls: any
   
   constructor(
     private formBuilder: FormBuilder,
@@ -150,9 +155,14 @@ export class BookCreateComponent implements OnInit{
       case Action.Detail:
         this.formBook.patchValue(this.data);
         this.formBook.disable();
+        this.formBook.controls['publishDate'].patchValue(dayjs(this.data.publishDate).toDate());
+        const category = this.categoryList.find((category: any) => category.id === this.data.categories[0].id)
+        this.urlImageCover = [this.data.urlImageCover];
+        this.urlThumbnail = [this.data.urlThumbnail];
         break;
       case Action.Update:
         this.formBook.patchValue(this.data);
+        this.formBook.controls['publishDate'].patchValue(dayjs(this.data.publishDate).toDate())
         break;
     }
   }

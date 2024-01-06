@@ -44,4 +44,8 @@ export class UserService {
   lockUser(id: string | number): Observable<IResponse<any>>{
     return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Users}/${id}/lock`);
   }
+
+  getStatistic(): Observable<IResponse<any>>{
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Users}/statistic`);
+  }
 }
