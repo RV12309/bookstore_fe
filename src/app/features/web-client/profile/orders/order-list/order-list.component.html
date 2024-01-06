@@ -2,7 +2,7 @@
     <app-table-ui
       headerTable="Danh sách đơn hàng"
       [titleTable]="titleTable"
-      [showAction]="false"
+      [showAction]="true"
       [checkbox]="false"
       [radio]="false"
       [dataTable]="dataTable"
@@ -11,11 +11,23 @@
     >
       <ng-template
         #tableBody
-        let-item="item" (click)="view(item)"
+        let-item="item"
       >
         <td>{{ item?.orderId }}</td>
-        <td><img [src]="item[0]?.urlThumbnail">{{item[0]?.title}} </td>
         <td>{{ item?.total  | number}}</td>
+      </ng-template>
+      <ng-template #tableAction let-item="item">
+        <ng-container>
+          <button
+            class="p-button p-button-outlined p-button-secondary button-table"
+            (click)="view(item)"
+          >
+            <img
+              src="assets/icons/default/ic-eye.svg"
+              alt=""
+            />
+          </button>
+        </ng-container>
       </ng-template>
     </app-table-ui>
   </div>
