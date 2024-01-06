@@ -44,7 +44,6 @@ export class BaseUploadComponent implements OnInit {
     for (let file of event.files) {
       this.uploadedFiles.push(file);
     }
-    console.log(event);
     this.uploadService.uploadImage(event?.currentFiles[0]).subscribe({
       next: (resp) => {
       },
@@ -52,7 +51,6 @@ export class BaseUploadComponent implements OnInit {
   }
 
   onUpload(event: any) {
-    console.log("hihi", event);
     // this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
   }
 

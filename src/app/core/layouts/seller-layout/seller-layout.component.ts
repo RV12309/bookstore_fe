@@ -138,6 +138,5 @@ export class SellerLayoutComponent implements OnInit {
       if(role[0]?.authority === Authority.Admin){
         this.menus = this.adminMenu
       }
-      console.log(this.menus);
   }
 }

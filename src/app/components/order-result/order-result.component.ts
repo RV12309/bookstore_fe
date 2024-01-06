@@ -13,7 +13,6 @@ export class OrderResultComponent implements OnInit {
     private router: Router
   ) { 
     this.order = this.router.getCurrentNavigation()?.extras?.state;
-    console.log(this.order)
   }
 
   ngOnInit(): void {

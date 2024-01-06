@@ -63,15 +63,12 @@ export class BookCreateComponent implements OnInit{
   }
 
   submit(){
-    console.log(this.formBook?.value);
-    console.log(this.imageUrl)
     const {title, author, description, publisher, publishDate, numberOfPage, price, quantity, urlThumbnail, urlImageCover, imagesUrls} = this.formBook.value;
     const params = {
       title, author, description, publisher, publishDate, numberOfPage, price, quantity, urlThumbnail, urlImageCover,
       categoryIds: [this.formBook.value.categoryId.code],
       imagesUrls: this.imageUrl
     }
-    console.log(params);
     if(this.action === Action.Create) {this.bookService.createBook(params).subscribe((res) => {
       this.closeModal();
     })} else if(this.action === Action.Update) {
@@ -97,10 +94,8 @@ export class BookCreateComponent implements OnInit{
     if (this.selectedFile) {
       this.uploadService.uploadImage(this.selectedFile).subscribe(
         response => {
-          console.log('Upload successful!', response);
         },
         error => {
-          console.error('Error uploading image:', error);
         }
       );
     }
@@ -130,7 +125,6 @@ export class BookCreateComponent implements OnInit{
   }
 
   onUploadFile(type: string, e: any){
-    console.log(type, 'data', e.url);
     switch(type){
       case 'thumbnail':
         this.formBook.controls['urlThumbnail'].patchValue(e.url);

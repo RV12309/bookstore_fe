@@ -58,7 +58,6 @@ export class CartComponent implements OnInit {
         this.cart.items?.forEach((item: ICartItem) => {
           this.totalItems += item.quantity;
         })
-        console.log(this.cart);
       },
       error: (err) => {
         this.modalService.alert({
@@ -70,7 +69,6 @@ export class CartComponent implements OnInit {
   }
 
   public onChangeQuantity(e: any, item: ICartItem){
-    console.log(e);
       const id = this.storeService.getSession(StorageKey.cart);
       const params = {
         bookId: item.bookId,

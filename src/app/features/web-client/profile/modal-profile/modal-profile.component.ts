@@ -61,9 +61,7 @@ export class ModalProfileComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.form?.value);
     const id = this.authService.getDataByKey(JWTStorageKey.account).id;
-    console.log(id);
     const {name, gender, email, 
     phone,
     dob,
@@ -84,7 +82,6 @@ export class ModalProfileComponent implements OnInit {
     districtId: '0473',
     id
   }
-    console.log(params);
     this.userService.update(params).subscribe({
       next: () => {
         this.modalService.alert({
@@ -114,10 +111,8 @@ export class ModalProfileComponent implements OnInit {
     if (this.selectedFile) {
       this.uploadService.uploadImage(this.selectedFile).subscribe(
         response => {
-          console.log('Upload successful!', response);
         },
         error => {
-          console.error('Error uploading image:', error);
         }
       );
     }
@@ -126,7 +121,6 @@ export class ModalProfileComponent implements OnInit {
   getCustomerInfo(){
     this.userService.getCustomerInfo().subscribe({
       next: res => {
-        console.log(res);
         this.form.patchValue(res.data);
         const gender = this.genders.find((item) => 
           item.code === res.data.gender
@@ -156,7 +150,6 @@ export class ModalProfileComponent implements OnInit {
   }
 
   onUploadFile(e: any){
-    console.log(e.url);
   }
 
   public get formControls(){
