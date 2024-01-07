@@ -15,6 +15,7 @@ export class SidebarMenuComponent implements OnInit {
 
   @ViewChild('website') website!:ElementRef;
   @Input() menuList!:IMenuSidebar[];
+  @Input() roleTitle: "for Seller" | 'for Admin' = "for Seller";
 
   public isExpand = true;
 

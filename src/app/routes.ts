@@ -19,6 +19,11 @@ export const routes: Routes = [
         loadChildren: () => import('src/app/core/layouts/web-client/auth-layout/auth-layout.module').then(m => m.AuthLayoutModule),
         canActivate: [AuthGuard]
       },
+      {  
+        path: 'admin',
+        loadChildren: () => import('src/app/core/layouts/seller-layout/seller-layout.module').then(m => m.SellerLayoutModule),
+        canActivate: [LoggedGuard]
+      },
       {
         path: 'seller',
         loadChildren: () => import('src/app/core/layouts/seller-layout/seller-layout.module').then(m => m.SellerLayoutModule),
@@ -31,11 +36,6 @@ export const routes: Routes = [
       {
         path: '**',
         component: NotFoundComponent
-      },
-      {
-        path: 'admin',
-        loadChildren: () => import('src/app/core/layouts/seller-layout/seller-layout.module').then(m => m.SellerLayoutModule),
-        canActivate: [LoggedGuard]
       },
     ]
   }

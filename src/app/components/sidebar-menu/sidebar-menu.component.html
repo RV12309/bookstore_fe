@@ -4,8 +4,8 @@
 >
   <div class="w-full text-center flex items-center h-[70px]">
     <div *ngIf="isExpand" class="flex gap-x-2 font-kanit">
-      <span class=" text-4xl ml-1">eFinBooks</span>
-      <span class="text-xs font-medium">for Seller</span>
+      <span class=" text-4xl ml-1 text-purple">eFinBooks</span>
+      <span class="text-xs font-medium">{{roleTitle}}</span>
     </div>
   </div>
   <div class="mt-5 ">
@@ -43,7 +43,7 @@
       </ng-container>
     </div>
   </div>
-s</div>
+</div>
 <div class="absolute p-3 bottom-0 left-0 font-medium bg-white w-[300px]">
   <button
     class="mb-3 w-10 aspect-square rounded-xl center hover:bg-purple-light cursor-pointer duration-400"
