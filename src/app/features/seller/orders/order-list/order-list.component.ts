@@ -17,9 +17,6 @@ export class OrderListComponent implements OnInit {
       title: 'Mã order'
     },
     {
-      title: 'Sản phẩm'
-    },
-    {
       title: 'Thành tiền'
     },
   ];

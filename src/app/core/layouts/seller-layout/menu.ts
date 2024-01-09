@@ -58,13 +58,13 @@ export const MENU_ADMIN: IMenuSidebar[] = [
         icon: "ic-user-01.svg",
         title: "Quản lý người bán",
         key: "",
-        route: "/management/sellers",
+        route: "management/sellers",
       },
       {
         icon: "ic-user-01.svg",
         title: "Quản lý người mua",
         key: "",
-        route: "/management/customers",
+        route: "management/customers",
       },
     ],
   },
@@ -75,15 +75,9 @@ export const MENU_ADMIN: IMenuSidebar[] = [
     children: [
       {
         icon: "ic-statistics.svg",
-        title: "Số lượng bán",
+        title: "Thống kê hệ thống",
         key: "",
-        route: "/seller/statistics",
-      },
-      {
-        icon: "ic-statistics.svg",
-        title: "Doanh số bán",
-        key: "",
-        route: "/seller/statistics",
+        route: "statistics",
       },
     ],
   },

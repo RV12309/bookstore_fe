@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit, OnDestroy{
               this.route.navigate(['/seller']);
               break;
               case Authority.Admin:
-                this.route.navigate(['/admin']);
+                this.route.navigate(['/admin/management/sellers']);
                 break;
             default:
               this.route.navigate(['/']);

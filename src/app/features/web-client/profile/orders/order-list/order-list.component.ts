@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ICategoryData } from 'src/app/core/interfaces/category.interface';
 import { IOrder } from 'src/app/core/interfaces/order.interface';
 import { ITitleTable } from 'src/app/core/interfaces/table.interface';
@@ -24,7 +25,8 @@ export class OrderListComponent implements OnInit {
   public total = 0;
   constructor(
     private orderService: OrdersService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private router: Router
   ){
 
   }
@@ -53,7 +55,12 @@ export class OrderListComponent implements OnInit {
     })
   }
 
-  view(item:ICategoryData){
+  view(item: any){
+    this.router.navigate(['/tracing'], {state: item.orderId})
+  }
+
+  cancel(item: any){
+    console.log('incoming');
   }
   
   refreshData(){

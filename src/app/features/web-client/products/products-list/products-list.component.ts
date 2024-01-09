@@ -30,7 +30,8 @@ export class ProductsListComponent implements OnInit {
     },
   ];
 
-  public dataBooks:IBookData[] = [];
+  public dataBooks: IBookData[] = [];
+  public filterData: IBookData[] = [];
   public categories: ICategoryData[] = [];
   public checkedItem: any[] = [];
   public selectedValues: any[] = [];
@@ -71,6 +72,7 @@ export class ProductsListComponent implements OnInit {
     .subscribe({
       next: resp => {
         this.dataBooks = resp.data?.content;
+        this.filterData = this.dataBooks;
       }
     });
   }
@@ -93,11 +95,19 @@ export class ProductsListComponent implements OnInit {
     })
   }
 
-  onCheckedItem(){
+  onCheckedItem(){  
+   if(this.selectedValues?.length){
     this.currentParams = {
       ...this.currentParams,
       categoryIds: this.selectedValues
     }
+   } else{
+    this.currentParams = {
+      ...this.currentParams,
+      categoryIds: undefined
+    }
+   }
+
     this.getBookList();
   }
 

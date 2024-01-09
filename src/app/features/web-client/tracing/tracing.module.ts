@@ -9,6 +9,7 @@ import { CardModule } from "primeng/card";
 import { InputTextModule } from "primeng/inputtext";
 import { PricePipe } from 'src/app/core/pipes/price.pipe';
 import { PipesModule } from 'src/app/core/pipes/pipes.module';
+import { DividerModule } from 'primeng/divider';
 
 const routes: Routes = [
   {
@@ -30,7 +31,8 @@ const routes: Routes = [
     ButtonModule,
     CardModule,
     InputTextModule,
-    PipesModule
+    PipesModule,
+    DividerModule,
   ]
 })
 export class TracingModule { }
