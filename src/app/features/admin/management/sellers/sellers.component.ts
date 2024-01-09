@@ -43,7 +43,7 @@ export class SellersComponent implements OnInit {
     this.userService.getUserList(params)
     .subscribe({
       next: resp => {
-        this.dataTable = resp.data;
+        this.dataTable = resp.data?.content;
         this.total = this.dataTable?.length
       }
     })

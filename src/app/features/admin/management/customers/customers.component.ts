@@ -36,12 +36,12 @@ export class CustomersComponent implements OnInit {
     const params = {
       page: 0,
       size: 5,
-      type: 'SELLER'
+      type: 'CUSTOMER'
     }
     this.userService.getUserList(params)
     .subscribe({
       next: resp => {
-        this.dataTable = resp.data;
+        this.dataTable = resp.data?.content;
         this.total = this.dataTable?.length
       }
     })

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatisticComponent } from './statistic.component';
+import { ChartModule } from 'primeng/chart';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    ChartModule
   ]
 })
 export class StatisticModule { }

@@ -28,13 +28,8 @@ export class UserService {
     return this.http.put<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Seller}`, body);
   }
 
-  getUserList(form: any): Observable<IResponse<any>>{
-    const queryParams = new HttpParams(
-      {
-        fromObject: {...form}
-      }
-    )
-    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Users}?${queryParams}`);
+  getUserList(body: any): Observable<IResponse<any>>{
+    return this.http.post<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Users}`, body);
   }
 
   getUserInfo(id: string | number): Observable<IResponse<any>>{

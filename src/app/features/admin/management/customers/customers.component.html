@@ -16,12 +16,12 @@
         #tableBody
         let-item="item"
       >
-        <td>{{ item?.userId }}</td>
+        <td>{{ item?.id }}</td>
         <td>{{ item?.username }}</td>
       </ng-template>
       <ng-template #tableAction let-item="item">
         <ng-container>
-          <button
+          <!-- <button
             class="p-button p-button-outlined p-button-secondary button-table"
             (click)="view(item)"
           >
@@ -29,7 +29,7 @@
               src="assets/icons/default/ic-eye.svg"
               alt=""
             />
-          </button>
+          </button> -->
           <button
             class="p-button p-button-outlined p-button-secondary button-table"
             (click)="lock(item)"
