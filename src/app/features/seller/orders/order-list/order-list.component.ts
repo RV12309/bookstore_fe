@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Action } from 'src/app/core/enums';
 import { ICategoryData } from 'src/app/core/interfaces/category.interface';
 import { IOrder } from 'src/app/core/interfaces/order.interface';
 import { ITitleTable } from 'src/app/core/interfaces/table.interface';
@@ -24,7 +26,8 @@ export class OrderListComponent implements OnInit {
   public total = 0;
   constructor(
     private orderService: OrdersService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private router: Router
   ){
 
   }
@@ -52,33 +55,33 @@ export class OrderListComponent implements OnInit {
       }
     })
   }
-  // getList(){
-  //   this.categoryService.searchCategory(
-  //     {
-  //       size: 10,
-  //       page: 1
-  //     }
-  //   ).subscribe({
-  //     next: resp => {
-  //     },
-  //     error: error => {
-  //       this.modalService.alert(
-  //         {
-  //           type: 'error',
-  //           message: error?.error?.message || 'Lỗi hệ thống',
-  //           btnOkName: 'Đóng',
-  //         }
-  //       )
-  //     }
-  //   })
-  // }
 
 
-  view(item:ICategoryData){
+  view(item: any){
+    this.router.navigate(['seller/order/detail'], {state: {
+      id: item.orderId,
+      type: Action.Detail
+    }})
   }
 
-  update(item:ICategoryData){
+  update(item: any){
+    this.router.navigate(['seller/order/detail'], {state: {
+      id: item.orderId,
+      type: Action.Update
+    }
+    })
   }
+
+  public cancel(item: IOrder){
+    this.orderService.updateOrderStatus(item.orderId, {status: 'CANCELLED', note: ''}).subscribe({
+      next: () => {
+        this.modalService.alert({type: 'success', message: 'Đơn hàng đã hủy thành công'});
+        this.refreshData()
+      },
+      error: (err) => this.modalService.alert({type: 'error', message: err.message})
+    })
+  }
+
   refreshData(){
     this.getAll();
   }

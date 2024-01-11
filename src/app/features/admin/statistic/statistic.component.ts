@@ -39,7 +39,7 @@ export class StatisticComponent implements OnInit {
           labels: Object.keys(res?.data?.userStatistic),
           datasets: [
              { data: Object.values(res?.data?.userStatistic),
-              backgroundColor: ['yellow', 'aqua', 'pink']},
+              backgroundColor: ['red', 'green', 'blue']},
             ]
         }
       },

@@ -59,9 +59,15 @@ export class OrderListComponent implements OnInit {
     this.router.navigate(['/tracing'], {state: item.orderId})
   }
 
-  cancel(item: any){
-    console.log('incoming');
-  }
+    public cancel(item: IOrder){
+      this.orderService.updateOrderStatus(item.orderId, {status: 'CANCELLED', note: ''}).subscribe({
+        next: () => {
+          this.modalService.alert({type: 'success', message: 'Đơn hàng đã hủy thành công'});
+          this.refreshData()
+        },
+        error: (err) => this.modalService.alert({type: 'error', message: err.message})
+      })
+    }
   
   refreshData(){
     this.getAll();

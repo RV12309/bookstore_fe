@@ -27,10 +27,25 @@ export const routes:Routes = [
       },
       {
         path: 'order',
-        loadChildren: () => import('src/app/features/seller/orders/order-list/order-list.module').then(m => m.OrderListModule),
         data: {
           breadcrumb: "Đơn hàng"
         },
+        children: [
+          {
+            path: '', 
+            loadChildren: () => import('src/app/features/seller/orders/order-list/order-list.module').then(m => m.OrderListModule),
+            data: {
+              breadcrumb: ''
+            }
+          },
+          {
+            path: 'detail', 
+            loadChildren: () => import('src/app/features/seller/orders/order-detail/order-detail.module').then(m => m.OrderDetailModule),
+            data: {
+              breadcrumb: ''
+            }
+          },
+        ],
         canActivate: [SellerGuard]
       },
       // {

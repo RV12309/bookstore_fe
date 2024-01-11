@@ -183,6 +183,6 @@
     <button [disabled]="action === Action.Detail" (click)="submit()"
       class="w-32"
       pButton
-    >Lưu</button>
+    >{{action === Action.Update ? 'Cập nhật' : 'Thêm mới'}}</button>
   </div>
 </div>

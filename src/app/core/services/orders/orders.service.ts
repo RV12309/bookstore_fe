@@ -22,4 +22,8 @@ export class OrdersService {
   updateOrderStatus(id: string| number, body: any): Observable<IResponse<any>>{
     return this.http.patch<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/${id}/status`, body);
   }
+
+  cancelOrder(id: string| number): Observable<IResponse<any>>{
+    return this.http.put<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/${id}/cancel`, {});
+  }
 }

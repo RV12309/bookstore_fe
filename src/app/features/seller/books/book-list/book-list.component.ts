@@ -247,7 +247,7 @@ export class BookListComponent implements OnInit{
     const modal: DynamicDialogRef = this.modalService.open(
       BookCreateComponent,
       {
-        header: 'Tạo mới sách',
+        header: 'Thêm mới sách',
         width: ModalSize.Large,
         data: {
           type: Action.Create,

@@ -30,6 +30,7 @@
               alt=""
             />
           </button>
+          <div *ngIf="item.status !== 'CANCELLED'">
           <button
             class="p-button p-button-outlined p-button-secondary button-table"
             (click)="update(item)"
@@ -39,6 +40,16 @@
               alt=""
             />
           </button>
+          <button
+            class="p-button p-button-outlined p-button-secondary button-table"
+            (click)="cancel(item)"
+          >
+            <img
+              src="assets/icons/color/ic-close-circle-f-red.svg"
+              alt=""
+            />
+          </button>
+        </div>
         </ng-container>
       </ng-template>
     </app-table-ui>

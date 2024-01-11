@@ -1,0 +1,165 @@
+<div class="bg-red-1000 grid content-start gap-y-8">
+    <!-- <div class="flex gap-x-32">
+      <div
+        class="group relative border border-solid border-gray p-10 rounded-3xl bg-white grid grid-cols-1 content-center gap-y-4 hover:shadow-#1 duration-300"
+      >
+        <img
+          src="assets/images/Saly-25.png"
+          class="w-[150px] absolute -top-[20%] -right-10 group-hover:-rotate-3 group-hover:scale-110 duration-500"
+          alt=""
+        />
+        <p class="flex items-center gap-x-6">
+          <span class="font-bold text-[60px]">2</span>
+          <span class="font-semibold text-lg text-neutral-600">
+            Delivery today
+          </span>
+        </p>
+        <p class="text-neutral-500 text-lg">
+          The delivery of your parcel is estimated at
+          <span class="font-semibold text-neutral-600">10:30 AM to 11:00 AM</span>
+          . Not going to be home ?
+        </p>
+        <div class="flex gap-x-4">
+          <button
+            type="submit"
+            pButton
+            class="p-button-rounded w-fit"
+          >
+            Reschedule
+          </button>
+          <button
+            type="submit"
+            pButton
+            class="p-button-outlined p-button-rounded w-fit"
+          >
+            Manage Preferences
+          </button>
+        </div>
+      </div>
+      <div
+        class="group relative border border-solid border-gray p-10 rounded-3xl bg-white grid grid-cols-1 content-center gap-y-4 hover:shadow-#1 duration-300"
+      >
+        <img
+          src="assets/images/rocket.png"
+          class="w-[150px] absolute -top-[25%] -right-10 group-hover:rotate-3 group-hover:scale-110 duration-500"
+          alt=""
+        />
+        <p class="text-purple font-bold text-3xl">
+          Enter your parcel number to track your deliveries
+        </p>
+  
+        <div class="flex gap-x-4">
+          <input
+            type="text"
+            formControlName="orderId"
+            pInputText
+            placeholder="Nhập mã vận đơn..."
+            style="border-radius: 50px !important"
+          />
+          <button
+            type="submit"
+            pButton
+            (click)="submit()"
+            class="p-button-rounded w-[200px]"
+          >
+            Submit
+          </button>
+        </div>
+        <ng-container>
+          <div *ngIf="form?.invalid && form.controls['orderId']?.touched" class="error-text">
+            <p *ngIf="form.controls['orderId']?.hasError('required')">
+              Vui lòng nhập mã đơn hàng
+            </p>
+          </div>
+        </ng-container>
+      </div>
+    </div> -->
+    <div *ngIf="tracking$ | async as tracking">
+      <p class="text-2xl font-bold text-purple mb-2">Thông tin đơn hàng</p>
+      <table class="custom-table-default">
+        <tr>
+          <th>Mã đơn hàng</th>
+          <td>{{tracking.orderId || '-'}}</td>
+        </tr>
+        <!-- <tr>
+          <th>Ngày lấy dự kiến</th>
+          <td>{{tracking.}}</td>
+        </tr>
+        <tr>
+          <th>Ngày giao dự kiến</th>
+          <td>-</td>
+        </tr> -->
+        <tr>
+          <th>Trạng thái đơn hàng</th>
+          <td>{{tracking.status | status}}</td>
+        </tr>
+        <tr>
+          <th>Tổng số sản phẩm</th>
+          <td>{{tracking.items?.length}}</td>
+        </tr>
+        <tr>
+          <th>Tổng giá trị</th>
+          <td>{{tracking.total | price}}</td>
+        </tr>
+        <tr>
+          <th>Hình thức thanh toán</th>
+          <td>{{tracking.paymentProvider}}</td>
+        </tr>
+        <tr>
+          <th>Trạng thái thanh toán</th>
+          <td>{{tracking.paymentStatus | paymentStatus}}</td>
+        </tr>
+      </table>
+      <ng-container >
+        <div class="grid grid-cols-4 gap-x-10">
+          <div class="col-span-2 grid content-start gap-y-5">
+            <div
+              *ngFor="let item of tracking?.items; let index = index; let last = last"
+              class="border-r-2 border-solid border-white hover:border-purple box-border duration-400 pr-2"
+            >
+              <div class="flex gap-x-3">
+                <img
+                  src="{{ item.urlThumbnail }}"
+                  alt=""
+                  class="w-32 object-cover rounded-md rounded-l-3xl aspect-2/3"
+                />
+                <div class="w-full grid">
+                  <div class="grid content-start gap-y-4">
+                    <p class="font-semibold text-xl">{{ item.title }}</p>
+                    <div class="flex items-center gap-x-6">
+                      <span class="font-medium text-neutral-500">Số lượng: {{item.quantity}}</span>
+  
+                    </div>
+                    <div class="flex items-end gap-x-6">
+                      <span class="font-medium text-neutral-500">Đơn giá</span>
+                      <span class="font-bold text-brown">
+                        {{ item.price | price }}
+                        <span class="font-normal">/sản phẩm</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="flex items-end justify-between text-orange">
+                    <div class="flex items-end gap-x-6">
+                      <span class="font-medium text-lg">Thành tiền</span>
+                      <span class="font-bold text-lg">
+                        {{ item.total | price }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div> <button *ngIf="data.type === 'update'"
+            type="submit"
+            pButton
+            (click)="updateOrderStatus()"
+            class="p-button-rounded w-[200px]"
+          >
+            {{label}}
+          </button></div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+  
