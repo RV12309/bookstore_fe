@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { IResponse } from '../../interfaces/response.interface';
 import { WCEndPoint } from '../../enums/wc-endpoints.enums';
 
@@ -25,5 +25,14 @@ export class OrdersService {
 
   cancelOrder(id: string| number): Observable<IResponse<any>>{
     return this.http.put<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/${id}/cancel`, {});
+  }
+
+  getOrderStatistic(form: any): Observable<IResponse<any>>{
+    const queryParams = new HttpParams(
+      {
+        fromObject: {...form}
+      }
+    )
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/statistic?${queryParams}`);
   }
 }
