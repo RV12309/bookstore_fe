@@ -39,7 +39,7 @@ export class OrderListComponent implements OnInit {
 
   getAll(){
     this.orderService.getOrderList({
-      size: 10,
+      size: 20,
       page: 0
     })
     .subscribe({

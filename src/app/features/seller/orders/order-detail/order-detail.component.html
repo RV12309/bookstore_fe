@@ -93,6 +93,10 @@
           <th>Trạng thái đơn hàng</th>
           <td>{{tracking.status | status}}</td>
         </tr>
+        <tr *ngIf="tracking.status !== 'PENDING' || tracking.status !== 'CANCELLED'">
+          <th>Mã vận chuyển</th>
+          <td><a [href]="tracking?.urlTracking" target="_blank">{{tracking.trackingCode}}</a></td>
+        </tr>
         <tr>
           <th>Tổng số sản phẩm</th>
           <td>{{tracking.items?.length}}</td>

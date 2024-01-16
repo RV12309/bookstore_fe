@@ -13,6 +13,7 @@ import { DropdownUiModule } from 'src/app/components/dropdown-ui/dropdown-ui.mod
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DirectivesModule } from 'src/app/core/directives/directives.module';
 import { DateUiModule } from 'src/app/components/date-ui/date-ui.module';
+import { AddressModule } from 'src/app/components/address/address.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { DateUiModule } from 'src/app/components/date-ui/date-ui.module';
     DropdownUiModule,
     DateUiModule,
     InputNumberModule,
-    DirectivesModule
+    DirectivesModule,
+    AddressModule
   ],
   exports: [
     ModalProfileComponent

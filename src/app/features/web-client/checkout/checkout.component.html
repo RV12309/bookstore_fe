@@ -62,7 +62,7 @@
             />
           </div>
           <div class="col-span-3">
-            <app-address (changeValue)="onChangeAddress($event)"></app-address>
+            <app-address [defaultAddr]="address" (changeValue)="onChangeAddress($event)"></app-address>
           </div>
           <div class="col-span-3">
             <label

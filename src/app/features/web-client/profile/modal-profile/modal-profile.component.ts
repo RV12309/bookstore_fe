@@ -29,7 +29,8 @@ export class ModalProfileComponent implements OnInit {
     {name: 'Nam', code: 'MALE', value: 'MALE'},
     {name: 'Nữ', code: 'FEMALE', value: 'FEMALE'},
     {name: 'Khác', code: 'OTHER', value: 'OTHER'}
-  ]
+  ];
+  public address: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -54,9 +55,7 @@ export class ModalProfileComponent implements OnInit {
       email: ['', Validators.required],
       phone: ['', Validators.required],
       dob: ['', Validators.required],
-      province: [null, Validators.required],
-      ward: [null, Validators.required],
-      district: [null, Validators.required],
+      address: ['', Validators.required]
     })
   }
 
@@ -64,23 +63,21 @@ export class ModalProfileComponent implements OnInit {
     const id = this.authService.getDataByKey(JWTStorageKey.account).id;
     const {name, gender, email, 
     phone,
-    dob,
-    province,
-    ward,
-    district} = this.form.value;
+    dob, address
+  } = this.form.value;
     const params = {
       name, 
       gender: gender.code, 
       email, 
     phone,
     dob,
-    province,
-    provinceId: '0001',
-    ward,
-    wardCode: '0100', 
-    district,
-    districtId: '0473',
-    id
+    id,
+    provinceId: address?.province?.code,
+      districtId: address?.district?.code,
+      wardCode: address?.ward?.code,
+      province: address?.province?.name,
+      district: address?.district?.name,
+      ward: address?.ward?.name,
   }
     this.userService.update(params).subscribe({
       next: () => {
@@ -127,6 +124,11 @@ export class ModalProfileComponent implements OnInit {
         );
         this.formControls['gender'].patchValue(gender);
         this.formControls['dob'].patchValue(dayjs(res.data.dob).toDate());
+        this.address = {
+          provinceId: res.data.provinceId,
+          districtId: res.data.districtId,
+          wardCode: res.data.wardCode
+        }
       },
       error: err => this.modalService.alert({
         type: 'error',
@@ -150,6 +152,9 @@ export class ModalProfileComponent implements OnInit {
   }
 
   onUploadFile(e: any){
+  }
+  public onChangeAddress(e: any){
+    this.form.controls['address'].patchValue(e);
   }
 
   public get formControls(){

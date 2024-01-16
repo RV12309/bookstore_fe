@@ -57,12 +57,12 @@
         placeholder="Nhập email"
       />
     </div>
-    <div class="">
+    <div class="col-span-3">
         <label for="">Ngày sinh</label>
         <app-date-ui formControlName="dob"
         placeholder="Chọn ngày sinh"></app-date-ui>
       </div>
-    <div class="">
+    <!-- <div class="">
       <label for="">Tỉnh/Thành</label>
       <input
         type="text"
@@ -86,6 +86,9 @@
         placeholder="Nhập phường/xã"
         pInputText
       />
+    </div> -->
+    <div class="col-span-3">
+    <app-address [defaultAddr]="address" (changeValue)="onChangeAddress($event)"></app-address>
     </div>
     <div class="col-span-2">
         <label

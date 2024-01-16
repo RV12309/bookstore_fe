@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddressModule } from 'src/app/components/address/address.module';
 
 
 
@@ -30,7 +31,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DropdownUiModule,
     DateUiModule,
     InputNumberModule,
-    DirectivesModule
+    DirectivesModule,
+    AddressModule
   ],
   exports: [
     ModalAccountManagerComponent

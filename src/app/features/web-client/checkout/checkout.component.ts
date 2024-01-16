@@ -21,6 +21,7 @@ export class CheckoutComponent implements OnInit {
   public totalItems: number = 0;
   public form!: FormGroup;
   public breadcrumb:MenuItem[] = [];
+  public address: any;
   public paymentMethodList = [
     {
       value : 'COD',
@@ -143,6 +144,12 @@ export class CheckoutComponent implements OnInit {
     this.userService.getCustomerInfo().subscribe({
       next: res => {
         this.form.patchValue(res.data);
+        this.address = {
+          provinceId: res.data.provinceId,
+          districtId: res.data.districtId,
+          wardCode: res.data.wardCode
+        }
+        
       },
       error: err => this.modalService.alert({
         type: 'error',
