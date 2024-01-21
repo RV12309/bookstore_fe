@@ -125,7 +125,9 @@ export class ModalAccountManagerComponent {
           item.code === res.data.gender
         );
         this.formControls['gender'].patchValue(gender);
-        this.formControls['dob'].patchValue(dayjs(res.data.dob).toDate());
+        if(res.data.dob){
+          this.formControls['dob'].patchValue(dayjs(res.data.dob).toDate());
+        }
         this.address = {
           provinceId: res.data.provinceId,
           districtId: res.data.districtId,
