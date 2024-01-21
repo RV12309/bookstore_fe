@@ -35,4 +35,13 @@ export class OrdersService {
     )
     return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/statistic?${queryParams}`);
   }
+
+  getRevenueStatistic(form: any): Observable<IResponse<any>>{
+    const queryParams = new HttpParams(
+      {
+        fromObject: {...form}
+      }
+    )
+    return this.http.get<IResponse<any>>(`${this.baseUrl}${WCEndPoint.Order}/statistic-revenue?${queryParams}`);
+  }
 }

@@ -93,7 +93,7 @@
           <th>Trạng thái đơn hàng</th>
           <td>{{tracking.status | status}}</td>
         </tr>
-        <tr *ngIf="tracking.status !== 'PENDING' || tracking.status !== 'CANCELLED'">
+        <tr *ngIf="tracking.urlTracking && tracking.trackingCode">
           <th>Mã vận chuyển</th>
           <td><a [href]="tracking?.urlTracking" target="_blank">{{tracking.trackingCode}}</a></td>
         </tr>

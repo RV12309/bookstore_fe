@@ -142,7 +142,7 @@ export class BookListComponent implements OnInit{
   }
 
   getListFromParams(params:any){
-    this.globalService.getBooksList(params).subscribe({
+    this.booksService.getBooksList(params).subscribe({
       next: resp => {
         this.dataTable = resp?.data?.content;
         this.total = this.dataTable?.length;

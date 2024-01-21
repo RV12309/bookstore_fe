@@ -42,7 +42,7 @@ export const MENU_SELLER: IMenuSidebar[] = [
         icon: "ic-statistics.svg",
         title: "Số lượng bán",
         key: "",
-        route: "/seller/statistics",
+        route: "/seller/statistic",
       },
     ],
   },

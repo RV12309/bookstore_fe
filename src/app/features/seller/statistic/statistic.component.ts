@@ -13,6 +13,7 @@ import { UserService } from 'src/app/core/services/user/user.service';
 export class StatisticComponent implements OnInit {
   public userData: any;
   public orderData: any;
+  public revenueData: any;
   public form!: FormGroup;
   public types = [
     { code: 'day', name: 'Theo ngày', value: 'DAY' },
@@ -43,8 +44,9 @@ export class StatisticComponent implements OnInit {
     this.form = this.fb.group({
       type: [this.types[2]],
     });
-    this.getStatistic();
+    // this.getStatistic();
     this.getOrderStatistic();
+    // this.getRevenueStatistic();
     this.form.controls['type'].valueChanges.subscribe({
       next: (res) => this.getOrderStatistic(),
       error: (error) =>
@@ -128,6 +130,79 @@ export class StatisticComponent implements OnInit {
               label: 'Đơn hàng',
               data: res?.data?.map((data: any) => data?.totalOrder),
               backgroundColor: ['green'],
+            },
+          ],
+        };
+        this.revenueData = {
+          labels: label,
+          // labels: label,
+          datasets: [
+            {
+              label: 'Doanh số',
+              data: res?.data?.map((data: any) => data?.totalAmount),
+              backgroundColor: ['orange'],
+            },
+          ],
+        };
+      },
+      error: (error) =>
+        this.modalService.alert({
+          type: error,
+          message: error.message,
+        }),
+    });
+  }
+
+  public getRevenueStatistic() {
+    const params = {
+      from: '',
+      to: '',
+      type: 'MONTH',
+    };
+    // let label: string[] = [];
+    // switch (params.type) {
+    //   case 'MONTH':
+    //     for(let i = 1; i < 5; i++){
+    //       label.push('Tuần '+ i)
+    //     }
+    //     break;
+    //   case 'DAY':
+    //     for(let i = 1; i < 25; i++){
+    //       label.push('Giờ thứ '+ i)
+    //     }
+    //     break;
+    //   case 'WEEK':
+    //     for(let i = 1; i < 8; i++){
+    //       label.push('Ngày thứ '+ i)
+    //     }
+    //     break;
+    //   case 'QUARTER':
+    //     for(let i = 1; i < 5; i++){
+    //       label.push('Tháng thứ '+ i)
+    //     }
+    //     break;
+    //   case 'YEAR':
+    //     for(let i = 1; i < 13; i++){
+    //       label.push('Tháng '+ i)
+    //     }
+    //     break;
+    //   default:
+    //     for(let i = 1; i < 5; i++){
+    //       label.push('Tuần '+ i)
+    //     }
+    //     break;
+    // }
+    this.orderService.getRevenueStatistic(params).subscribe({
+      next: (res) => {
+        console.log(res?.data?.map((data: any) => data?.totalOrder));
+        this.revenueData = {
+          labels: ['Tuần 1', 'Tuần 2', 'Tuần 3', 'Tuần 4'],
+          // labels: label,
+          datasets: [
+            {
+              label: 'Đơn hàng',
+              data: res?.data?.map((data: any) => data?.totalAmount),
+              backgroundColor: ['orange'],
             },
           ],
         };

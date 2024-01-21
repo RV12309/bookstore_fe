@@ -18,9 +18,9 @@ export class BooksService {
   getBooksList(body: IBookSearchForm): Observable<IResponse<IBooksResponse>>{
     return this.http.post<IResponse<IBooksResponse>>(
       `${this.baseUrl}${WCEndPoint.Book}/list`, body,
-      {
-        headers: HEADERS_NO_TOKEN
-      }
+      // {
+      //   headers: HEADERS_NO_TOKEN
+      // }
     );
   }
 

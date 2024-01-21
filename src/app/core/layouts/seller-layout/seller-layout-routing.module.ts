@@ -18,6 +18,14 @@ export const routes:Routes = [
         canActivate: [SellerGuard]
       },
       {
+        path:'statistic',
+        loadChildren: () => import('src/app/features/seller/statistic/statistic.module').then(m => m.StatisticModule),
+        data: {
+          breadcrumb: "Thống kê"
+        },
+        canActivate: [SellerGuard]
+      },
+      {
         path:'books/categories',
         loadChildren: () => import('src/app/features/seller/categories/categories-list/categories-list.module').then(m => m.CategoriesListModule),
         data: {

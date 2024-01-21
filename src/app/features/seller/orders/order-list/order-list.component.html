@@ -40,7 +40,7 @@
               alt=""
             />
           </button>
-          <button
+          <button *ngIf="item.status === 'PENDING'"
             class="p-button p-button-outlined p-button-secondary button-table"
             (click)="cancel(item)"
           >
